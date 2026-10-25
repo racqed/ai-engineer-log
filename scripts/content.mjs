@@ -20,9 +20,9 @@ export function loadContent() {
 
 export const STATUSES = ["todo", "doing", "done"];
 export const SOURCE_CATEGORIES = {
-  market: "Market and hiring data",
-  role: "What an AI engineer is",
-  practice: "Agentic engineering practice",
-  transition: "Data scientist to AI engineer",
-  skeptic: "The sceptical view",
+  market: ["Market and hiring data", "시장과 채용 데이터"],
+  role: ["What an AI engineer is", "AI 엔지니어란 무엇인가"],
+  practice: ["Agentic engineering practice", "에이전틱 엔지니어링 실무"],
+  transition: ["Data scientist to AI engineer", "데이터 사이언티스트에서 AI 엔지니어로"],
+  skeptic: ["The sceptical view", "회의적인 시각"],
 };

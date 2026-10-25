@@ -1,35 +1,51 @@
 {
   "intro": "Six months, November 2026 to April 2027. Each step has a public proof of work, because employers hire on evidence, not course certificates. The plan builds on what I already have: production ML, statistics, domain knowledge from brand protection and law, the UK market and mentoring. One project, the Brand Protection Assistant, carries through the middle phases, so the portfolio tells one connected story.",
+  "introKo": "2026년 11월부터 2027년 4월까지 6개월 계획입니다. 고용주는 강좌 수료증이 아니라 증거를 보고 채용하기 때문에, 단계마다 공개된 증빙 결과물을 남깁니다. 이 계획은 제가 이미 갖춘 것, 즉 프로덕션 ML, 통계, 브랜드 보호와 법률 분야의 도메인 지식, 영국 시장에 대한 이해, 멘토링 경험을 바탕으로 합니다. 중간 단계들에서는 Brand Protection Assistant라는 하나의 프로젝트를 계속 이어 가므로, 포트폴리오 전체가 하나로 연결된 이야기를 전하게 됩니다.",
   "phases": [
     {
       "id": "p0",
       "title": "Groundwork",
+      "titleKo": "기초 다지기",
       "window": "October 2026",
-      "goal": "Build real things with coding agents and start keeping a public record."
+      "windowKo": "2026년 10월",
+      "goal": "Build real things with coding agents and start keeping a public record.",
+      "goalKo": "코딩 에이전트로 실제 결과물을 만들고, 공개 기록을 남기기 시작합니다."
     },
     {
       "id": "p1",
       "title": "Agent workflow discipline",
+      "titleKo": "에이전트 워크플로 규율",
       "window": "Months 1–2 · Nov–Dec 2026",
-      "goal": "Make agents reliable and cheap on my own repositories: written rules, runnable checks, measured cost, automated review."
+      "windowKo": "1–2개월 차 · 2026년 11–12월",
+      "goal": "Make agents reliable and cheap on my own repositories: written rules, runnable checks, measured cost, automated review.",
+      "goalKo": "제 리포지토리에서 에이전트를 안정적이고 저렴하게 쓸 수 있게 만듭니다. 문서화된 규칙, 실행 가능한 검사, 측정된 비용, 자동화된 리뷰를 갖춥니다."
     },
     {
       "id": "p2",
       "title": "LLM systems that hold up",
+      "titleKo": "견고한 LLM 시스템",
       "window": "Months 3–4 · Jan–Feb 2027",
-      "goal": "Use my data science strengths where they matter most for LLM systems: evals, retrieval quality and well-designed tools."
+      "windowKo": "3–4개월 차 · 2027년 1–2월",
+      "goal": "Use my data science strengths where they matter most for LLM systems: evals, retrieval quality and well-designed tools.",
+      "goalKo": "LLM 시스템에서 가장 중요한 영역인 평가(evals), 검색 품질, 잘 설계된 도구에 제 데이터 과학 역량을 활용합니다."
     },
     {
       "id": "p3",
       "title": "Supervised agents and governance",
+      "titleKo": "감독형 에이전트와 거버넌스",
       "window": "Month 5 · Mar 2027",
-      "goal": "Long-running domain agents with people in control, and a security and governance story that legal and compliance teams can read."
+      "windowKo": "5개월 차 · 2027년 3월",
+      "goal": "Long-running domain agents with people in control, and a security and governance story that legal and compliance teams can read.",
+      "goalKo": "사람이 통제권을 쥔 장시간 실행 도메인 에이전트, 그리고 법무·컴플라이언스 팀도 읽고 이해할 수 있는 보안·거버넌스 설명을 갖춥니다."
     },
     {
       "id": "p4",
       "title": "Prove it and position",
+      "titleKo": "증명과 포지셔닝",
       "window": "Month 6 · Apr 2027",
-      "goal": "Measure honestly, tell the story and apply."
+      "windowKo": "6개월 차 · 2027년 4월",
+      "goal": "Measure honestly, tell the story and apply.",
+      "goalKo": "정직하게 측정하고, 이야기를 정리해 지원합니다."
     }
   ],
   "tasks": [
@@ -37,8 +53,11 @@
       "id": "ship-with-agents",
       "phase": "p0",
       "title": "Ship several working projects with Claude Code and Codex",
+      "titleKo": "Claude Code와 Codex로 동작하는 프로젝트 여러 개 출시",
       "why": "Hands-on experience of where agents help and where they need tight instructions.",
+      "whyKo": "에이전트가 어디서 도움이 되고 어디서 엄격한 지시가 필요한지 직접 경험합니다.",
       "deliverable": "Four or more working projects, two of them public and live (see the log).",
+      "deliverableKo": "동작하는 프로젝트 4개 이상, 그중 2개는 공개되어 실제 운영 중입니다(로그 참고).",
       "status": "done",
       "done": "2026-10-25",
       "evidence": "https://life-in-the-uk-quiz.latteboo99.workers.dev"
@@ -47,8 +66,11 @@
       "id": "career-log",
       "phase": "p0",
       "title": "Start a public, agent-maintained career log",
+      "titleKo": "에이전트가 관리하는 공개 커리어 로그 시작",
       "why": "One place to research the market, plan, and show progress to others.",
+      "whyKo": "시장 조사, 계획 수립, 진행 상황 공유를 한곳에서 할 수 있습니다.",
       "deliverable": "This site: research from parallel sub-agents, a content check, and an AGENTS.md shared by Claude Code and Codex.",
+      "deliverableKo": "바로 이 사이트입니다. 병렬 서브에이전트가 수행한 조사, 콘텐츠 검사, 그리고 Claude Code와 Codex가 함께 쓰는 AGENTS.md를 갖추고 있습니다.",
       "status": "done",
       "done": "2026-10-25",
       "evidence": "https://ai-engineer-log.latteboo99.workers.dev"
@@ -57,16 +79,22 @@
       "id": "public-github",
       "phase": "p0",
       "title": "Publish the public projects on GitHub",
+      "titleKo": "공개 프로젝트의 GitHub 게시",
       "why": "Commit history, instruction files and CI runs are the evidence hiring managers can actually inspect.",
+      "whyKo": "커밋 기록, 지침 파일, CI 실행 결과는 채용 담당자가 실제로 들여다볼 수 있는 증거입니다.",
       "deliverable": "Public repositories for this site, the Life in the UK quiz and the Brand Protection Assistant, each with a README and AGENTS.md.",
+      "deliverableKo": "이 사이트, Life in the UK 퀴즈, Brand Protection Assistant의 공개 리포지토리. 각 리포지토리에는 README와 AGENTS.md가 포함됩니다.",
       "status": "todo"
     },
     {
       "id": "agent-ready-repos",
       "phase": "p1",
       "title": "Make my repositories agent-ready",
+      "titleKo": "에이전트 친화적인 리포지토리 정비",
       "why": "Instruction files are now a cross-tool standard that review bots read too. A short rules file plus a check the agent can run is the strongest lever on output quality.",
+      "whyKo": "지침 파일은 이제 리뷰 봇도 읽는, 도구를 가리지 않는 표준이 되었습니다. 짧은 규칙 파일과 에이전트가 직접 실행할 수 있는 검사 하나가 출력 품질을 높이는 가장 강력한 수단입니다.",
       "deliverable": "A reusable AGENTS.md/CLAUDE.md template (under 200 lines), two skills (e.g. retrain-and-validate, model-card update) and a hook that filters test output, applied to an ML repository. Publish a before/after table of task success and turns on 10 scripted maintenance tasks.",
+      "deliverableKo": "재사용 가능한 AGENTS.md/CLAUDE.md 템플릿(200줄 미만), 스킬 2개(예: retrain-and-validate, model-card update), 테스트 출력을 걸러 주는 훅 1개를 ML 리포지토리에 적용합니다. 스크립트로 정해 둔 유지보수 작업 10개에 대해 작업 성공률과 턴 수의 전후 비교표를 공개합니다.",
       "status": "doing",
       "sourceIds": [
         "s19",
@@ -79,8 +107,11 @@
       "id": "token-cost",
       "phase": "p1",
       "title": "Measure and cut agent token spend",
+      "titleKo": "에이전트 토큰 지출 측정과 절감",
       "why": "Agent cost scales with context size and cache behaviour. A measured saving is a concrete, rare thing to show an employer.",
+      "whyKo": "에이전트 비용은 컨텍스트 크기와 캐시 동작에 따라 커집니다. 측정으로 입증한 절감 효과는 고용주에게 보여 줄 수 있는 구체적이면서도 드문 성과입니다.",
       "deliverable": "Write-up and notebook: 'Cutting agent spend on a real ML repo'. Baseline vs optimised cost per task, cache hit rate, model routing for sub-agents, log pre-filtering and moving CLAUDE.md content into skills, with usage data as evidence.",
+      "deliverableKo": "글과 노트북: '실제 ML 리포지토리에서 에이전트 비용 줄이기'. 기준선 대비 최적화 후의 작업당 비용, 캐시 적중률, 서브에이전트용 모델 라우팅, 로그 사전 필터링, CLAUDE.md 내용을 스킬로 옮기기를 다루며, 사용량 데이터를 근거로 제시합니다.",
       "status": "todo",
       "sourceIds": [
         "s20",
@@ -92,8 +123,11 @@
       "id": "auto-review",
       "phase": "p1",
       "title": "Automated code review and CI repair",
+      "titleKo": "자동 코드 리뷰와 CI 자동 수정",
       "why": "Agentic code review is now generally available in mainstream tools. Employers need people who can set it up safely and measure signal against noise.",
+      "whyKo": "에이전트 기반 코드 리뷰가 이제 주요 도구에서 정식 출시되었습니다. 고용주에게는 이를 안전하게 구축하고, 유효한 지적과 잡음의 비율을 측정할 수 있는 사람이 필요합니다.",
       "deliverable": "On this site's repository: a Claude Code GitHub Actions review workflow driven by AGENTS.md, and a CI-failure fix workflow with turn limits, an allowed-tools list and timeouts. Report review precision and recall on 30 deliberately seeded bugs, plus a security scan gate.",
+      "deliverableKo": "이 사이트의 리포지토리에 AGENTS.md를 기준으로 동작하는 Claude Code GitHub Actions 리뷰 워크플로와, 턴 제한·허용 도구 목록·타임아웃을 둔 CI 실패 수정 워크플로를 구축합니다. 의도적으로 심어 둔 버그 30개에 대한 리뷰 정밀도와 재현율을 보고하고, 보안 스캔 게이트도 추가합니다.",
       "status": "todo",
       "sourceIds": [
         "s21",
@@ -106,8 +140,11 @@
       "id": "evals",
       "phase": "p2",
       "title": "An eval harness for a brand-protection triage agent",
+      "titleKo": "브랜드 보호 트리아지 에이전트용 평가 하네스",
       "why": "Evals are where a data scientist has a real edge over a pure software engineer: error analysis, labelling, judge calibration and statistics.",
+      "whyKo": "평가는 데이터 과학자가 순수 소프트웨어 엔지니어보다 확실히 앞서는 영역입니다. 오류 분석, 레이블링, 판정 모델(judge) 보정, 통계가 모두 필요하기 때문입니다.",
       "deliverable": "Open-source harness on synthetic or public listings: a failure taxonomy from 50+ traces, a binary LLM judge validated against my own labels (TPR/TNR on held-out data), pass^k reliability, and a CI job that fails on regressions.",
+      "deliverableKo": "합성 또는 공개 상품 리스팅을 사용하는 오픈소스 하네스입니다. 50개 이상의 트레이스에서 도출한 실패 유형 분류, 제가 직접 단 레이블로 검증한 이진 LLM 판정 모델(홀드아웃 데이터 기준 TPR/TNR), pass^k 신뢰도, 회귀가 생기면 실패하는 CI 작업을 포함합니다.",
       "status": "todo",
       "sourceIds": [
         "s13",
@@ -119,8 +156,11 @@
       "id": "rag",
       "phase": "p2",
       "title": "RAG over IP and platform-policy documents, with retrieval evals",
+      "titleKo": "IP·플랫폼 정책 문서 대상 RAG와 검색 평가",
       "why": "RAG is one of the three most common UK AI Engineer skills, and retrieval quality is a measurement problem.",
+      "whyKo": "RAG는 영국 AI Engineer 직무에서 가장 흔히 요구되는 세 가지 기술 중 하나이며, 검색 품질은 결국 측정의 문제입니다.",
       "deliverable": "Question answering over public trade mark guidance and marketplace IP policies, with citations. Recall@k and answer-faithfulness evals, and a short note on the chunking and reranking choices.",
+      "deliverableKo": "공개된 상표 가이드와 마켓플레이스 IP 정책을 대상으로 출처를 인용하는 질의응답 시스템. Recall@k와 답변 충실도 평가, 그리고 청킹과 리랭킹 선택에 대한 짧은 메모를 함께 제공합니다.",
       "status": "todo",
       "sourceIds": [
         "s1",
@@ -132,8 +172,11 @@
       "id": "mcp",
       "phase": "p2",
       "title": "An MCP server for the Brand Protection Assistant",
+      "titleKo": "Brand Protection Assistant용 MCP 서버",
       "why": "Tools are a contract with their own design rules, MCP is the industry standard for them, and few servers carry domain expertise.",
+      "whyKo": "도구는 고유한 설계 원칙을 지닌 일종의 계약이고, MCP는 이를 위한 업계 표준입니다. 게다가 도메인 전문성을 담은 서버는 아직 드뭅니다.",
       "deliverable": "Namespaced tools for listing lookup, similarity scoring against a mark list and notice drafting (synthetic data), with compact and detailed response modes and actionable errors. A tool-eval report (error rate, redundant calls, tokens per task) showing at least one improvement made with an agent.",
+      "deliverableKo": "리스팅 조회, 상표 목록 대비 유사도 점수 산정, 통지서 초안 작성(합성 데이터)을 위한 네임스페이스 도구. 간략/상세 응답 모드와 바로 조치할 수 있는 오류 메시지를 갖춥니다. 에이전트로 개선한 사례를 최소 1건 보여 주는 도구 평가 보고서(오류율, 중복 호출, 작업당 토큰)도 포함합니다.",
       "status": "todo",
       "sourceIds": [
         "s17",
@@ -145,8 +188,11 @@
       "id": "case-agent",
       "phase": "p3",
       "title": "A supervised brand-enforcement case agent",
+      "titleKo": "감독형 브랜드 권리 집행 케이스 에이전트",
       "why": "Long tasks need compaction, notes and sub-agents. The UK regulator's model for AI law firms (AI does the work, named people stay accountable) matches my legal background.",
+      "whyKo": "장시간 작업에는 컴팩션, 노트, 서브에이전트가 필요합니다. AI 로펌에 대한 영국 규제 기관의 모델(AI가 일을 하고, 이름이 명시된 사람이 책임을 진다)은 제 법률 배경과 잘 맞습니다.",
       "deliverable": "A demo that researches a case, drafts a takedown notice and stops at human-approval checkpoints. Structured notes, an evidence-gathering sub-agent, trace logging, cost per case, an eval suite, and a short 'supervision and accountability' design document.",
+      "deliverableKo": "케이스를 조사하고 테이크다운 통지서 초안을 작성하되, 사람의 승인 체크포인트에서 멈추는 데모. 구조화된 노트, 증거 수집 서브에이전트, 트레이스 로깅, 케이스당 비용, 평가 세트, 그리고 짧은 '감독과 책임' 설계 문서를 포함합니다.",
       "status": "todo",
       "sourceIds": [
         "s16",
@@ -159,8 +205,11 @@
       "id": "governance",
       "phase": "p3",
       "title": "An agent governance pack",
+      "titleKo": "에이전트 거버넌스 팩",
       "why": "Trust in AI output is low and generated code is often insecure. A law, business and engineering background can own governance, which pure engineers rarely do well.",
+      "whyKo": "AI 출력에 대한 신뢰는 낮고, 생성된 코드는 보안상 취약한 경우가 많습니다. 법률·비즈니스·엔지니어링 배경을 함께 갖춘 사람은 순수 엔지니어가 잘 해내기 어려운 거버넌스를 맡을 수 있습니다.",
       "deliverable": "Template repository: threat model (prompt injection, secret exposure, over-permissioned CI), least-privilege permission policy, sandbox settings, security scanning in CI, and a one-page policy written for legal and compliance readers.",
+      "deliverableKo": "템플릿 리포지토리: 위협 모델(프롬프트 인젝션, 시크릿 노출, 과도한 권한이 부여된 CI), 최소 권한 원칙의 권한 정책, 샌드박스 설정, CI 내 보안 스캔, 그리고 법무·컴플라이언스 담당자를 위해 쓴 한 페이지 분량의 정책 문서.",
       "status": "todo",
       "sourceIds": [
         "s28",
@@ -173,8 +222,11 @@
       "id": "measure",
       "phase": "p4",
       "title": "Measure my own agent productivity honestly",
+      "titleKo": "제 에이전트 생산성에 대한 정직한 측정",
       "why": "Employers are sceptical of hype. A small, well-designed measurement shows rigour and supports business cases.",
+      "whyKo": "고용주들은 과장된 홍보에 회의적입니다. 작지만 잘 설계된 측정은 엄밀함을 보여 주고 비즈니스 케이스를 뒷받침합니다.",
       "deliverable": "Randomise 20+ real tasks between my old and new setup, record time, rework, review findings and escaped defects, and publish the results with confidence intervals and limitations.",
+      "deliverableKo": "실제 작업 20개 이상을 기존 환경과 새 환경에 무작위로 배정해 소요 시간, 재작업, 리뷰 지적 사항, 놓친 결함을 기록하고, 신뢰구간과 한계를 포함해 결과를 공개합니다.",
       "status": "todo",
       "sourceIds": [
         "s26",
@@ -186,8 +238,11 @@
       "id": "position",
       "phase": "p4",
       "title": "Reposition and apply",
+      "titleKo": "포지셔닝 재정비와 지원",
       "why": "UK AI hiring is concentrated in London, Manchester and Cambridge and in tech, finance and professional services. Experienced people who can teach agentic workflows are protected while entry-level hiring shrinks.",
+      "whyKo": "영국의 AI 채용은 런던, 맨체스터, 케임브리지, 그리고 테크·금융·전문 서비스 업종에 집중되어 있습니다. 신입 채용이 줄어드는 상황에서도 에이전트 기반 워크플로를 가르칠 수 있는 경력자는 비교적 안전합니다.",
       "deliverable": "CV and LinkedIn rewritten as 'Applied AI Engineer (LLMs, agents, evals)', linking this portfolio. One workshop, 'Agentic engineering for ML teams', with an open playbook. Applications to 10–15 roles from the market page, tracked here.",
+      "deliverableKo": "이력서와 LinkedIn을 'Applied AI Engineer (LLMs, agents, evals)'로 새로 쓰고 이 포트폴리오를 연결합니다. 공개 플레이북과 함께 'ML 팀을 위한 에이전틱 엔지니어링(Agentic engineering for ML teams)' 워크숍을 1회 진행합니다. 시장 페이지에 있는 직무 10–15곳에 지원하고, 그 진행 상황을 이곳에서 추적합니다.",
       "status": "todo",
       "sourceIds": [
         "s1",

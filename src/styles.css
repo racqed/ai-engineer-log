@@ -94,7 +94,7 @@ main > section, main > div { margin-bottom: 40px; }
 .lede { font-size: 1.15rem; color: var(--muted); max-width: 68ch; }
 .page-head { padding-block: 16px 0; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
-.button { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: var(--brand); color: var(--bg); text-decoration: none; font-weight: 600; }
+.button { display: inline-flex; align-items: center; gap: 0.45em; flex-wrap: wrap; min-height: 44px; padding: 0 20px; border-radius: 999px; background: var(--brand); color: var(--bg); text-decoration: none; font-weight: 600; }
 .button:hover { color: var(--bg); opacity: 0.9; }
 .button.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
 .button.ghost:hover { color: var(--ink); background: var(--surface); }
@@ -147,7 +147,6 @@ main > section, main > div { margin-bottom: 40px; }
 .task-list.compact .task { padding: 14px 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; }
 .task-list.compact .task:last-child { border-bottom: 0; }
 .task-list.compact .deliverable, .task-list.compact .cites { display: none; }
-.deliverable span { font: 500 0.72rem var(--mono); text-transform: uppercase; color: var(--accent); margin-right: 6px; }
 @media (max-width: 560px) { .task { grid-template-columns: 1fr; gap: 8px; } }
 .phase { margin-bottom: 48px; }
 .phase-head { margin-bottom: 16px; }
@@ -221,3 +220,56 @@ details ul { padding-left: 1.2em; color: var(--muted); }
 .footer-inner p { margin: 0; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ---------- bilingual: Korean always shown under the English ---------- */
+:root { --sans-ko: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; --serif-ko: "Noto Serif KR", "Noto Sans KR", serif; }
+[lang="ko"] { font-family: var(--sans-ko); word-break: keep-all; overflow-wrap: break-word; letter-spacing: 0; }
+.ko { display: block; color: var(--muted); font-size: 0.94em; }
+p.ko { margin-top: -0.55em; }
+.ko-inline { font-family: var(--sans-ko); font-size: 0.9em; opacity: 0.78; }
+.ko-sub { display: block; font-family: var(--serif-ko); font-weight: 600; color: var(--muted); font-size: 0.66em; line-height: 1.35; margin-top: 0.3em; letter-spacing: 0; }
+h1 .ko-sub { font-size: 0.5em; margin-top: 0.45em; }
+h3 .ko-sub { font-family: var(--sans-ko); font-weight: 500; font-size: 0.9em; margin-top: 0.15em; }
+.ko-block { border-left: 2px solid var(--accent-soft); padding-left: 12px; color: var(--muted); margin: -0.2em 0 1em; font-size: 0.96em; }
+.ko-block p, .ko-block ul { margin-bottom: 0.5em; }
+li > .ko { margin-top: 2px; }
+.dots li, .takeaways li { margin-bottom: 0.7em; }
+.bar-note .ko { font-size: 1em; }
+.lede.ko { font-size: 1.05rem; }
+
+/* compact stacked labels in chrome */
+nav a { display: flex; flex-direction: column; align-items: center; line-height: 1.25; padding: 6px 12px; }
+nav a .ko { font-size: 0.7rem; color: inherit; opacity: 0.85; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-text .ko { font-size: 0.72rem; font-weight: 500; }
+.chip { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1.3; }
+.chip .ko { font-size: 0.95em; color: inherit; text-transform: none; }
+.deliverable .label { display: block; font: 500 0.72rem var(--mono); text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.deliverable .label .ko { display: inline; color: inherit; margin-left: 6px; font-size: 1em; }
+.deliverable p { margin-bottom: 6px; }
+.deliverable p.ko { margin-top: -4px; }
+.stat .ko { font-size: 0.85rem; margin-top: 2px; }
+.entry time .ko { font-family: var(--sans-ko); font-size: 0.78rem; margin-top: 2px; }
+.more { margin-top: 12px; }
+.site-footer .ko { font-size: 0.85em; }
+.empty .ko { margin-top: 4px; }
+.segmented button .ko-inline { font-size: 0.85em; }
+
+/* ---------- links back to the mentoring site (the main site) ---------- */
+.nav-cta { background: var(--brand); color: var(--bg) !important; }
+.nav-cta:hover { background: var(--brand); opacity: 0.9; }
+.nav-cta .ko { color: inherit; }
+.button.accent { background: var(--accent); color: #1b1405; }
+.button.accent:hover { color: #1b1405; opacity: 0.9; }
+.button .ko-inline { opacity: 0.85; }
+.mentoring-band { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 24px; align-items: center; background: #14322e; color: #eef3f0; border-radius: var(--radius); padding: 28px; }
+.mentoring-band h2, .mentoring-band .ko-sub, .mentoring-band .ko { color: #eef3f0; }
+.mentoring-band .ko, .mentoring-band .ko-sub { opacity: 0.8; }
+.mentoring-band .button.ghost { color: #eef3f0; box-shadow: inset 0 0 0 1.5px rgb(238 243 240 / 40%); }
+.mentoring-band .button.ghost:hover { background: rgb(255 255 255 / 8%); color: #eef3f0; }
+.mentoring-actions { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.mentoring-actions .button { justify-content: center; text-align: center; min-height: 48px; padding: 8px 18px; }
+.mentoring-note { display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; border: 1.5px dashed var(--accent); border-radius: var(--radius); padding: 20px 24px; background: var(--surface); }
+.mentoring-note > div { flex: 1 1 360px; }
+.mentoring-note p { margin-bottom: 0.6em; }
+@media (max-width: 760px) { .mentoring-band { grid-template-columns: minmax(0, 1fr); padding: 22px; } }

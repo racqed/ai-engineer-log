@@ -1,5 +1,9 @@
 // Renders content/*.json into static HTML in dist/. No framework: each page is
 // a function that returns a string, and layout() wraps it.
+//
+// The site is bilingual and always shows both languages: English first, Korean
+// directly underneath. Content text comes from <field> and <field>Ko pairs
+// (enforced by check.mjs); interface text comes from the UI table below.
 import { mkdirSync, rmSync, writeFileSync, copyFileSync } from "node:fs";
 import { join } from "node:path";
 import { loadContent, root, SOURCE_CATEGORIES, STATUSES } from "./content.mjs";
@@ -7,34 +11,115 @@ import { loadContent, root, SOURCE_CATEGORIES, STATUSES } from "./content.mjs";
 const out = join(root, "dist");
 const { profile, market, reading, roadmap, log } = loadContent();
 
+// ---------- interface text ----------
+
+const UI = {
+  siteTitle: [profile.siteTitle, "AI 엔지니어 로그"],
+  skip: ["Skip to content", "본문으로 건너뛰기"],
+  overview: ["Overview", "개요"],
+  market: ["Market", "시장 조사"],
+  reading: ["Reading", "자료"],
+  roadmap: ["Roadmap", "로드맵"],
+  log: ["Log", "기록"],
+  built: ["How it's built", "제작 방식"],
+  mentoringNav: ["Mentoring", "멘토링"],
+  seeRoadmap: ["See the roadmap", "로드맵 보기"],
+  whatEmployers: ["What employers ask for", "기업이 원하는 것"],
+  statPostings: ["job postings analysed (UK and US)", "분석한 채용 공고 (영국·미국)"],
+  statSources: ["articles, reports and guides", "기사·보고서·가이드"],
+  statRoadmap: ["of the roadmap done", "로드맵 완료율"],
+  statLog: ["work log entries", "작업 기록"],
+  workingNow: ["Working on now", "지금 하고 있는 일"],
+  fullRoadmap: ["Full roadmap", "전체 로드맵"],
+  topSkills: ["Most requested skills", "가장 많이 요구되는 스킬"],
+  shareOf: (n) => [`Share of the ${n} postings that mention each skill.`, `공고 ${n}개 중 각 스킬을 언급한 비율입니다.`],
+  allPostings: ["All postings", "전체 공고"],
+  whyExists: ["Why this site exists", "이 사이트를 만든 이유"],
+  latestLog: ["Latest from the log", "최근 기록"],
+  allEntries: ["All entries", "전체 기록"],
+  proof: ["Proof of work", "증빙 결과물"],
+  doneOn: (d) => [`Done ${fmtDate(d)}`, `${fmtDateKo(d)} 완료`],
+  evidence: ["evidence", "증빙"],
+  marketEyebrow: (d) => [`Market research · updated ${fmtDate(d)}`, `시장 조사 · ${fmtDateKo(d)} 업데이트`],
+  marketTitle: ["What employers actually ask for", "기업이 실제로 요구하는 것"],
+  meaning: ["What this means for me", "나에게 주는 의미"],
+  recurring: ["Recurring requirements", "반복해서 나오는 요구 사항"],
+  howMany: (n) => [`How many of the ${n} postings mention each skill.`, `공고 ${n}개 중 각 스킬을 언급한 공고 수입니다.`],
+  ukVsUs: ["UK and US: what differs", "영국과 미국의 차이"],
+  postings: ["Postings", "채용 공고"],
+  shown: (n) => [`${n} shown`, `${n}개 표시`],
+  all: ["All", "전체"],
+  uk: ["UK", "영국"],
+  us: ["US", "미국"],
+  anySkill: ["Any skill", "모든 스킬"],
+  search: ["Search title, company or requirement", "직함·회사·요구 사항 검색"],
+  openOnly: ["Open only", "모집 중만"],
+  closed: ["Closed", "마감"],
+  fromPosting: ["From the posting (original English)", "공고 원문 (영어)"],
+  noMatch: ["No postings match those filters.", "조건에 맞는 공고가 없습니다."],
+  caveats: ["Caveats", "유의 사항"],
+  readingEyebrow: (n) => [`Reading list · ${n} sources`, `자료 목록 · 출처 ${n}개`],
+  readingTitle: ["What the evidence says", "근거가 말해 주는 것"],
+  themes: ["Themes", "핵심 흐름"],
+  roadmapEyebrow: (d, n) => [`Roadmap · ${d} of ${n} done`, `로드맵 · ${n}개 중 ${d}개 완료`],
+  roadmapTitle: ["The plan, and how far along it is", "계획과 진행 상황"],
+  logEyebrow: (n) => [`Work log · ${n} entries`, `작업 기록 · ${n}개`],
+  logTitle: ["What I've done", "지금까지 한 일"],
+  builtEyebrow: ["Colophon", "제작 노트"],
+  builtTitle: ["How this site is built", "이 사이트를 만든 방식"],
+  notFound: ["That page isn't here", "페이지를 찾을 수 없습니다"],
+  backHome: ["Back to the overview", "개요로 돌아가기"],
+  keptBy: (d) => [
+    `Kept by ${profile.name} · ${profile.location} · Content updated ${fmtDate(d)}`,
+    `${profile.name} 운영 · 영국 에든버러 · ${fmtDateKo(d)} 업데이트`,
+  ],
+};
+const STATUS_LABEL = { todo: ["To do", "할 일"], doing: ["In progress", "진행 중"], done: ["Done", "완료"] };
+
 // ---------- helpers ----------
 
 const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-// Small, safe subset of Markdown for log bodies and notes: escape first, then
-// allow **bold**, `code`, [label](https://...) and links to this site's own
-// pages ([label](market.html#id)). Blank lines split paragraphs.
+// Small, safe subset of Markdown: escape first, then allow **bold**, `code`,
+// [label](https://...) and links to this site's own pages ([label](market.html#id)).
+// Blank lines split paragraphs; a paragraph starting with "- " is a list.
 function md(text) {
   return String(text ?? "")
     .split(/\n\s*\n/)
     .map((para) => {
-      const html = esc(para.trim())
-        .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-        .replace(/`([^`]+)`/g, "<code>$1</code>")
-        .replace(/\[([^\]]+)\]\((https:\/\/[^)\s]+|[a-z0-9-]+\.html(?:#[\w-]+)?)\)/g, '<a href="$2">$1</a>');
+      const html = inline(para.trim());
       return html.startsWith("- ")
         ? `<ul>${html.split(/\n/).map((l) => `<li>${l.replace(/^- /, "")}</li>`).join("")}</ul>`
         : `<p>${html.replace(/\n/g, "<br>")}</p>`;
     })
     .join("");
 }
+const inline = (text) =>
+  esc(text)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\[([^\]]+)\]\((https:\/\/[^)\s]+|[a-z0-9-]+\.html(?:#[\w-]+)?)\)/g, '<a href="$2">$1</a>');
+
+// Bilingual building blocks. `pair` is [english, korean].
+const ko = (s) => `<span class="ko" lang="ko">${s}</span>`;
+const both = ([en, k]) => `${esc(en)}${ko(esc(k))}`; //            block-stacked short text
+const inlineBoth = ([en, k]) => `${esc(en)} <span class="ko-inline" lang="ko">${esc(k)}</span>`; // same line
+const heading = (tag, [en, k], attrs = "") => `<${tag}${attrs}>${esc(en)}<span class="ko-sub" lang="ko">${esc(k)}</span></${tag}>`;
+const paras = (en, k, cls = "") => `<p class="${cls}">${inline(en)}</p><p class="ko ${cls}" lang="ko">${inline(k)}</p>`;
+const prose = (en, k) => `<div class="prose"><div lang="en">${md(en)}</div><div class="ko-block" lang="ko">${md(k)}</div></div>`;
+const listItems = (en = [], k = []) => en.map((item, i) => `<li>${inline(item)}${ko(inline(k[i] ?? ""))}</li>`).join("");
+const pairOf = (obj, field) => [obj?.[field], obj?.[`${field}Ko`]];
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 function fmtDate(d) {
   const [y, m, day] = String(d).split("-");
   if (!m) return y;
   return day ? `${Number(day)} ${MONTHS[m - 1]} ${y}` : `${MONTHS[m - 1]} ${y}`;
+}
+function fmtDateKo(d) {
+  const [y, m, day] = String(d).split("-");
+  return [`${y}년`, m && `${Number(m)}월`, day && `${Number(day)}일`].filter(Boolean).join(" ");
 }
 
 const sourceById = new Map((reading.sources ?? []).map((s) => [s.id, s]));
@@ -46,10 +131,12 @@ const cites = (ids = []) =>
         .join("")}</span>`
     : "";
 
+const linkList = (links = []) =>
+  links.map((l) => `<a href="${esc(l.url)}">${esc(l.label)}${l.labelKo ? ` <span class="ko-inline" lang="ko">${esc(l.labelKo)}</span>` : ""} ↗</a>`).join("");
+
 const tasks = roadmap.tasks ?? [];
 const countBy = (status) => tasks.filter((t) => t.status === status).length;
 const progress = tasks.length ? Math.round((countBy("done") / tasks.length) * 100) : 0;
-const STATUS_LABEL = { todo: "To do", doing: "In progress", done: "Done" };
 
 // Counted from posting tags so the chart can never disagree with the postings.
 const skillFrequency = (market.skills ?? []).map((s) => ({
@@ -63,68 +150,112 @@ function skillBars(items, limit = items.length) {
   return `<ol class="bars">${rows
     .map(
       (s) => `<li>
-        <span class="bar-label">${esc(s.skill)}</span>
+        <span class="bar-label">${inlineBoth([s.skill, s.skillKo === s.skill ? "" : s.skillKo])}</span>
         <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width:${((s.count / total) * 100).toFixed(1)}%"></span></span>
         <span class="bar-value">${s.count}<span class="muted">/${total}</span></span>
-        ${s.note ? `<span class="bar-note">${esc(s.note)}</span>` : ""}
+        ${s.note ? `<span class="bar-note">${esc(s.note)}${ko(esc(s.noteKo))}</span>` : ""}
       </li>`
     )
     .join("")}</ol>`;
 }
 
+const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
+
 function logEntry(e) {
   return `<article class="entry" id="${esc(e.date)}-${esc(slug(e.title))}">
-    <time datetime="${esc(e.date)}">${fmtDate(e.date)}</time>
+    <time datetime="${esc(e.date)}">${fmtDate(e.date)}${ko(fmtDateKo(e.date))}</time>
     <div>
-      <h3>${esc(e.title)}</h3>
-      <div class="prose">${md(e.body)}</div>
+      ${heading("h3", pairOf(e, "title"))}
+      ${prose(e.body, e.bodyKo)}
       ${(e.tags ?? []).length ? `<p class="tags">${e.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</p>` : ""}
-      ${(e.links ?? []).length ? `<p class="links">${e.links.map((l) => `<a href="${esc(l.url)}">${esc(l.label)} ↗</a>`).join("")}</p>` : ""}
+      ${(e.links ?? []).length ? `<p class="links">${linkList(e.links)}</p>` : ""}
     </div>
   </article>`;
 }
 
-function slug(s) {
-  return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
+function taskItem(t) {
+  return `<li class="task status-${t.status}" id="${esc(t.id)}">
+    <span class="chip chip-${t.status}">${both(STATUS_LABEL[t.status])}</span>
+    <div>
+      ${heading("h3", pairOf(t, "title"))}
+      ${t.why ? paras(t.why, t.whyKo, "muted") : ""}
+      <div class="deliverable"><span class="label">${both(UI.proof)}</span>${paras(t.deliverable, t.deliverableKo)}</div>
+      ${t.status === "done" ? `<p class="small">${inlineBoth(UI.doneOn(t.done))}${t.evidence ? ` · <a href="${esc(t.evidence)}">${inlineBoth(UI.evidence)} ↗</a>` : ""}</p>` : ""}
+      ${cites(t.sourceIds)}
+    </div>
+  </li>`;
+}
+
+const more = (href, pair) => `<p class="more"><a href="${href}">${inlineBoth(pair)} →</a></p>`;
+// The mentoring site is the main site; these blocks point readers back to it.
+const M = profile.mentoring;
+const mentoringBand = () => `<section class="mentoring-band">
+  <div>
+    ${heading("h2", pairOf(M, "heading"))}
+    ${paras(M.body, M.bodyKo)}
+  </div>
+  <div class="mentoring-actions">
+    <a class="button accent" href="${esc(M.sessionsUrl)}">${inlineBoth(pairOf(M, "cta"))} ↗</a>
+    <a class="button ghost" href="${esc(M.url)}">${inlineBoth(pairOf(M, "site"))} ↗</a>
+  </div>
+</section>`;
+const mentoringNote = (field) => `<aside class="mentoring-note">
+  <div>${paras(M[field], M[`${field}Ko`])}</div>
+  <a class="button accent" href="${esc(M.sessionsUrl)}">${inlineBoth(pairOf(M, "cta"))} ↗</a>
+</aside>`;
+
+const caveatsSection = (obj) =>
+  (obj.caveats ?? []).length ? `<section class="note">${heading("h2", UI.caveats)}<ul class="dots">${listItems(obj.caveats, obj.caveatsKo)}</ul></section>` : "";
+
+function pageHead(eyebrow, title, ledeEn, ledeKo, extra = "") {
+  return `<section class="page-head">
+  <p class="eyebrow">${esc(eyebrow[0])} · <span lang="ko">${esc(eyebrow[1])}</span></p>
+  ${heading("h1", title)}
+  ${paras(ledeEn, ledeKo, "lede")}
+  ${extra}
+</section>`;
 }
 
 // ---------- layout ----------
 
 const NAV = [
-  ["index.html", "Overview"],
-  ["market.html", "Market"],
-  ["reading.html", "Reading"],
-  ["roadmap.html", "Roadmap"],
-  ["log.html", "Log"],
-  ["built.html", "How it's built"],
+  ["index.html", UI.overview],
+  ["market.html", UI.market],
+  ["reading.html", UI.reading],
+  ["roadmap.html", UI.roadmap],
+  ["log.html", UI.log],
+  ["built.html", UI.built],
 ];
 
 function layout({ file, title, description, body, scripts = "" }) {
-  const fullTitle = file === "index.html" ? profile.siteTitle : `${title} · ${profile.siteTitle}`;
+  const fullTitle = file === "index.html" ? `${UI.siteTitle[0]} · ${UI.siteTitle[1]}` : `${title[0]} · ${title[1]} | ${UI.siteTitle[0]}`;
+  const desc = `${description[0]} ${description[1] ?? ""}`.trim();
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(fullTitle)}</title>
-<meta name="description" content="${esc(description)}">
+<meta name="description" content="${esc(desc)}">
 <meta property="og:title" content="${esc(fullTitle)}">
-<meta property="og:description" content="${esc(description)}">
+<meta property="og:description" content="${esc(desc)}">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="ko_KR">
 <meta name="theme-color" content="#14322e">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314322e'/%3E%3Cpath d='M9 22l5-12 5 12M11 18h6M22 10v12' stroke='%23f2b33d' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main">${esc(UI.skip[0])} · <span lang="ko">${esc(UI.skip[1])}</span></a>
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">AE</span><span>${esc(profile.siteTitle)}</span></a>
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">AE</span><span class="brand-text">${both(UI.siteTitle)}</span></a>
     <nav aria-label="Main">
-      <ul>${NAV.map(([href, label]) => `<li><a href="${href}"${href === file ? ' aria-current="page"' : ""}>${label}</a></li>`).join("")}</ul>
+      <ul>${NAV.map(([href, label]) => `<li><a href="${href}"${href === file ? ' aria-current="page"' : ""}>${both(label)}</a></li>`).join("")}<li><a class="nav-cta" href="${esc(M.url)}">${both([`${UI.mentoringNav[0]} ↗`, UI.mentoringNav[1]])}</a></li></ul>
     </nav>
   </div>
 </header>
@@ -133,8 +264,8 @@ ${body}
 </main>
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <p>Kept by ${esc(profile.name)} · ${esc(profile.location)} · Content updated ${fmtDate(profile.updated)}</p>
-    <p>${(profile.links ?? []).map((l) => `<a href="${esc(l.url)}">${esc(l.label)}</a>`).join(" · ")}</p>
+    <p>${both(UI.keptBy(profile.updated))}</p>
+    <p>${linkList(profile.links)}</p>
   </div>
 </footer>
 ${scripts}
@@ -150,111 +281,104 @@ const pages = {};
 pages["index.html"] = () => {
   const doing = tasks.filter((t) => t.status === "doing");
   const next = tasks.filter((t) => t.status === "todo").slice(0, Math.max(0, 3 - doing.length));
-  const now = [...doing, ...next];
+  const n = (market.postings ?? []).length;
   return layout({
     file: "index.html",
-    title: "Overview",
-    description: profile.headline,
+    title: UI.overview,
+    description: pairOf(profile, "headline"),
     body: `
 <section class="hero">
-  <p class="eyebrow">${esc(profile.eyebrow)}</p>
-  <h1>${esc(profile.headline)}</h1>
-  <p class="lede">${esc(profile.thesis)}</p>
+  <p class="eyebrow">${esc(profile.eyebrow)} · <span lang="ko">${esc(profile.eyebrowKo)}</span></p>
+  ${heading("h1", pairOf(profile, "headline"))}
+  ${paras(profile.thesis, profile.thesisKo, "lede")}
   <div class="hero-actions">
-    <a class="button" href="roadmap.html">See the roadmap</a>
-    <a class="button ghost" href="market.html">What employers ask for</a>
+    <a class="button" href="roadmap.html">${inlineBoth(UI.seeRoadmap)}</a>
+    <a class="button ghost" href="market.html">${inlineBoth(UI.whatEmployers)}</a>
   </div>
 </section>
 
 <section class="stats" aria-label="At a glance">
-  <a class="stat" href="market.html"><strong>${(market.postings ?? []).length}</strong><span>job postings analysed (UK and US)</span></a>
-  <a class="stat" href="reading.html"><strong>${(reading.sources ?? []).length}</strong><span>articles, reports and guides</span></a>
-  <a class="stat" href="roadmap.html"><strong>${progress}%</strong><span>of the roadmap done (${countBy("done")}/${tasks.length})</span></a>
-  <a class="stat" href="log.html"><strong>${(log.entries ?? []).length}</strong><span>work log entries</span></a>
+  <a class="stat" href="market.html"><strong>${n}</strong><span>${both(UI.statPostings)}</span></a>
+  <a class="stat" href="reading.html"><strong>${(reading.sources ?? []).length}</strong><span>${both(UI.statSources)}</span></a>
+  <a class="stat" href="roadmap.html"><strong>${progress}%</strong><span>${both(UI.statRoadmap)} (${countBy("done")}/${tasks.length})</span></a>
+  <a class="stat" href="log.html"><strong>${(log.entries ?? []).length}</strong><span>${both(UI.statLog)}</span></a>
 </section>
+
+${mentoringBand()}
 
 <div class="grid-2">
   <section class="panel">
-    <h2>Working on now</h2>
-    <ul class="task-list compact">${now.map(taskItem).join("")}</ul>
-    <p><a href="roadmap.html">Full roadmap →</a></p>
+    ${heading("h2", UI.workingNow)}
+    <ul class="task-list compact">${[...doing, ...next].map(taskItem).join("")}</ul>
+    ${more("roadmap.html", UI.fullRoadmap)}
   </section>
   <section class="panel">
-    <h2>Most requested skills</h2>
-    <p class="muted small">Share of the ${(market.postings ?? []).length} postings that mention each skill.</p>
+    ${heading("h2", UI.topSkills)}
+    ${paras(...UI.shareOf(n), "muted small")}
     ${skillBars(skillFrequency, 7)}
-    <p><a href="market.html">All postings →</a></p>
+    ${more("market.html", UI.allPostings)}
   </section>
 </div>
 
 <section class="panel">
-  <h2>Why this site exists</h2>
-  <div class="prose">${md((profile.about ?? []).join("\n\n"))}</div>
+  ${heading("h2", UI.whyExists)}
+  ${(profile.about ?? []).map((p, i) => prose(p, profile.aboutKo?.[i])).join("")}
 </section>
 
 <section>
-  <div class="section-head"><h2>Latest from the log</h2><a href="log.html">All entries →</a></div>
+  <div class="section-head">${heading("h2", UI.latestLog)}<a href="log.html">${inlineBoth(UI.allEntries)} →</a></div>
   <div class="entries">${(log.entries ?? []).slice(0, 3).map(logEntry).join("")}</div>
 </section>`,
   });
 };
 
-function taskItem(t) {
-  return `<li class="task status-${t.status}" id="${esc(t.id)}">
-    <span class="chip chip-${t.status}">${STATUS_LABEL[t.status]}</span>
-    <div>
-      <h3>${esc(t.title)}</h3>
-      ${t.why ? `<p class="muted">${esc(t.why)}</p>` : ""}
-      <p class="deliverable"><span>Proof of work</span> ${esc(t.deliverable)}</p>
-      ${t.status === "done" ? `<p class="small">Done ${fmtDate(t.done)}${t.evidence ? ` · <a href="${esc(t.evidence)}">evidence ↗</a>` : ""}</p>` : ""}
-      ${cites(t.sourceIds)}
-    </div>
-  </li>`;
-}
-
 pages["market.html"] = () => {
   const postings = [...(market.postings ?? [])].sort((a, b) => (a.country === b.country ? 0 : a.country === "UK" ? -1 : 1));
-  const allSkills = [...new Set(postings.flatMap((p) => p.skills))].sort((a, b) => a.localeCompare(b));
+  const usedSkills = skillFrequency.filter((s) => s.count > 0);
+  const shown = UI.shown(postings.length);
   return layout({
     file: "market.html",
-    title: "Market",
-    description: "What UK and US employers ask of AI engineers, from real job postings.",
+    title: UI.market,
+    description: ["What UK and US employers ask of AI engineers, from real job postings.", "실제 채용 공고로 본 영국·미국 기업이 AI 엔지니어에게 요구하는 것."],
     body: `
-<section class="page-head">
-  <p class="eyebrow">Market research · updated ${fmtDate(market.updated)}</p>
-  <h1>What employers actually ask for</h1>
-  <p class="lede">${esc(market.intro)}</p>
-</section>
+${pageHead(UI.marketEyebrow(market.updated), UI.marketTitle, market.intro, market.introKo)}
 
-${(market.takeaways ?? []).length ? `<section class="panel takeaways"><h2>What this means for me</h2><ol>${market.takeaways.map((t) => `<li>${md(t).replace(/^<p>|<\/p>$/g, "")}</li>`).join("")}</ol></section>` : ""}
+${(market.takeaways ?? []).length ? `<section class="panel takeaways">${heading("h2", UI.meaning)}<ol>${listItems(market.takeaways, market.takeawaysKo)}</ol></section>` : ""}
 
 <div class="grid-2">
   <section class="panel">
-    <h2>Recurring requirements</h2>
-    <p class="muted small">How many of the ${postings.length} postings mention each skill.</p>
-    ${skillBars(skillFrequency.filter((s) => s.count > 0))}
+    ${heading("h2", UI.recurring)}
+    ${paras(...UI.howMany(postings.length), "muted small")}
+    ${skillBars(usedSkills)}
   </section>
   <section class="panel">
-    <h2>UK and US: what differs</h2>
-    <ul class="dots">${(market.ukVsUs ?? []).map((x) => `<li>${md(x).replace(/^<p>|<\/p>$/g, "")}</li>`).join("")}</ul>
+    ${heading("h2", UI.ukVsUs)}
+    <ul class="dots">${listItems(market.ukVsUs, market.ukVsUsKo)}</ul>
   </section>
 </div>
 
-<section>
-  <div class="section-head"><h2>Postings</h2><p class="muted small" id="posting-count" aria-live="polite">${postings.length} shown</p></div>
+<section id="postings">
+  <div class="section-head">${heading("h2", UI.postings)}<p class="muted small" id="posting-count" aria-live="polite" data-en="${esc(UI.shown("{n}")[0])}" data-ko="${esc(UI.shown("{n}")[1])}">${esc(shown[0])} · ${esc(shown[1])}</p></div>
   <form class="filters" id="filters" role="search" onsubmit="return false">
     <div class="segmented" role="group" aria-label="Country">
-      <button type="button" data-country="all" aria-pressed="true">All</button>
-      <button type="button" data-country="UK" aria-pressed="false">UK</button>
-      <button type="button" data-country="US" aria-pressed="false">US</button>
+      <button type="button" data-country="all" aria-pressed="true">${inlineBoth(UI.all)}</button>
+      <button type="button" data-country="UK" aria-pressed="false">${inlineBoth(UI.uk)}</button>
+      <button type="button" data-country="US" aria-pressed="false">${inlineBoth(UI.us)}</button>
     </div>
     <label class="field"><span class="sr-only">Skill</span>
-      <select id="skill-filter"><option value="">Any skill</option>${allSkills.map((s) => `<option>${esc(s)}</option>`).join("")}</select>
+      <select id="skill-filter"><option value="">${esc(UI.anySkill[0])} · ${esc(UI.anySkill[1])}</option>${usedSkills
+        .map((s) => s.skill)
+        .sort((a, b) => a.localeCompare(b))
+        .map((s) => {
+          const k = skillFrequency.find((x) => x.skill === s)?.skillKo;
+          return `<option value="${esc(s)}">${esc(s)}${k && k !== s ? ` · ${esc(k)}` : ""}</option>`;
+        })
+        .join("")}</select>
     </label>
     <label class="field grow"><span class="sr-only">Search postings</span>
-      <input id="search" type="search" placeholder="Search title, company or requirement">
+      <input id="search" type="search" placeholder="${esc(UI.search[0])} · ${esc(UI.search[1])}">
     </label>
-    <label class="check"><input id="open-only" type="checkbox"> Open only</label>
+    <label class="check"><input id="open-only" type="checkbox"> ${inlineBoth(UI.openOnly)}</label>
   </form>
   <div class="postings" id="postings">
     ${postings
@@ -262,22 +386,24 @@ ${(market.takeaways ?? []).length ? `<section class="panel takeaways"><h2>What t
         (p) => `<article class="posting" data-country="${esc(p.country)}" data-closed="${p.closed}" data-skills="${esc(p.skills.join("|"))}">
       <div class="posting-top">
         <span class="flag flag-${esc(p.country)}">${esc(p.country)}</span>
-        ${p.closed ? `<span class="closed">Closed</span>` : ""}
+        ${p.closed ? `<span class="closed">${esc(UI.closed[0])} · ${esc(UI.closed[1])}</span>` : ""}
         <span class="muted small">${esc(p.location)}${p.workMode ? ` · ${esc(p.workMode)}` : ""} · ${fmtDate(p.seenDate)}</span>
       </div>
       <h3><a href="${esc(p.url)}">${esc(p.title)}</a></h3>
       <p class="company">${esc(p.company)}${p.salary ? ` · <span class="salary">${esc(p.salary)}</span>` : ""}</p>
-      <p>${esc(p.summary)}</p>
-      ${(p.agenticSignals ?? []).length ? `<details><summary>From the posting</summary><ul>${p.agenticSignals.map((s) => `<li>${esc(s)}</li>`).join("")}</ul></details>` : ""}
+      ${paras(p.summary, p.summaryKo)}
+      ${(p.agenticSignals ?? []).length ? `<details><summary>${inlineBoth(UI.fromPosting)}</summary><ul>${p.agenticSignals.map((s) => `<li>${esc(s)}</li>`).join("")}</ul></details>` : ""}
       <p class="tags">${p.skills.map((s) => `<span class="tag">${esc(s)}</span>`).join("")}</p>
     </article>`
       )
       .join("")}
   </div>
-  <p class="empty" id="empty" hidden>No postings match those filters.</p>
+  <p class="empty" id="empty" hidden>${both(UI.noMatch)}</p>
 </section>
 
-${(market.caveats ?? []).length ? `<section class="note"><h2>Caveats</h2><ul class="dots">${market.caveats.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></section>` : ""}`,
+${mentoringNote("marketNote")}
+
+${caveatsSection(market)}`,
     scripts: `<script src="market.js" defer></script>`,
   });
 };
@@ -288,32 +414,31 @@ pages["reading.html"] = () => {
     .filter(([, items]) => items.length);
   return layout({
     file: "reading.html",
-    title: "Reading",
-    description: "Articles, reports and guides on AI engineering and agentic coding, with what each one says.",
+    title: UI.reading,
+    description: ["Articles, reports and guides on AI engineering and agentic coding, with what each one says.", "AI 엔지니어링과 에이전틱 코딩에 관한 기사·보고서·가이드와 각각의 핵심 내용."],
     body: `
-<section class="page-head">
-  <p class="eyebrow">Reading list · ${(reading.sources ?? []).length} sources</p>
-  <h1>What the evidence says</h1>
-  <p class="lede">${esc(reading.intro)}</p>
-</section>
+${pageHead(UI.readingEyebrow((reading.sources ?? []).length), UI.readingTitle, reading.intro, reading.introKo)}
 
 <section>
-  <h2>Themes</h2>
+  ${heading("h2", UI.themes)}
   <div class="themes">${(reading.themes ?? [])
-    .map((t, i) => `<article class="theme"><span class="theme-num">${String(i + 1).padStart(2, "0")}</span><h3>${esc(t.theme)}</h3><p>${esc(t.evidence)}</p>${cites(t.sourceIds)}</article>`)
+    .map(
+      (t, i) =>
+        `<article class="theme"><span class="theme-num">${String(i + 1).padStart(2, "0")}</span>${heading("h3", pairOf(t, "theme"))}${paras(t.evidence, t.evidenceKo)}${cites(t.sourceIds)}</article>`
+    )
     .join("")}</div>
 </section>
 
 ${groups
   .map(
     ([label, items]) => `<section>
-  <h2>${esc(label)}</h2>
+  ${heading("h2", label)}
   <div class="sources">${items
     .map(
       (s) => `<article class="source" id="${esc(s.id)}">
       <p class="muted small"><span class="source-id">${esc(s.id)}</span> ${esc(s.publisher)}${s.author ? ` · ${esc(s.author)}` : ""} · ${fmtDate(s.date)}${s.region ? ` · ${esc(s.region)}` : ""}</p>
       <h3><a href="${esc(s.url)}">${esc(s.title)}</a></h3>
-      <ul class="dots">${s.keyPoints.map((k) => `<li>${esc(k)}</li>`).join("")}</ul>
+      <ul class="dots">${listItems(s.keyPoints, s.keyPointsKo)}</ul>
     </article>`
     )
     .join("")}</div>
@@ -321,75 +446,69 @@ ${groups
   )
   .join("")}
 
-${(reading.caveats ?? []).length ? `<section class="note"><h2>Caveats</h2><ul class="dots">${reading.caveats.map((c) => `<li>${esc(c)}</li>`).join("")}</ul></section>` : ""}`,
+${caveatsSection(reading)}`,
   });
 };
 
 pages["roadmap.html"] = () =>
   layout({
     file: "roadmap.html",
-    title: "Roadmap",
-    description: "A six-month plan from applied data science to AI engineering, with a proof-of-work deliverable for each step.",
+    title: UI.roadmap,
+    description: ["A six-month plan from applied data science to AI engineering, with a proof-of-work deliverable for each step.", "응용 데이터 사이언스에서 AI 엔지니어링으로 가는 6개월 계획과 단계별 증빙 결과물."],
     body: `
-<section class="page-head">
-  <p class="eyebrow">Roadmap · ${countBy("done")} of ${tasks.length} done</p>
-  <h1>The plan, and how far along it is</h1>
-  <p class="lede">${esc(roadmap.intro)}</p>
-  <div class="progress" role="img" aria-label="${progress}% of roadmap tasks done">
+${pageHead(
+  UI.roadmapEyebrow(countBy("done"), tasks.length),
+  UI.roadmapTitle,
+  roadmap.intro,
+  roadmap.introKo,
+  `<div class="progress" role="img" aria-label="${progress}% of roadmap tasks done">
     ${["done", "doing", "todo"].map((s) => `<span class="progress-${s}" style="flex:${countBy(s)}"></span>`).join("")}
   </div>
-  <p class="legend small">${STATUSES.map((s) => `<span><i class="dot dot-${s}"></i>${STATUS_LABEL[s]} ${countBy(s)}</span>`).join("")}</p>
-</section>
+  <p class="legend small">${STATUSES.map((s) => `<span><i class="dot dot-${s}"></i>${inlineBoth(STATUS_LABEL[s])} ${countBy(s)}</span>`).join("")}</p>`
+)}
 
 ${(roadmap.phases ?? [])
-  .map((ph) => {
-    const items = tasks.filter((t) => t.phase === ph.id);
-    return `<section class="phase">
+  .map(
+    (ph) => `<section class="phase">
   <div class="phase-head">
-    <p class="eyebrow">${esc(ph.window)}</p>
-    <h2>${esc(ph.title)}</h2>
-    ${ph.goal ? `<p class="muted">${esc(ph.goal)}</p>` : ""}
+    <p class="eyebrow">${esc(ph.window)} · <span lang="ko">${esc(ph.windowKo)}</span></p>
+    ${heading("h2", pairOf(ph, "title"))}
+    ${ph.goal ? paras(ph.goal, ph.goalKo, "muted") : ""}
   </div>
-  <ul class="task-list">${items.map(taskItem).join("")}</ul>
-</section>`;
-  })
-  .join("")}`,
+  <ul class="task-list">${tasks.filter((t) => t.phase === ph.id).map(taskItem).join("")}</ul>
+</section>`
+  )
+  .join("")}
+
+${mentoringNote("roadmapNote")}`,
   });
 
 pages["log.html"] = () =>
   layout({
     file: "log.html",
-    title: "Log",
-    description: "A dated journal of what I have done on the way to AI engineering.",
+    title: UI.log,
+    description: ["A dated journal of what I have done on the way to AI engineering.", "AI 엔지니어링으로 가는 길에 한 일을 날짜별로 기록합니다."],
     body: `
-<section class="page-head">
-  <p class="eyebrow">Work log · ${(log.entries ?? []).length} entries</p>
-  <h1>What I've done</h1>
-  <p class="lede">${esc(log.intro)}</p>
-</section>
+${pageHead(UI.logEyebrow((log.entries ?? []).length), UI.logTitle, log.intro, log.introKo)}
 <div class="entries">${(log.entries ?? []).map(logEntry).join("")}</div>`,
   });
 
 pages["built.html"] = () =>
   layout({
     file: "built.html",
-    title: "How it's built",
-    description: "How this site is built and maintained with coding agents.",
+    title: UI.built,
+    description: ["How this site is built and maintained with coding agents.", "코딩 에이전트로 이 사이트를 만들고 운영하는 방식."],
     body: `
-<section class="page-head">
-  <p class="eyebrow">Colophon</p>
-  <h1>How this site is built</h1>
-  <p class="lede">${esc(profile.built?.intro)}</p>
-</section>
-${(profile.built?.sections ?? []).map((s) => `<section class="panel"><h2>${esc(s.heading)}</h2><div class="prose">${md(s.body)}</div></section>`).join("")}`,
+${pageHead(UI.builtEyebrow, UI.builtTitle, profile.built?.intro, profile.built?.introKo)}
+${(profile.built?.sections ?? []).map((s) => `<section class="panel">${heading("h2", pairOf(s, "heading"))}${prose(s.body, s.bodyKo)}</section>`).join("")}`,
   });
 
 pages["404.html"] = () =>
   layout({
     file: "404.html",
-    title: "Not found",
-    description: "Page not found.",
-    body: `<section class="page-head"><h1>That page isn't here</h1><p class="lede"><a href="index.html">Back to the overview</a></p></section>`,
+    title: ["Not found", "찾을 수 없음"],
+    description: ["Page not found.", "페이지를 찾을 수 없습니다."],
+    body: `<section class="page-head">${heading("h1", UI.notFound)}<p class="lede"><a href="index.html">${inlineBoth(UI.backHome)}</a></p></section>`,
   });
 
 // ---------- write ----------

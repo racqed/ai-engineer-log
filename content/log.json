@@ -1,10 +1,13 @@
 {
   "intro": "Newest first. Each entry is something I did, with a link when there is something to look at. Private projects are described without links.",
+  "introKo": "최신 항목이 맨 위에 있습니다. 각 항목은 제가 실제로 한 일이며, 볼 만한 결과물이 있으면 링크를 달았습니다. 비공개 프로젝트는 링크 없이 설명합니다.",
   "entries": [
     {
       "date": "2026-10-25",
       "title": "Started this site: research, roadmap and log in one place",
+      "titleKo": "사이트 개설: 조사, 로드맵, 로그를 한곳에",
       "body": "Built the AI Engineer Log with Claude Code in Orca. Two research sub-agents ran in parallel, one on UK and US job postings and one on articles and reports, and returned structured JSON, so their search results stayed out of the main session's context.\n\nThe site is a small static generator with a content check that blocks the build on invented fields, broken citations or bad dates, plus an `AGENTS.md` that Claude Code and Codex both follow.",
+      "bodyKo": "Orca에서 Claude Code로 AI Engineer Log를 만들었습니다. 조사용 서브에이전트 두 개를 병렬로 실행해 하나는 영국과 미국의 채용 공고를, 다른 하나는 아티클과 보고서를 조사하게 했습니다. 두 에이전트는 구조화된 JSON으로 결과를 돌려주었기 때문에, 검색 결과가 메인 세션의 컨텍스트에 들어오지 않았습니다.\n\n이 사이트는 작은 정적 사이트 생성기로, 지어낸 필드나 깨진 인용, 잘못된 날짜가 있으면 빌드를 막는 콘텐츠 검사를 갖추고 있습니다. 여기에 Claude Code와 Codex가 함께 따르는 `AGENTS.md`도 더했습니다.",
       "tags": [
         "claude-code",
         "research",
@@ -14,14 +17,17 @@
       "links": [
         {
           "label": "Live site",
-          "url": "https://ai-engineer-log.latteboo99.workers.dev"
+          "url": "https://ai-engineer-log.latteboo99.workers.dev",
+          "labelKo": "사이트 보기"
         }
       ]
     },
     {
       "date": "2026-10-25",
       "title": "Improved my mentoring site in five planned steps",
+      "titleKo": "멘토링 사이트를 계획된 5단계로 개선",
       "body": "Wrote an improvement plan for my mentoring site, based on ADPList, MentorCruise, Topmate, Calendly's time-zone handling and the W3C menu pattern, and had agents implement it one item at a time. The five items:\n\n- Session comparison moved up the page\n- Booking in the visitor's time zone (UTC stored, London DST and date boundaries checked)\n- A booking summary and accessible error recovery\n- Keyboard and mobile menu fixes\n- Canonical URLs, sitemap and share metadata without localhost leaks",
+      "bodyKo": "ADPList, MentorCruise, Topmate, Calendly의 시간대 처리 방식, W3C 메뉴 패턴을 참고해 멘토링 사이트 개선 계획을 세우고, 에이전트가 한 항목씩 구현하게 했습니다. 다섯 가지 항목은 다음과 같습니다.\n\n- 세션 비교 섹션을 페이지 위쪽으로 이동\n- 방문자의 시간대 기준 예약(UTC로 저장, 런던 서머타임(DST)과 날짜 경계 검증)\n- 예약 요약과 접근성을 고려한 오류 복구\n- 키보드 및 모바일 메뉴 수정\n- localhost 노출 없는 정규 URL, 사이트맵, 공유 메타데이터",
       "tags": [
         "planning",
         "accessibility",
@@ -31,14 +37,17 @@
       "links": [
         {
           "label": "Mentoring site",
-          "url": "https://my-coffeechat.latteboo99.workers.dev"
+          "url": "https://my-coffeechat.latteboo99.workers.dev",
+          "labelKo": "멘토링 사이트"
         }
       ]
     },
     {
       "date": "2026-10-25",
       "title": "Two private community sites on Cloudflare Workers",
+      "titleKo": "Cloudflare Workers 기반 비공개 커뮤니티 사이트 두 개",
       "body": "Built two small private sites for friends and family: a shared feed with photos, events with RSVPs and per-member sign-in codes stored as Cloudflare secrets. Data lives in SQLite-backed Durable Objects. Mostly a lesson in giving agents precise security requirements, for example that the author of every post comes from a signed cookie and never from the request body.",
+      "bodyKo": "친구와 가족을 위한 작은 비공개 사이트 두 개를 만들었습니다. 사진을 올리는 공유 피드, 참석 여부(RSVP)를 받는 이벤트, 그리고 Cloudflare 시크릿으로 저장한 구성원별 로그인 코드를 갖췄습니다. 데이터는 SQLite 기반 Durable Objects에 저장됩니다. 무엇보다 에이전트에게 보안 요구 사항을 정확하게 제시하는 법을 배운 작업이었습니다. 예를 들어 모든 게시물의 작성자는 요청 본문이 아니라 반드시 서명된 쿠키에서 가져와야 한다는 식입니다.",
       "tags": [
         "cloudflare",
         "security",
@@ -48,7 +57,9 @@
     {
       "date": "2026-10-24",
       "title": "Brand Protection Assistant: an ML-assisted, human-in-the-loop analyst tool",
+      "titleKo": "Brand Protection Assistant: ML 보조, 사람 참여형(human-in-the-loop) 분석 도구",
       "body": "A local Python tool for reviewing suspected IP infringement. It ranks a review queue, compares a baseline with a trained takedown-success model, and drafts notices for an analyst. **It never sends a notice automatically.** This draws on my brand protection background and is the planned base for RAG, evals and an MCP server on the roadmap.",
+      "bodyKo": "IP 침해 의심 사례를 검토하는 로컬 Python 도구입니다. 검토 대기열의 우선순위를 매기고, 기준 모델과 학습된 테이크다운 성공 예측 모델을 비교하며, 분석가를 위해 통지서 초안을 작성합니다. **통지서를 자동으로 발송하는 일은 절대 없습니다.** 제 브랜드 보호 경력을 살린 프로젝트로, 로드맵에 있는 RAG, 평가(evals), MCP 서버의 기반이 될 예정입니다.",
       "tags": [
         "python",
         "ml",
@@ -59,7 +70,9 @@
     {
       "date": "2026-10-24",
       "title": "Shipped a Life in the UK practice test site",
+      "titleKo": "Life in the UK 모의시험 사이트 출시",
       "body": "A static study site (Vite, React, TypeScript, Tailwind) with 20 mock tests in the real format and 480 original questions, practice by chapter and mistake review. Deployed to Cloudflare Workers.",
+      "bodyKo": "실제 시험 형식의 모의시험 20회분과 직접 만든 문제 480개, 챕터별 연습, 오답 복습 기능을 갖춘 정적 학습 사이트(Vite, React, TypeScript, Tailwind)입니다. Cloudflare Workers에 배포했습니다.",
       "tags": [
         "react",
         "typescript",
@@ -68,14 +81,17 @@
       "links": [
         {
           "label": "Live site",
-          "url": "https://life-in-the-uk-quiz.latteboo99.workers.dev"
+          "url": "https://life-in-the-uk-quiz.latteboo99.workers.dev",
+          "labelKo": "사이트 보기"
         }
       ]
     },
     {
       "date": "2026-10-24",
       "title": "Built a mentoring, portfolio and booking site",
+      "titleKo": "멘토링·포트폴리오·예약 사이트 구축",
       "body": "A one-person mentoring site with a portfolio, blog, English CV page, and time-slot booking with test-mode payments (Next.js 16, Prisma, Tailwind CSS v4). Payments are verified on the server before being approved, so an amount or slot mismatch never charges anyone.",
+      "bodyKo": "포트폴리오, 블로그, 영문 이력서 페이지, 그리고 테스트 모드 결제를 지원하는 시간대별 예약 기능을 갖춘 1인 멘토링 사이트입니다(Next.js 16, Prisma, Tailwind CSS v4). 결제는 승인 전에 서버에서 검증하므로, 금액이나 예약 시간대가 맞지 않으면 누구에게도 요금이 청구되지 않습니다.",
       "tags": [
         "next.js",
         "prisma",
@@ -85,7 +101,8 @@
       "links": [
         {
           "label": "English profile",
-          "url": "https://my-coffeechat.latteboo99.workers.dev/en"
+          "url": "https://my-coffeechat.latteboo99.workers.dev/en",
+          "labelKo": "영문 프로필"
         }
       ]
     }

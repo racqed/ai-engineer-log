@@ -41,6 +41,12 @@ need(profile, "profile", [
   ["thesis", isText, "text"],
   ["updated", isDate, "a YYYY-MM-DD date"],
 ]);
+// The mentoring site is the main site; this log supports it with CTAs.
+need(profile.mentoring, "profile.mentoring", [
+  ["url", isUrl, "an https URL"],
+  ["sessionsUrl", isUrl, "an https URL"],
+  ...["heading", "body", "cta", "site", "marketNote", "roadmapNote"].map((f) => [f, isText, "text"]),
+]);
 for (const [i, link] of (profile.links ?? []).entries()) {
   need(link, `profile.links[${i}]`, [["label", isText, "text"], ["url", isUrl, "an https URL"]]);
 }
@@ -114,6 +120,41 @@ for (const [i, e] of entries.entries()) {
   }
   if (i > 0 && e.date > entries[i - 1].date) fail(where, "entries must be newest first");
 }
+
+// Bilingual: every translatable field needs a Korean sibling named <field>Ko.
+// Strings need a non-empty string; arrays need an array of the same length.
+function ko(obj, where, fields) {
+  if (!obj) return;
+  for (const field of fields) {
+    const en = obj[field];
+    if (en === undefined || en === null) continue;
+    const k = obj[`${field}Ko`];
+    if (Array.isArray(en)) {
+      if (!Array.isArray(k) || k.length !== en.length || !k.every(isText)) {
+        fail(where, `"${field}Ko" must be an array of ${en.length} Korean strings`);
+      }
+    } else if (!isText(k)) {
+      fail(where, `"${field}Ko" (Korean for "${field}") is missing`);
+    }
+  }
+}
+ko(profile, "profile", ["eyebrow", "headline", "thesis", "about"]);
+ko(profile.built, "profile.built", ["intro"]);
+ko(profile.mentoring, "profile.mentoring", ["heading", "body", "cta", "site", "marketNote", "roadmapNote"]);
+(profile.built?.sections ?? []).forEach((s, i) => ko(s, `profile.built.sections[${i}]`, ["heading", "body"]));
+ko(market, "market", ["intro", "takeaways", "ukVsUs", "caveats"]);
+(market.skills ?? []).forEach((s) => ko(s, `market.skills[${s.skill}]`, ["skill", "note"]));
+postings.forEach((p, i) => ko(p, `market.postings[${i}] (${p.company})`, ["summary"]));
+ko(reading, "reading", ["intro", "caveats"]);
+sources.forEach((s) => ko(s, `reading.sources[${s.id}]`, ["keyPoints"]));
+(reading.themes ?? []).forEach((t, i) => ko(t, `reading.themes[${i}]`, ["theme", "evidence"]));
+ko(roadmap, "roadmap", ["intro"]);
+(roadmap.phases ?? []).forEach((p) => ko(p, `roadmap.phases[${p.id}]`, ["title", "window", "goal"]));
+(roadmap.tasks ?? []).forEach((t) => ko(t, `roadmap.tasks[${t.id}]`, ["title", "why", "deliverable"]));
+ko(log, "log", ["intro"]);
+entries.forEach((e, i) => ko(e, `log.entries[${i}]`, ["title", "body"]));
+(profile.links ?? []).forEach((l, i) => ko(l, `profile.links[${i}]`, ["label"]));
+entries.forEach((e, i) => (e.links ?? []).forEach((l, j) => ko(l, `log.entries[${i}].links[${j}]`, ["label"])));
 
 if (errors.length) {
   console.error(`Content check failed (${errors.length}):\n- ${errors.join("\n- ")}`);

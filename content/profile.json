@@ -4,8 +4,11 @@
   "location": "Edinburgh, UK",
   "updated": "2026-10-25",
   "eyebrow": "Open career log · Applied data scientist → AI engineer",
+  "eyebrowKo": "공개 커리어 로그 · 응용 데이터 과학자 → AI 엔지니어",
   "headline": "From applied data science to AI engineering, built in the open with coding agents.",
+  "headlineKo": "응용 데이터 과학에서 AI 엔지니어링으로. 코딩 에이전트와 함께, 모든 과정을 공개하며 만들어 갑니다.",
   "thesis": "I'm an applied data scientist in the UK. My job is deploying and maintaining ML models inside production software. Coding agents now do more of the implementation, so I think the valuable engineer is the one who directs them well: clear guidelines, lean context and token budgets, automated review and evals, and agents that fix what they break. This site tracks what UK and US employers ask for, what I'm learning and what I've shipped.",
+  "thesisKo": "저는 영국에서 일하는 응용 데이터 과학자입니다. 제 업무는 프로덕션 소프트웨어 안에 ML 모델을 배포하고 유지보수하는 것입니다. 이제 구현 작업의 더 많은 부분을 코딩 에이전트가 맡고 있기 때문에, 저는 에이전트를 잘 이끄는 엔지니어가 가치 있다고 생각합니다. 명확한 지침, 군더더기 없는 컨텍스트와 토큰 예산, 자동화된 리뷰와 평가(evals), 그리고 자신이 망가뜨린 것을 스스로 고치는 에이전트가 그 핵심입니다. 이 사이트는 영국과 미국의 고용주가 무엇을 요구하는지, 제가 무엇을 배우고 있는지, 무엇을 만들어 냈는지를 기록합니다.",
   "about": [
     "**The worry.** Teams can now get a model into production with far less hand-written code. A role defined as \"deploy and maintain ML models\" may be in less demand at other companies than it was.",
     "**The hypothesis.** Employers increasingly want people who can make agents write, review and fix code reliably and cheaply. That means writing the instructions agents follow, deciding what goes into their context, building evals that catch regressions, and wiring review and repair into CI. I treat this as something to test against evidence, not assume.",
@@ -13,40 +16,86 @@
     "**First finding: only partly right.** In 23 postings, building agents (19) and evals (18) dominate, but only 4 explicitly ask for using coding agents in your own workflow. So the plan leads with agents and evals in real products, and treats agentic coding discipline as the way I ship them. Details on the [market page](market.html).",
     "**The site is part of the project.** It's built and maintained with Claude Code and Codex under written guidelines and an automated content check. The [colophon](built.html) explains how."
   ],
-  "links": [
-    { "label": "Mentoring and portfolio", "url": "https://my-coffeechat.latteboo99.workers.dev" },
-    { "label": "English profile", "url": "https://my-coffeechat.latteboo99.workers.dev/en" }
+  "aboutKo": [
+    "**우려.** 이제 팀들은 직접 작성하는 코드를 훨씬 줄이고도 모델을 프로덕션에 올릴 수 있습니다. \"ML 모델 배포 및 유지보수\"로 정의된 역할은 다른 회사들에서 예전만큼 수요가 없을지도 모릅니다.",
+    "**가설.** 고용주들은 에이전트가 코드를 안정적이고 저렴하게 작성하고, 리뷰하고, 수정하도록 만들 수 있는 사람을 점점 더 원합니다. 이는 에이전트가 따를 지침을 작성하고, 무엇을 컨텍스트에 넣을지 결정하고, 회귀를 잡아내는 평가를 구축하고, 리뷰와 수정을 CI에 연결하는 일을 뜻합니다. 저는 이것을 전제로 삼지 않고, 증거로 검증해야 할 가설로 다룹니다.",
+    "**방법.** 제가 멘티들에게 알려 주는 방법 그대로입니다. 실제 채용 공고를 모으고, 반복해서 등장하는 요건을 정리하고, 원문 표현을 확인한 다음, 각 기술에 대한 증빙 결과물을 만듭니다. [시장 페이지](market.html)에는 채용 공고가, [읽을거리 페이지](reading.html)에는 아티클과 보고서가, [로드맵](roadmap.html)에는 계획이 있고, [로그](log.html)에는 완료한 일이 기록됩니다.",
+    "**첫 번째 발견: 부분적으로만 맞았습니다.** 채용 공고 23건에서는 에이전트 구축(19건)과 평가(18건)가 압도적이었지만, 자신의 업무 흐름에서 코딩 에이전트를 활용하는 능력을 명시적으로 요구한 공고는 4건뿐이었습니다. 그래서 이 계획은 실제 제품 속 에이전트와 평가를 앞세우고, 에이전틱 코딩 규율은 그것들을 만들어 내는 방식으로 다룹니다. 자세한 내용은 [시장 페이지](market.html)에 있습니다.",
+    "**이 사이트도 프로젝트의 일부입니다.** 문서화된 지침과 자동 콘텐츠 검사 아래에서 Claude Code와 Codex로 만들고 관리합니다. 구체적인 방법은 [제작 노트](built.html)에서 설명합니다."
   ],
+  "links": [
+    {
+      "label": "Mentoring and portfolio",
+      "url": "https://my-coffeechat.latteboo99.workers.dev",
+      "labelKo": "멘토링·포트폴리오"
+    },
+    {
+      "label": "English profile",
+      "url": "https://my-coffeechat.latteboo99.workers.dev/en",
+      "labelKo": "영문 프로필"
+    }
+  ],
+  "mentoring": {
+    "url": "https://my-coffeechat.latteboo99.workers.dev",
+    "sessionsUrl": "https://my-coffeechat.latteboo99.workers.dev/#sessions",
+    "heading": "This research is the groundwork for my mentoring",
+    "headingKo": "이 조사는 제 멘토링의 바탕입니다",
+    "body": "I mentor data analysts, data scientists and ML engineers who want to understand where AI engineering is heading. Sessions draw directly on what is here: the postings, the evidence and the method behind my own roadmap. Bring the roles you are aiming for and we will map your next step together. Sessions are held in Korean.",
+    "bodyKo": "AI 엔지니어링으로 방향을 잡고 싶은 데이터 분석가·데이터 사이언티스트·ML 엔지니어를 멘토링하고 있습니다. 세션에서는 이곳의 채용 공고와 근거, 제 로드맵을 만든 방법을 그대로 활용합니다. 목표로 하는 직무를 알려 주시면 다음 단계를 함께 정리해 드립니다.",
+    "cta": "Book a mentoring session",
+    "ctaKo": "멘토링 신청하기",
+    "site": "Visit the mentoring site",
+    "siteKo": "멘토링 사이트 둘러보기",
+    "marketNote": "Want this analysis for your own target roles? In a mentoring session we read the postings for the roles you want and turn them into a skills plan.",
+    "marketNoteKo": "내가 목표로 하는 직무로도 이런 분석을 해 보고 싶다면, 멘토링 세션에서 원하는 직무의 공고를 함께 읽고 역량 계획으로 정리해 드립니다.",
+    "roadmapNote": "Want a roadmap like this for yourself? In a mentoring session we build one from your experience, with a proof-of-work step for each skill.",
+    "roadmapNoteKo": "나만의 로드맵이 필요하다면, 멘토링 세션에서 지금까지의 경험을 바탕으로 스킬마다 증빙 결과물이 있는 로드맵을 함께 만들어 드립니다."
+  },
   "built": {
     "intro": "This site is itself a small piece of agentic engineering practice. Everything below is in the repository and can be checked.",
+    "introKo": "이 사이트 자체가 에이전틱 엔지니어링을 작게 실천한 사례입니다. 아래 내용은 모두 리포지토리에 있으며 직접 확인할 수 있습니다.",
     "sections": [
       {
         "heading": "Content is data, pages are generated",
-        "body": "Postings, sources, the roadmap and the log live in four JSON files under `content/`. A build script of about 400 lines renders them to static HTML. There is no framework, database or client-side app, so there is little for an agent to break and little it has to read.\n\nUpdating the site means editing one JSON file, then running `npm run build`."
+        "headingKo": "데이터로서의 콘텐츠, 자동 생성되는 페이지",
+        "body": "Postings, sources, the roadmap and the log live in four JSON files under `content/`. A build script of about 400 lines renders them to static HTML. There is no framework, database or client-side app, so there is little for an agent to break and little it has to read.\n\nUpdating the site means editing one JSON file, then running `npm run build`.",
+        "bodyKo": "채용 공고, 출처, 로드맵, 로그는 `content/` 아래 JSON 파일 4개에 들어 있습니다. 약 400줄짜리 빌드 스크립트가 이를 정적 HTML로 렌더링합니다. 프레임워크도, 데이터베이스도, 클라이언트 측 앱도 없으므로 에이전트가 망가뜨릴 것도, 읽어야 할 것도 적습니다.\n\n사이트를 업데이트하려면 JSON 파일 하나를 수정한 뒤 `npm run build`를 실행하면 됩니다."
       },
       {
         "heading": "Written guidelines for agents",
-        "body": "`AGENTS.md` (read by Codex) is the single source of rules, and `CLAUDE.md` (read by Claude Code) points to it, so the two agents never drift apart. It says which file to open for each kind of change, what a valid entry looks like, and the rules that matter most: never invent a posting, source, salary or URL; cite sources by id; keep entries short and factual.\n\nThe file stays short on purpose, because every agent session pays for it in tokens."
+        "headingKo": "에이전트를 위한 문서화된 지침",
+        "body": "`AGENTS.md` (read by Codex) is the single source of rules, and `CLAUDE.md` (read by Claude Code) points to it, so the two agents never drift apart. It says which file to open for each kind of change, what a valid entry looks like, and the rules that matter most: never invent a posting, source, salary or URL; cite sources by id; keep entries short and factual.\n\nThe file stays short on purpose, because every agent session pays for it in tokens.",
+        "bodyKo": "`AGENTS.md`(Codex가 읽음)가 유일한 규칙 원본이고, `CLAUDE.md`(Claude Code가 읽음)는 이 파일을 가리키므로 두 에이전트의 규칙이 서로 어긋나지 않습니다. 이 파일에는 변경 종류별로 열어야 할 파일, 올바른 항목의 형태, 그리고 가장 중요한 규칙이 적혀 있습니다. 채용 공고, 출처, 연봉, URL을 절대 지어내지 않을 것, 출처는 id로 인용할 것, 항목은 짧고 사실에 근거해 작성할 것.\n\n모든 에이전트 세션이 이 파일을 읽는 데 토큰을 쓰기 때문에 일부러 짧게 유지합니다."
       },
       {
         "heading": "A guardrail that runs before every build",
-        "body": "`npm run check` validates every content file: required fields, https URLs, date formats, status values, newest-first log order, skill counts that can't exceed the number of postings, and citations that point at real sources. If an agent gets something wrong, the build stops with a message saying exactly where, and the agent can fix it without a person reading the diff line by line."
+        "headingKo": "매 빌드 전에 실행되는 가드레일",
+        "body": "`npm run check` validates every content file: required fields, https URLs, date formats, status values, newest-first log order, skill counts that can't exceed the number of postings, and citations that point at real sources. If an agent gets something wrong, the build stops with a message saying exactly where, and the agent can fix it without a person reading the diff line by line.",
+        "bodyKo": "`npm run check`는 모든 콘텐츠 파일을 검증합니다. 필수 필드, https URL, 날짜 형식, 상태 값, 로그의 최신순 정렬, 채용 공고 수를 넘을 수 없는 기술 집계, 실제 출처를 가리키는 인용을 확인합니다. 에이전트가 무언가를 잘못 작성하면 정확한 위치를 알려 주는 메시지와 함께 빌드가 멈추므로, 사람이 diff를 한 줄씩 읽지 않아도 에이전트가 스스로 고칠 수 있습니다."
       },
       {
         "heading": "Keeping token use down",
-        "body": "- Agents are told which single file to open instead of exploring the repository.\n- Research is delegated to separate sub-agents that return compact, structured JSON. Their search results never enter the main session's context.\n- Small edits go through the content files only; the page code is rarely touched."
+        "headingKo": "토큰 사용량 줄이기",
+        "body": "- Agents are told which single file to open instead of exploring the repository.\n- Research is delegated to separate sub-agents that return compact, structured JSON. Their search results never enter the main session's context.\n- Small edits go through the content files only; the page code is rarely touched.",
+        "bodyKo": "- 에이전트에게 리포지토리를 탐색하게 하는 대신, 열어야 할 파일 하나를 정확히 알려 줍니다.\n- 조사는 압축된 구조화 JSON을 반환하는 별도의 서브에이전트에 맡깁니다. 그 검색 결과는 메인 세션의 컨텍스트에 절대 들어오지 않습니다.\n- 작은 수정은 콘텐츠 파일에서만 처리하며, 페이지 코드는 거의 건드리지 않습니다."
       },
       {
         "heading": "How the research was gathered",
-        "body": "Two research agents ran in parallel: one collected UK and US job postings, the other collected articles, reports and guides. Both were instructed never to invent anything and to return JSON in a fixed shape that the content check validates. I spot-check links and quotes against the originals before relying on them. Postings expire, so every one records when it was seen."
+        "headingKo": "조사 자료 수집 방법",
+        "body": "Two research agents ran in parallel: one collected UK and US job postings, the other collected articles, reports and guides. Both were instructed never to invent anything and to return JSON in a fixed shape that the content check validates. I spot-check links and quotes against the originals before relying on them. Postings expire, so every one records when it was seen.",
+        "bodyKo": "조사 에이전트 두 개를 병렬로 실행했습니다. 하나는 영국과 미국의 채용 공고를, 다른 하나는 아티클, 보고서, 가이드를 수집했습니다. 두 에이전트 모두 아무것도 지어내지 말고, 콘텐츠 검사가 검증하는 고정된 형식의 JSON으로 결과를 반환하라는 지시를 받았습니다. 저는 이 자료에 의존하기 전에 링크와 인용문을 원문과 대조해 표본 검사합니다. 채용 공고는 마감되기 마련이므로, 공고마다 확인한 날짜를 기록합니다."
       },
       {
         "heading": "Hosting",
-        "body": "Static files on Cloudflare Workers, the same setup as my other projects. `npm run deploy` checks, builds and publishes."
+        "headingKo": "호스팅",
+        "body": "Static files on Cloudflare Workers, the same setup as my other projects. `npm run deploy` checks, builds and publishes.",
+        "bodyKo": "다른 프로젝트들과 같은 구성으로, Cloudflare Workers에서 정적 파일을 제공합니다. `npm run deploy` 하나로 검사, 빌드, 배포가 이루어집니다."
       },
       {
         "heading": "What comes next",
-        "body": "Automated AI code review and content checks on every pull request are on the [roadmap](roadmap.html). When they're in place, this page will link to the workflow and example pull requests."
+        "headingKo": "다음 계획",
+        "body": "Automated AI code review and content checks on every pull request are on the [roadmap](roadmap.html). When they're in place, this page will link to the workflow and example pull requests.",
+        "bodyKo": "모든 풀 리퀘스트(PR)에 대한 자동 AI 코드 리뷰와 콘텐츠 검사는 [로드맵](roadmap.html)에 올라 있습니다. 이것이 갖춰지면 이 페이지에서 해당 워크플로와 PR 예시로 연결하겠습니다."
       }
     ]
   }
