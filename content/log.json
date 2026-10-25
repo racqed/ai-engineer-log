@@ -4,6 +4,28 @@
   "entries": [
     {
       "date": "2026-10-25",
+      "title": "A personal ML project: practitioner claims and my own agent sessions",
+      "titleKo": "개인 ML 프로젝트: 실무자의 주장과 내 에이전트 세션",
+      "body": "Started `ai-eng-signals`, the repository I'll use to practise agent-ready engineering. It does two things:\n\n- **What practitioners say.** A topic classifier for the 35 Threads posts on the community page. A TF-IDF baseline agrees with the reference labels 69% of the time; Claude Haiku, zero-shot in a single call, agrees 91% of the time for $0.0024 in total. I haven't reviewed the reference labels myself yet, so these are agreement rates, not accuracy.\n- **What I actually do.** My Claude Code and Codex session logs from personal projects, reduced to numbers. In the first two days, 98% of input tokens came from cache and 3.5% of Claude Code tool calls failed. That's a description, not evidence yet.\n\nRaw logs never leave my machine. A pre-commit check blocks raw logs, local paths and private terms, and only an allowlist of numeric fields is published.",
+      "bodyKo": "에이전트 친화적인 엔지니어링을 연습할 리포지토리 `ai-eng-signals`를 시작했습니다. 두 가지를 합니다.\n\n- **실무자가 말하는 것.** 커뮤니티 페이지의 Threads 글 35개를 주제별로 분류합니다. TF-IDF 기본 모델은 기준 레이블과 69% 일치했고, Claude Haiku는 한 번의 호출로 91% 일치했으며 비용은 총 $0.0024였습니다. 기준 레이블은 아직 제가 직접 검토하지 않았으므로, 정확도가 아니라 일치율입니다.\n- **내가 실제로 하는 것.** 개인 프로젝트의 Claude Code·Codex 세션 기록을 숫자로만 집계합니다. 첫 이틀 동안 입력 토큰의 98%가 캐시에서 나왔고, Claude Code 도구 호출의 3.5%가 실패했습니다. 아직은 근거가 아니라 현황입니다.\n\n원본 기록은 제 PC 밖으로 나가지 않습니다. 커밋 전 검사가 원본 기록, 로컬 경로, 개인 정보 단어를 막고, 허용된 숫자 필드만 공개합니다.",
+      "tags": [
+        "ml",
+        "evals",
+        "token-cost",
+        "privacy",
+        "claude-code",
+        "codex"
+      ],
+      "links": [
+        {
+          "label": "Repository",
+          "labelKo": "리포지토리",
+          "url": "https://github.com/racqed/ai-eng-signals"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
       "title": "This site's code is public on GitHub",
       "titleKo": "이 사이트의 코드를 GitHub에 공개",
       "body": "The repository for this site is now public, with its README, `AGENTS.md` and full commit history. Commits are authored under my pen name, and agents are told to check the author before every push. The mentoring site's repository stays private because it holds payment and admin code.\n\nThat finishes the GitHub roadmap task. I'm keeping the Life in the UK quiz and the Brand Protection Assistant private for now, because publishing them adds little evidence beyond this repository.",
