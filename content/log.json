@@ -6,8 +6,8 @@
       "date": "2026-10-25",
       "title": "This site's code is public on GitHub",
       "titleKo": "이 사이트의 코드를 GitHub에 공개",
-      "body": "The repository for this site is now public, with its README, `AGENTS.md` and full commit history. Commits are authored under my pen name, and agents are told to check the author before every push. The mentoring site's repository stays private because it holds payment and admin code.\n\nThe roadmap task stays in progress: the Life in the UK quiz and the Brand Protection Assistant still need an `AGENTS.md` and a privacy check before they go public.",
-      "bodyKo": "이 사이트의 리포지토리를 README, `AGENTS.md`, 전체 커밋 기록과 함께 공개했습니다. 커밋은 필명으로 남기고, 에이전트가 push 전마다 작성자를 확인하도록 규칙을 넣었습니다. 멘토링 사이트 리포지토리는 결제·관리자 코드가 있어 비공개로 둡니다.\n\n로드맵 항목은 아직 진행 중입니다. Life in the UK 퀴즈와 Brand Protection Assistant는 공개하기 전에 `AGENTS.md`를 갖추고 개인정보 점검을 거쳐야 합니다.",
+      "body": "The repository for this site is now public, with its README, `AGENTS.md` and full commit history. Commits are authored under my pen name, and agents are told to check the author before every push. The mentoring site's repository stays private because it holds payment and admin code.\n\nThat finishes the GitHub roadmap task. I'm keeping the Life in the UK quiz and the Brand Protection Assistant private for now, because publishing them adds little evidence beyond this repository.",
+      "bodyKo": "이 사이트의 리포지토리를 README, `AGENTS.md`, 전체 커밋 기록과 함께 공개했습니다. 커밋은 필명으로 남기고, 에이전트가 push 전마다 작성자를 확인하도록 규칙을 넣었습니다. 멘토링 사이트 리포지토리는 결제·관리자 코드가 있어 비공개로 둡니다.\n\n이것으로 GitHub 로드맵 항목을 마쳤습니다. Life in the UK 퀴즈와 Brand Protection Assistant는 공개해도 이 리포지토리 이상의 증거가 되지 않아 당분간 비공개로 둡니다.",
       "tags": [
         "github",
         "privacy"

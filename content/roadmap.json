@@ -82,9 +82,11 @@
       "titleKo": "공개 프로젝트의 GitHub 게시",
       "why": "Commit history, instruction files and CI runs are the evidence hiring managers can actually inspect.",
       "whyKo": "커밋 기록, 지침 파일, CI 실행 결과는 채용 담당자가 실제로 들여다볼 수 있는 증거입니다.",
-      "deliverable": "Public repositories for this site, the Life in the UK quiz and the Brand Protection Assistant, each with a README and AGENTS.md.",
-      "deliverableKo": "이 사이트, Life in the UK 퀴즈, Brand Protection Assistant의 공개 리포지토리. 각 리포지토리에는 README와 AGENTS.md가 포함됩니다.",
-      "status": "doing"
+      "deliverable": "A public repository for this site with a README, `AGENTS.md` and its full commit history. The other projects stay private for now: publishing them adds little evidence beyond this one.",
+      "deliverableKo": "README, `AGENTS.md`, 전체 커밋 기록을 갖춘 이 사이트의 공개 리포지토리입니다. 다른 프로젝트는 당분간 비공개로 둡니다. 공개해도 이 리포지토리 이상의 증거가 되지 않기 때문입니다.",
+      "status": "done",
+      "done": "2026-10-25",
+      "evidence": "https://github.com/racqed/ai-engineer-log"
     },
     {
       "id": "agent-ready-repos",
