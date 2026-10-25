@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ai-engineer-log",
+  "account_id": "503fd5421a994f10ecd4d045926eb5f7",
+  "compatibility_date": "2026-10-25",
+  "workers_dev": true,
+  // Static site only: Cloudflare serves dist/ directly, no Worker code.
+  "assets": { "directory": "dist", "not_found_handling": "404-page", "html_handling": "auto-trailing-slash" }
+}

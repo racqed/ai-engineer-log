@@ -1,0 +1,235 @@
+{
+  "updated": "2026-10-25",
+  "intro": "23 real postings from 2026, 11 in the UK and 12 in the US, from AI labs, banks, fintechs, government, consultancies and product companies. Many have since closed. They're kept because they show what employers asked for, not as live openings. Skill counts are calculated from each posting's tags when the site is built.",
+  "takeaways": [
+    "**Agents and evals are the common core.** 19 of 23 postings ask for building agents and 18 for evals. Evals is where data science transfers most directly: the UK government's i.AI advertises a 'Senior AI Evaluation Engineer (Data Scientist)'.",
+    "**Production experience still counts.** 9 postings want MLOps, LLMOps or observability (tracing, monitoring, drift). That's my existing experience, but Monzo's platform role warns it isn't for people focused purely on modelling, so I need to show engineering, not only models.",
+    "**My hypothesis is only partly supported.** Only 4 postings explicitly ask for using AI coding tools in your own workflow, and none mention AI code review. Most employers hire people to build agents into products. Making coding agents productive is a developer-productivity niche (Anthropic, Stripe, OpenAI Codex) and appears in some UK enablement roles. So I'll lead with agents and evals in real products, and use agentic coding discipline as the multiplier that shows in how I ship.",
+    "**UK pay has two tiers.** Government and corporate roles sit around £58k–£110k; AI labs and well-funded startups in London pay £225k+ base. Banks (JPMorgan, Lloyds, HSBC) and government are the steadiest UK buyers of agentic skills. Government roles favour UK-based candidates, subject to nationality and clearance rules."
+  ],
+  "skills": [
+    { "skill": "Agents", "note": "Agent architectures, including multi-agent orchestration (named in 4)." },
+    { "skill": "Evals", "note": "Eval harnesses, LLM-as-a-judge, benchmarks. i.AI and DeepMind have dedicated eval roles." },
+    { "skill": "Python", "note": "Go appears in 5 postings, TypeScript in 4." },
+    { "skill": "MLOps & observability", "note": "Model serving, tracing, monitoring, drift and SLOs. Transfers directly from applied data science." },
+    { "skill": "RAG", "note": "Retrieval and vector search: often listed, never the headline skill." },
+    { "skill": "Guardrails & safety", "note": "Output validation, bias and safety evaluation, human-in-the-loop. Most common at banks." },
+    { "skill": "Customer-facing", "note": "Forward-deployed and applied roles at AI labs and consultancies." },
+    { "skill": "Context engineering", "note": "Prompt and context engineering; the term 'context engineering' itself appears at Anthropic, Harvey and Deloitte." },
+    { "skill": "Cost & latency", "note": "Token management, caching, batching, model right-sizing, inference cost governance." },
+    { "skill": "Cloud", "note": "AWS, GCP, Azure or Kubernetes named explicitly." },
+    { "skill": "Tool use", "note": "Function calling and multi-turn tool chaining." },
+    { "skill": "Fine-tuning", "note": "PEFT, LoRA, distillation. More common in ML-engineer-flavoured roles." },
+    { "skill": "CI/CD", "note": "Build and release automation, evals run in CI." },
+    { "skill": "AI coding tools", "note": "Using coding agents in your own workflow. No posting named Claude Code, Cursor or Copilot, and none mentioned AI code review." },
+    { "skill": "MCP", "note": "Model Context Protocol: rare so far, but appears at labs and a consultancy." },
+    { "skill": "Agent frameworks", "note": "LangGraph, LangChain, CrewAI, AutoGen: mainly banks and consultancies." },
+    { "skill": "Go", "note": null },
+    { "skill": "TypeScript", "note": null },
+    { "skill": "Leadership", "note": "Tech lead or people management." }
+  ],
+  "postings": [
+    {
+      "title": "Applied AI Engineer, Startups", "company": "Anthropic", "location": "London", "country": "UK", "workMode": "hybrid",
+      "salary": "£225,000–£255,000 base", "seenDate": "2026-09-23", "closed": false,
+      "url": "https://jobs.generalcatalyst.com/companies/anthropic/jobs/94465244-applied-ai-engineer-startups",
+      "summary": "Technical adviser to high-growth startups building on Claude: pair programming, architecture reviews, prototypes, evaluation suites, developer content and hackathons.",
+      "skills": ["Agents", "Evals", "Context engineering", "Python", "Customer-facing"],
+      "agenticSignals": ["Production experience building LLM-powered applications, including prompting, context engineering", "Experience with agent architectures, evaluation frameworks, and deployment at scale", "Develop prototypes and technical documentation, including evaluation suites"]
+    },
+    {
+      "title": "Applied AI Engineer, Digital Native Business", "company": "Anthropic", "location": "London", "country": "UK", "workMode": "hybrid",
+      "salary": "£225,000–£255,000 base", "seenDate": "2026-09-28", "closed": true,
+      "url": "https://jobs.generalcatalyst.com/companies/anthropic-2-329084eb-3341-4fee-bf5f-ca45f33adaab/jobs/95020075-applied-ai-engineer-dnb",
+      "summary": "Takes digital-native customers from technical evaluation to building on Claude, alongside account executives and architects. Visa sponsorship offered but not guaranteed.",
+      "skills": ["Agents", "Evals", "Context engineering", "Python", "Customer-facing"],
+      "agenticSignals": ["agent design, evaluation, and agent architectures", "Build prototypes and technical docs such as evaluation suites and architecture diagrams"]
+    },
+    {
+      "title": "Staff+ Software Engineer, Developer Productivity", "company": "Anthropic", "location": "London", "country": "UK", "workMode": "hybrid",
+      "salary": "£325,000–£390,000 base", "seenDate": "2026-06-13", "closed": true,
+      "url": "https://jobs.generalcatalyst.com/companies/anthropic/jobs/82603756-staff-software-engineer-developer-productivity",
+      "summary": "Monorepo build, CI, source control and tooling that brings Claude into engineering workflows. Very senior (15+ years preferred): a signal of where the AI developer-productivity track leads.",
+      "skills": ["AI coding tools", "CI/CD", "Python", "Go", "Cloud"],
+      "agenticSignals": ["developer acceleration tooling that deeply integrates Claude into engineering workflows", "CI orchestration tools (Buildkite, Jenkins, GitHub Actions) and merge queue management at scale", "building CLI tools, developer-facing services, and GitHub API and automation workflows"]
+    },
+    {
+      "title": "Senior AI Evaluation Engineer (Data Scientist)", "company": "Incubator for AI (i.AI), UK Government", "location": "London / Bristol / Manchester", "country": "UK", "workMode": "hybrid",
+      "salary": "£58,275–£86,640 incl. technical allowance (G7)", "seenDate": "2026-10-25", "closed": false,
+      "url": "https://job-boards.eu.greenhouse.io/iai/jobs/5010286101",
+      "summary": "Leads evaluation pipelines for government AI products, built into CI/CD, assessing accuracy, bias and safety. Closes 3 November 2026; SC clearance and nationality and residency rules apply.",
+      "skills": ["Evals", "Guardrails & safety", "CI/CD", "Python"],
+      "agenticSignals": ["Architect product-wide evaluation suites that integrate with engineering and CI/CD workflows", "Experience implementing LLM-as-a-judge and other generative AI evaluation techniques", "evaluation tools (e.g. pydantic evals, deepeval, inspect)"]
+    },
+    {
+      "title": "ML/AI Platform Engineer", "company": "Monzo", "location": "London or remote within UK", "country": "UK", "workMode": "remote",
+      "salary": "£85,000–£110,000 + equity", "seenDate": "2026-06-22", "closed": true,
+      "url": "https://jobs.thrivecap.com/companies/monzo/jobs/83567338-ml-ai-platform-engineer",
+      "summary": "Platform for internal teams building with ML and LLMs: model serving, feature platforms, experiment tracking, LLM infrastructure and AI observability. Says it's not a fit for people focused purely on modelling. Sponsors visas.",
+      "skills": ["MLOps & observability", "Evals", "Python", "Go", "Cloud"],
+      "agenticSignals": ["AI observability, evaluation, and tracing using Langfuse and Bifrost", "ML or AI platform experience (pipelines, feature stores, model serving, experiment tracking, or LLM tooling)"]
+    },
+    {
+      "title": "Senior Machine Learning Engineer, Conversational AI", "company": "Deliveroo", "location": "London", "country": "UK", "workMode": "hybrid",
+      "salary": null, "seenDate": "2026-04", "closed": true,
+      "url": "https://jobs.generalcatalyst.com/companies/deliveroo/jobs/73862765-senior-machine-learning-engineer",
+      "summary": "Productionises ML and LLM models for customer support and high-stakes decisions, with monitoring and evaluation to catch drift. Open to ML engineering or data science backgrounds. Date approximate ('6+ months ago').",
+      "skills": ["Agents", "Evals", "MLOps & observability", "Guardrails & safety", "Fine-tuning", "CI/CD", "Python", "Go"],
+      "agenticSignals": ["Demonstrated ownership of productionising GenAI or Agentic AI projects", "Nice to have: evaluation harnesses and frameworks designed for Generative AI", "Build monitoring, evaluation, and alerting to detect underperformance, drift, or unexpected behaviour"]
+    },
+    {
+      "title": "Agent Engineer, Tech Lead Manager", "company": "Sierra", "location": "London", "country": "UK", "workMode": null,
+      "salary": "£240,000–£320,000 + equity", "seenDate": "2026-02-27", "closed": false,
+      "url": "https://jobs.thrivecap.com/companies/sierra-2-90e5d64d-40bb-415e-bbca-4108552c8ee9/jobs/68850944-agent-engineer-tlm",
+      "summary": "Leads a team building production customer-service agents for European enterprises and owns the agent development life cycle from pilot to iteration. The page is now titled 'Engineering Manager, Agent'.",
+      "skills": ["Agents", "Evals", "RAG", "Context engineering", "Customer-facing", "TypeScript", "Go", "Leadership"],
+      "agenticSignals": ["Lead the design and delivery of production-grade AI agents", "Own the Agent Development Life Cycle (ADLC)", "Familiarity with eval frameworks, agent tooling, RAG pipelines, and prompt engineering"]
+    },
+    {
+      "title": "Applied AI Engineer, Agentic Systems (Senior Associate)", "company": "JPMorganChase", "location": "London (Canary Wharf)", "country": "UK", "workMode": "hybrid",
+      "salary": null, "seenDate": "2026-08", "closed": false,
+      "url": "https://builtinlondon.uk/job/applied-ai-engineer-agentic-systems-senior-associate/10308557",
+      "summary": "Autonomous and assistive agents for investment-banking operations: multi-agent orchestration, RAG, tool integrations, guardrails and evaluation harnesses.",
+      "skills": ["Agents", "Evals", "RAG", "Tool use", "Guardrails & safety", "MLOps & observability", "Fine-tuning", "Agent frameworks", "Context engineering", "Python", "Cloud"],
+      "agenticSignals": ["multi-agent systems covering roles, tool integration, planning, memory, and workflow orchestration", "writing tests and building evaluation harnesses for agents and prompts", "output validation and guardrails to reduce hallucinations", "instrument agents for tracing, metrics, and feedback"]
+    },
+    {
+      "title": "AI Deployment Engineer, Startups", "company": "OpenAI", "location": "London", "country": "UK", "workMode": "hybrid",
+      "salary": null, "seenDate": "2026-05-07", "closed": true,
+      "url": "https://jobs.thrivecap.com/companies/openai/jobs/77712939-ai-deployment-engineer-startups",
+      "summary": "Prototypes prompts, agents and workflows with startup customers and turns real usage into reproducible evals and product feedback. Three days a week in the office.",
+      "skills": ["Agents", "Evals", "Context engineering", "Customer-facing"],
+      "agenticSignals": ["Prototype and iterate on prompts, agents, and workflow designs", "turning real usage patterns into clear, reproducible evals, benchmarks, and technical artifacts"]
+    },
+    {
+      "title": "Applied AI Engineer, Codex", "company": "OpenAI", "location": "London", "country": "UK", "workMode": "hybrid",
+      "salary": null, "seenDate": "2026-09", "closed": false,
+      "url": "https://builtinlondon.uk/job/applied-ai-engineer-codex/11125731",
+      "summary": "Helps enterprise engineering teams adopt Codex across the software life cycle by building AI-powered workflows, evaluation harnesses and integrations. Measured by production adoption.",
+      "skills": ["AI coding tools", "Agents", "Evals", "Cost & latency", "MLOps & observability", "Guardrails & safety", "Customer-facing", "Python", "TypeScript"],
+      "agenticSignals": ["Design and build AI-powered workflows that improve how teams plan, write, test, review, debug, and deliver software", "Active use of AI coding tools and a clear point of view on AI and developer productivity", "Design systematic evaluations using representative engineering tasks, automated graders, production signals"]
+    },
+    {
+      "title": "AI Native Software Engineer (Agentic/Applied)", "company": "Accenture", "location": "London", "country": "UK", "workMode": "onsite",
+      "salary": null, "seenDate": "2026-07-29", "closed": false,
+      "url": "https://www.choppingblock.ai/jobs/ai-native-sw-eng-at-accenture",
+      "summary": "Senior consultancy role that designs and governs enterprise agentic systems for clients and sets standards for RAG, multi-LLM routing, LLMOps and cost. Includes people leadership.",
+      "skills": ["Agents", "RAG", "Evals", "Cost & latency", "MLOps & observability", "Guardrails & safety", "Agent frameworks", "CI/CD", "Customer-facing", "Python", "Cloud", "Leadership"],
+      "agenticSignals": ["Hands-on experience designing and deploying agentic AI solutions in a production environment", "fallback routing and cost governance across OpenAI, Anthropic, Vertex AI", "Production experience calling LLM APIs: provider abstraction, token management, latency and cost tradeoffs"]
+    },
+    {
+      "title": "Forward Deployed Engineer", "company": "OpenAI", "location": "New York, NY", "country": "US", "workMode": "hybrid",
+      "salary": null, "seenDate": "2026-09-12", "closed": true,
+      "url": "https://jobs.thrivecap.com/companies/openai/jobs/92970128-forward-deployed-engineer-fde-nyc",
+      "summary": "Owns end-to-end deployments of frontier models with strategic customers, from prototype to production. Up to 50% travel.",
+      "skills": ["Evals", "Customer-facing", "Python", "TypeScript"],
+      "agenticSignals": ["eval-driven feedback that changes product and model roadmaps", "Turn repeatable patterns into tools, playbooks, or reusable building blocks"]
+    },
+    {
+      "title": "Forward Deployed Engineer", "company": "Anthropic", "location": "San Francisco / New York / Seattle", "country": "US", "workMode": "hybrid",
+      "salary": "$280,000–$320,000 base", "seenDate": "2026-08-13", "closed": true,
+      "url": "https://jobs.generalcatalyst.com/companies/anthropic/jobs/89778489-forward-deployed-engineer",
+      "summary": "Embeds in customer systems to build production applications with Claude, delivering MCP servers, sub-agents and agent skills. About 25% travel.",
+      "skills": ["Agents", "MCP", "Evals", "Context engineering", "Customer-facing", "Python", "TypeScript"],
+      "agenticSignals": ["Deliver technical artifacts such as MCP servers, sub-agents, and agent skills", "advanced prompt engineering, agent development, evaluation frameworks"]
+    },
+    {
+      "title": "Software Engineer, Gemini Eval Infra", "company": "Google DeepMind", "location": "San Diego, CA", "country": "US", "workMode": null,
+      "salary": "$207,000–$300,000 base + bonus + equity", "seenDate": "2026-08-04", "closed": true,
+      "url": "https://jobs.anitab.org/companies/google-24698/jobs/88606269-software-engineer-gemini-eval-infra-deepmind",
+      "summary": "Distributed evaluation infrastructure for Gemini, including abstractions for evaluating agent loops and tool use, and automated LLM-as-a-judge raters. 8+ years.",
+      "skills": ["Evals", "Agents", "Tool use", "MLOps & observability", "Cost & latency", "Python"],
+      "agenticSignals": ["Build foundational abstractions to evaluate complex LLM agent loops, tool use", "automated LLM-as-a-judge rating systems", "error classification, automated retry policies, and observability dashboards"]
+    },
+    {
+      "title": "Machine Learning Software Engineer, GeminiApp Agents", "company": "Google DeepMind", "location": "Mountain View, CA", "country": "US", "workMode": null,
+      "salary": "$207,000–$300,000 base + bonus + equity", "seenDate": "2026-04-02", "closed": true,
+      "url": "https://jobs.anitab.org/companies/google-24698/jobs/73179321-machine-learning-software-engineer-geminiapp-agents-deepmind",
+      "summary": "Improves Gemini's multi-turn tool chaining, function calling and MCP integrations, and builds evaluation infrastructure (autoraters, autousers). 8+ years.",
+      "skills": ["Agents", "Tool use", "MCP", "Evals"],
+      "agenticSignals": ["chain multiple tools across multiple turns", "Optimize Gemini's performance through Model Context Protocol (MCP) integrations", "evaluation infrastructure, including autoraters, autousers"]
+    },
+    {
+      "title": "AI Agents Applied Research/Engineering Lead (VP)", "company": "JPMorganChase", "location": "New York, NY", "country": "US", "workMode": "hybrid",
+      "salary": null, "seenDate": "2026-08", "closed": false,
+      "url": "https://www.builtinnyc.com/job/ai-agents-applied-research-engineering-lead-vice-president/10309157",
+      "summary": "Leads research and production deployment of LLM agents for multi-step financial workflows, from tool calling and distillation for cost to safety controls and auditability.",
+      "skills": ["Agents", "Tool use", "RAG", "Evals", "Cost & latency", "Fine-tuning", "Guardrails & safety", "MLOps & observability", "CI/CD", "Python", "Leadership"],
+      "agenticSignals": ["multi-step workflows, tool calling, and multi-agent orchestration", "Scale LLM systems through caching, batching, prompt governance, and evaluation frameworks", "success metrics for agent performance, including task completion rate, accuracy, latency"]
+    },
+    {
+      "title": "Applied AI Engineer (All Levels)", "company": "Ramp", "location": "New York, NY", "country": "US", "workMode": "hybrid",
+      "salary": "$204,000–$352,000 (per Built In)", "seenDate": "2026-08", "closed": false,
+      "url": "https://www.builtinnyc.com/job/applied-ai-engineer-all-levels/8178250",
+      "summary": "Fintech applied-AI team shipping full-stack AI products: agents, RAG, structured extraction, fine-tuning, inference infrastructure and internal productivity platforms.",
+      "skills": ["Agents", "RAG", "Fine-tuning", "Cloud"],
+      "agenticSignals": ["AI Agents, Retrieval-Augmented Generation, Structured Extraction, fine-tuning models, and infrastructure for LLM inference", "Create tools and internal platforms to enhance the productivity of Ramp's AI and engineering teams"]
+    },
+    {
+      "title": "AI Engineer 5 (Agentic AI, Gen AI Platform Services)", "company": "Capital One", "location": "McLean VA / SF / NYC / San Jose / Cambridge MA", "country": "US", "workMode": null,
+      "salary": "$229,900–$286,200 depending on location", "seenDate": "2026-10-19", "closed": false,
+      "url": "https://www.capitalonecareers.com/job/mclean/ai-engineer-5-mlx-agentic-ai-gen-ai-platform-services/1732/102178412496",
+      "summary": "Senior GenAI platform engineer: LLM inference, multi-agent workflows, guardrails, evaluation and observability at bank scale, with explicit cost-performance governance.",
+      "skills": ["Agents", "Guardrails & safety", "Evals", "RAG", "Cost & latency", "MLOps & observability", "Python", "Go", "Cloud"],
+      "agenticSignals": ["LLM inference, agents and multi-agent workflows, similarity search, guardrails, model evaluation, and observability", "Establish cost-performance governance reviews tracking GPU utilization, throughput, and inference cost", "Right-sizing models and hardware based on context length and token requirements"]
+    },
+    {
+      "title": "Senior Software Engineer, Agents", "company": "Harvey", "location": "San Francisco", "country": "US", "workMode": null,
+      "salary": "$193,400–$290,000 + equity", "seenDate": "2026-10-25", "closed": false,
+      "url": "https://www.harvey.ai/company/careers/04eb457b-e985-4e3b-9635-0a2b867ada97",
+      "summary": "Domain-specific legal agents: evaluations, tool design, context management, low-latency execution and agent observability. Relevant to my law background.",
+      "skills": ["Agents", "Evals", "Tool use", "Context engineering", "Cost & latency", "RAG", "MLOps & observability", "Agent frameworks", "Python"],
+      "agenticSignals": ["prompt engineering, model selection, tool design, skill writing, context window management, and eval harness development", "low-latency agent execution: caching, parallel tool calls, subagent patterns"]
+    },
+    {
+      "title": "AI Engineer (Solutions Architecture)", "company": "Stripe", "location": "Chicago, IL", "country": "US", "workMode": "hybrid",
+      "salary": "$126,600–$235,300 + equity", "seenDate": "2026-07-03", "closed": true,
+      "url": "https://jobs.generalcatalyst.com/companies/stripe/jobs/85183588-ai-engineer",
+      "summary": "Builds internal agents, LLM tools and automated workflows to speed up Stripe's solutions architects, and hardens the tools they build.",
+      "skills": ["Agents", "AI coding tools", "Python", "Cloud"],
+      "agenticSignals": ["building and deploying AI agents, LLM-powered tools, or workflow automation beyond basic prompt engineering", "Hands-on experience using AI/LLM tools in your engineering workflow", "fluent with AI-assisted development but not dependent on it"]
+    },
+    {
+      "title": "Machine Learning Engineer, Stripe Assistant", "company": "Stripe", "location": "South San Francisco / New York / Seattle", "country": "US", "workMode": "hybrid",
+      "salary": "$212,000–$318,000 + equity", "seenDate": "2026-02-18", "closed": true,
+      "url": "https://jobs.khoslaventures.com/companies/stripe/jobs/68066259-machine-learning-engineer-stripe-assistant",
+      "summary": "Owns the ML and agent architecture of Stripe's dashboard assistant, including governance across hundreds of tools and human-in-the-loop write actions. An ML engineer role that now requires agent work.",
+      "skills": ["Agents", "Tool use", "RAG", "Evals", "Fine-tuning", "Cost & latency", "Guardrails & safety", "Python"],
+      "agenticSignals": ["RAG/embeddings, tool use/function calling, agentic planning/orchestration, fine-tuning", "trustworthy, human-in-the-loop execution for high-trust write actions", "balancing reliability, latency, and cost"]
+    },
+    {
+      "title": "Engineering Manager, Developer Productivity AI", "company": "Stripe", "location": "US remote or US offices", "country": "US", "workMode": "remote",
+      "salary": "$214,600–$321,800 + equity", "seenDate": "2026-03-28", "closed": true,
+      "url": "https://careers.atomico.com/companies/stripe/jobs/72490121-engineering-manager-developer-productivity-ai",
+      "summary": "Manages a new team deploying LLM agents and AI devtools to automate large parts of Stripe's engineering workflow. An example of the AI developer-productivity track.",
+      "skills": ["AI coding tools", "Agents", "Leadership"],
+      "agenticSignals": ["deploying LLM agents and tools to automate large swaths of the engineering workflow", "Dig deep into the data on how engineers use AI tools"]
+    },
+    {
+      "title": "Agentic Capability Engineer", "company": "Deloitte (US)", "location": "US (multiple)", "country": "US", "workMode": null,
+      "salary": "$131,000–$218,300", "seenDate": "2026-10-25", "closed": false,
+      "url": "https://apply.deloitte.com/en_US/careers/JobDetail/Agentic-Capability-Engineer/358006",
+      "summary": "Consultancy engineer building agents, reusable prompt and context-engineering patterns and MCP servers. Lower confidence: details come from search snippets because the page didn't load.",
+      "skills": ["Agents", "MCP", "Context engineering", "Customer-facing"],
+      "agenticSignals": ["develops AI agents, agent systems, crafting reusable prompt and context engineering patterns, building MCP servers"]
+    }
+  ],
+  "ukVsUs": [
+    "**Pay disclosure.** US postings almost always state a range (pay-transparency laws). UK disclosure is patchy: labs, Sierra, Monzo and government state pay; JPMorgan London, Deliveroo, OpenAI London and Accenture don't.",
+    "**UK pay.** Government eval engineer £58k–£87k; fintech platform engineer £85k–£110k + equity; London AI labs and funded startups £225k–£320k base. The gap between UK corporate and lab pay is far wider than in the US.",
+    "**US pay.** Consultancy $131k–$218k; mainstream senior AI engineer $193k–$300k; lab forward-deployed engineer $280k–$320k. Bands are tighter and higher across employer types.",
+    "**Titles.** The UK leans towards 'Applied AI Engineer', 'AI Deployment Engineer' and the government's 'AI Evaluation Engineer (Data Scientist)', an explicit bridge from data science. US titles more often put 'Agents' in the name.",
+    "**Sectors.** London agentic hiring clusters in AI labs' applied teams, banks (JPMorgan, Lloyds, HSBC) and government. The US also has product companies building agents into the core product (Harvey, Stripe, Ramp).",
+    "**Work patterns.** Mostly hybrid (OpenAI three days, Stripe at least 50%); Monzo was remote within the UK. Forward-deployed roles expect heavy travel (25–50%).",
+    "**Eligibility.** Anthropic London offers sponsorship but doesn't guarantee it; Monzo sponsors; UK government roles need SC clearance and residency. None of the US postings explicitly offered sponsorship."
+  ],
+  "caveats": [
+    "Postings marked Closed had stopped accepting applications when checked on 25 October 2026. They're kept as verified descriptions of 2026 roles.",
+    "Most links are job-board mirrors (General Catalyst, Thrive, Built In and others), because several official careers pages block automated access.",
+    "Dates are the stated posting date where shown, otherwise estimated ('reposted 2 months ago') or the date checked. Some came from search snippets.",
+    "The 'from the posting' lines are mostly verbatim, but some are close paraphrases. Check the original before quoting.",
+    "Counts cover only these 23 postings and only what each one explicitly says. Treat them as directional, not a market statistic.",
+    "Several roles are well above a five-year profile (15+ or 8+ years, or management). They show what employers value, not direct targets.",
+    "Found but excluded for lack of a dated, fetchable description: Revolut, ClearBank, Lloyds, HSBC and another i.AI role."
+  ]
+}

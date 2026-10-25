@@ -1,0 +1,19 @@
+{
+  "name": "ai-engineer-log",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An open, agent-built log of one data scientist's move into AI engineering: market research, a roadmap and a work journal.",
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "build": "node scripts/check.mjs && node scripts/build.mjs",
+    "dev": "node scripts/build.mjs && node scripts/serve.mjs",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.152.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

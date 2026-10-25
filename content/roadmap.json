@@ -1,0 +1,201 @@
+{
+  "intro": "Six months, November 2026 to April 2027. Each step has a public proof of work, because employers hire on evidence, not course certificates. The plan builds on what I already have: production ML, statistics, domain knowledge from brand protection and law, the UK market and mentoring. One project, the Brand Protection Assistant, carries through the middle phases, so the portfolio tells one connected story.",
+  "phases": [
+    {
+      "id": "p0",
+      "title": "Groundwork",
+      "window": "October 2026",
+      "goal": "Build real things with coding agents and start keeping a public record."
+    },
+    {
+      "id": "p1",
+      "title": "Agent workflow discipline",
+      "window": "Months 1–2 · Nov–Dec 2026",
+      "goal": "Make agents reliable and cheap on my own repositories: written rules, runnable checks, measured cost, automated review."
+    },
+    {
+      "id": "p2",
+      "title": "LLM systems that hold up",
+      "window": "Months 3–4 · Jan–Feb 2027",
+      "goal": "Use my data science strengths where they matter most for LLM systems: evals, retrieval quality and well-designed tools."
+    },
+    {
+      "id": "p3",
+      "title": "Supervised agents and governance",
+      "window": "Month 5 · Mar 2027",
+      "goal": "Long-running domain agents with people in control, and a security and governance story that legal and compliance teams can read."
+    },
+    {
+      "id": "p4",
+      "title": "Prove it and position",
+      "window": "Month 6 · Apr 2027",
+      "goal": "Measure honestly, tell the story and apply."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "ship-with-agents",
+      "phase": "p0",
+      "title": "Ship several working projects with Claude Code and Codex",
+      "why": "Hands-on experience of where agents help and where they need tight instructions.",
+      "deliverable": "Four or more working projects, two of them public and live (see the log).",
+      "status": "done",
+      "done": "2026-10-25",
+      "evidence": "https://life-in-the-uk-quiz.latteboo99.workers.dev"
+    },
+    {
+      "id": "career-log",
+      "phase": "p0",
+      "title": "Start a public, agent-maintained career log",
+      "why": "One place to research the market, plan, and show progress to others.",
+      "deliverable": "This site: research from parallel sub-agents, a content check, and an AGENTS.md shared by Claude Code and Codex.",
+      "status": "done",
+      "done": "2026-10-25",
+      "evidence": "https://ai-engineer-log.latteboo99.workers.dev"
+    },
+    {
+      "id": "public-github",
+      "phase": "p0",
+      "title": "Publish the public projects on GitHub",
+      "why": "Commit history, instruction files and CI runs are the evidence hiring managers can actually inspect.",
+      "deliverable": "Public repositories for this site, the Life in the UK quiz and the Brand Protection Assistant, each with a README and AGENTS.md.",
+      "status": "todo"
+    },
+    {
+      "id": "agent-ready-repos",
+      "phase": "p1",
+      "title": "Make my repositories agent-ready",
+      "why": "Instruction files are now a cross-tool standard that review bots read too. A short rules file plus a check the agent can run is the strongest lever on output quality.",
+      "deliverable": "A reusable AGENTS.md/CLAUDE.md template (under 200 lines), two skills (e.g. retrain-and-validate, model-card update) and a hook that filters test output, applied to an ML repository. Publish a before/after table of task success and turns on 10 scripted maintenance tasks.",
+      "status": "doing",
+      "sourceIds": [
+        "s19",
+        "s22",
+        "s16",
+        "s11"
+      ]
+    },
+    {
+      "id": "token-cost",
+      "phase": "p1",
+      "title": "Measure and cut agent token spend",
+      "why": "Agent cost scales with context size and cache behaviour. A measured saving is a concrete, rare thing to show an employer.",
+      "deliverable": "Write-up and notebook: 'Cutting agent spend on a real ML repo'. Baseline vs optimised cost per task, cache hit rate, model routing for sub-agents, log pre-filtering and moving CLAUDE.md content into skills, with usage data as evidence.",
+      "status": "todo",
+      "sourceIds": [
+        "s20",
+        "s16",
+        "s15"
+      ]
+    },
+    {
+      "id": "auto-review",
+      "phase": "p1",
+      "title": "Automated code review and CI repair",
+      "why": "Agentic code review is now generally available in mainstream tools. Employers need people who can set it up safely and measure signal against noise.",
+      "deliverable": "On this site's repository: a Claude Code GitHub Actions review workflow driven by AGENTS.md, and a CI-failure fix workflow with turn limits, an allowed-tools list and timeouts. Report review precision and recall on 30 deliberately seeded bugs, plus a security scan gate.",
+      "status": "todo",
+      "sourceIds": [
+        "s21",
+        "s23",
+        "s19",
+        "s28"
+      ]
+    },
+    {
+      "id": "evals",
+      "phase": "p2",
+      "title": "An eval harness for a brand-protection triage agent",
+      "why": "Evals are where a data scientist has a real edge over a pure software engineer: error analysis, labelling, judge calibration and statistics.",
+      "deliverable": "Open-source harness on synthetic or public listings: a failure taxonomy from 50+ traces, a binary LLM judge validated against my own labels (TPR/TNR on held-out data), pass^k reliability, and a CI job that fails on regressions.",
+      "status": "todo",
+      "sourceIds": [
+        "s13",
+        "s18",
+        "s9"
+      ]
+    },
+    {
+      "id": "rag",
+      "phase": "p2",
+      "title": "RAG over IP and platform-policy documents, with retrieval evals",
+      "why": "RAG is one of the three most common UK AI Engineer skills, and retrieval quality is a measurement problem.",
+      "deliverable": "Question answering over public trade mark guidance and marketplace IP policies, with citations. Recall@k and answer-faithfulness evals, and a short note on the chunking and reranking choices.",
+      "status": "todo",
+      "sourceIds": [
+        "s1",
+        "s9",
+        "s16"
+      ]
+    },
+    {
+      "id": "mcp",
+      "phase": "p2",
+      "title": "An MCP server for the Brand Protection Assistant",
+      "why": "Tools are a contract with their own design rules, MCP is the industry standard for them, and few servers carry domain expertise.",
+      "deliverable": "Namespaced tools for listing lookup, similarity scoring against a mark list and notice drafting (synthetic data), with compact and detailed response modes and actionable errors. A tool-eval report (error rate, redundant calls, tokens per task) showing at least one improvement made with an agent.",
+      "status": "todo",
+      "sourceIds": [
+        "s17",
+        "s22",
+        "s15"
+      ]
+    },
+    {
+      "id": "case-agent",
+      "phase": "p3",
+      "title": "A supervised brand-enforcement case agent",
+      "why": "Long tasks need compaction, notes and sub-agents. The UK regulator's model for AI law firms (AI does the work, named people stay accountable) matches my legal background.",
+      "deliverable": "A demo that researches a case, drafts a takedown notice and stops at human-approval checkpoints. Structured notes, an evidence-gathering sub-agent, trace logging, cost per case, an eval suite, and a short 'supervision and accountability' design document.",
+      "status": "todo",
+      "sourceIds": [
+        "s16",
+        "s25",
+        "s18",
+        "s12"
+      ]
+    },
+    {
+      "id": "governance",
+      "phase": "p3",
+      "title": "An agent governance pack",
+      "why": "Trust in AI output is low and generated code is often insecure. A law, business and engineering background can own governance, which pure engineers rarely do well.",
+      "deliverable": "Template repository: threat model (prompt injection, secret exposure, over-permissioned CI), least-privilege permission policy, sandbox settings, security scanning in CI, and a one-page policy written for legal and compliance readers.",
+      "status": "todo",
+      "sourceIds": [
+        "s28",
+        "s7",
+        "s21",
+        "s27"
+      ]
+    },
+    {
+      "id": "measure",
+      "phase": "p4",
+      "title": "Measure my own agent productivity honestly",
+      "why": "Employers are sceptical of hype. A small, well-designed measurement shows rigour and supports business cases.",
+      "deliverable": "Randomise 20+ real tasks between my old and new setup, record time, rework, review findings and escaped defects, and publish the results with confidence intervals and limitations.",
+      "status": "todo",
+      "sourceIds": [
+        "s26",
+        "s27",
+        "s24"
+      ]
+    },
+    {
+      "id": "position",
+      "phase": "p4",
+      "title": "Reposition and apply",
+      "why": "UK AI hiring is concentrated in London, Manchester and Cambridge and in tech, finance and professional services. Experienced people who can teach agentic workflows are protected while entry-level hiring shrinks.",
+      "deliverable": "CV and LinkedIn rewritten as 'Applied AI Engineer (LLMs, agents, evals)', linking this portfolio. One workshop, 'Agentic engineering for ML teams', with an open playbook. Applications to 10–15 roles from the market page, tracked here.",
+      "status": "todo",
+      "sourceIds": [
+        "s1",
+        "s2",
+        "s3",
+        "s14",
+        "s6"
+      ]
+    }
+  ]
+}
