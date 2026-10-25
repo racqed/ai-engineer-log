@@ -84,7 +84,7 @@
       "whyKo": "커밋 기록, 지침 파일, CI 실행 결과는 채용 담당자가 실제로 들여다볼 수 있는 증거입니다.",
       "deliverable": "Public repositories for this site, the Life in the UK quiz and the Brand Protection Assistant, each with a README and AGENTS.md.",
       "deliverableKo": "이 사이트, Life in the UK 퀴즈, Brand Protection Assistant의 공개 리포지토리. 각 리포지토리에는 README와 AGENTS.md가 포함됩니다.",
-      "status": "todo"
+      "status": "doing"
     },
     {
       "id": "agent-ready-repos",

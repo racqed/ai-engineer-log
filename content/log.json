@@ -4,6 +4,24 @@
   "entries": [
     {
       "date": "2026-10-25",
+      "title": "This site's code is public on GitHub",
+      "titleKo": "이 사이트의 코드를 GitHub에 공개",
+      "body": "The repository for this site is now public, with its README, `AGENTS.md` and full commit history. Commits are authored under my pen name, and agents are told to check the author before every push. The mentoring site's repository stays private because it holds payment and admin code.\n\nThe roadmap task stays in progress: the Life in the UK quiz and the Brand Protection Assistant still need an `AGENTS.md` and a privacy check before they go public.",
+      "bodyKo": "이 사이트의 리포지토리를 README, `AGENTS.md`, 전체 커밋 기록과 함께 공개했습니다. 커밋은 필명으로 남기고, 에이전트가 push 전마다 작성자를 확인하도록 규칙을 넣었습니다. 멘토링 사이트 리포지토리는 결제·관리자 코드가 있어 비공개로 둡니다.\n\n로드맵 항목은 아직 진행 중입니다. Life in the UK 퀴즈와 Brand Protection Assistant는 공개하기 전에 `AGENTS.md`를 갖추고 개인정보 점검을 거쳐야 합니다.",
+      "tags": [
+        "github",
+        "privacy"
+      ],
+      "links": [
+        {
+          "label": "Repository",
+          "labelKo": "리포지토리",
+          "url": "https://github.com/racqed/ai-engineer-log"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
       "title": "Separate Korean and English pages",
       "titleKo": "한국어·영어 페이지 분리",
       "body": "Showing both languages on one page made every page twice as long, so I split them the way my mentoring site does: Korean at `/` and English at `/en/`, with a language switch in the nav that keeps you on the same page. The content files didn't change; the build script renders each page twice from the same `<field>` and `<field>Ko` pairs, and the content check still fails if any Korean is missing.",
