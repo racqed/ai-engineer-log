@@ -10,6 +10,7 @@ A static site: `content/*.json` → `scripts/build.mjs` → `dist/`. No framewor
 | Roadmap task added, started or finished | `content/roadmap.json` |
 | A job posting | `content/market.json` → `postings`; tag only with names from `skills` (counts are computed at build) |
 | An article, report or guide | `content/reading.json` → `sources` (next free id `sN`) |
+| A Threads post or community discussion | `content/community.json` → `posts` (next free id `tN`; own-words summary, public handle only) |
 | Bio, links, colophon text | `content/profile.json` |
 | Page layout or markup | `scripts/build.mjs` |
 | Styling | `src/styles.css` |

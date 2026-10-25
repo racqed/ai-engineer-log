@@ -273,3 +273,22 @@ nav a .ko { font-size: 0.7rem; color: inherit; opacity: 0.85; }
 .mentoring-note > div { flex: 1 1 360px; }
 .mentoring-note p { margin-bottom: 0.6em; }
 @media (max-width: 760px) { .mentoring-band { grid-template-columns: minmax(0, 1fr); padding: 22px; } }
+
+/* ---------- community (Threads) and LinkedIn badges ---------- */
+.via { font: 600 0.7rem var(--mono); padding: 1px 7px; border-radius: 5px; background: color-mix(in srgb, #0a66c2 14%, transparent); color: #0a66c2; }
+@media (prefers-color-scheme: dark) { .via { color: #7fb5ec; } }
+.segmented.wrap-seg { flex-wrap: wrap; border-radius: 18px; }
+.community-posts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 16px; }
+.cpost { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); scroll-margin-top: 90px; }
+.cpost[hidden] { display: none; }
+.cpost:target { outline: 2px solid var(--accent); }
+.cpost p { font-size: 0.93rem; }
+.chip-topic { background: var(--surface-2); color: var(--ink); }
+.flag-lang { background: var(--muted); }
+.tip { background: var(--accent-soft); border-radius: 10px; padding: 10px 14px; margin: 8px 0; }
+.tip .label { display: block; font: 500 0.72rem var(--mono); text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.tip .label .ko { display: inline; color: inherit; margin-left: 6px; font-size: 1em; }
+.tip p { margin-bottom: 4px; }
+blockquote { margin: 8px 0; padding-left: 12px; border-left: 3px solid var(--line); color: var(--muted); font-size: 0.9rem; font-style: italic; }
+.theme p.ko { margin-top: 8px; margin-bottom: 8px; }
+.theme p:not(.ko) { margin-bottom: 0; }

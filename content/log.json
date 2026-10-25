@@ -4,6 +4,27 @@
   "entries": [
     {
       "date": "2026-10-25",
+      "title": "Bilingual site, LinkedIn and Threads research, and a link to my mentoring",
+      "titleKo": "두 언어 사이트, LinkedIn·Threads 조사, 멘토링 연결",
+      "body": "Every page now shows English and Korean together, and the content check fails if any Korean is missing. Three translation sub-agents worked on separate files in parallel so they never conflicted.\n\nAdded 29 postings checked one by one on LinkedIn's public job pages (about 57 page views, no login, no bulk scraping) and a new community page summarising 35 public Threads posts on coding agents, tokens, instruction files, review and AI engineering careers.\n\nThe site now points readers to my mentoring sessions, which draw on this research.",
+      "bodyKo": "이제 모든 페이지에 영어와 한국어가 함께 나오고, 한국어가 하나라도 빠지면 콘텐츠 검사가 실패합니다. 번역 서브에이전트 세 개가 서로 다른 파일을 맡아 충돌 없이 병렬로 작업했습니다.\n\nLinkedIn 공개 공고 페이지에서 하나씩 확인한 공고 29개를 추가했고(약 57회 조회, 로그인·대량 수집 없음), 코딩 에이전트·토큰·지침 파일·리뷰·AI 엔지니어링 커리어에 관한 공개 Threads 글 35개를 정리한 커뮤니티 페이지를 새로 만들었습니다.\n\n사이트에서 이 조사를 바탕으로 하는 제 멘토링 세션으로 바로 이어지게 했습니다.",
+      "tags": [
+        "bilingual",
+        "linkedin",
+        "threads",
+        "sub-agents",
+        "mentoring"
+      ],
+      "links": [
+        {
+          "label": "Community notes",
+          "labelKo": "커뮤니티 노트",
+          "url": "https://ai-engineer-log.latteboo99.workers.dev/community"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
       "title": "Started this site: research, roadmap and log in one place",
       "titleKo": "사이트 개설: 조사, 로드맵, 로그를 한곳에",
       "body": "Built the AI Engineer Log with Claude Code in Orca. Two research sub-agents ran in parallel, one on UK and US job postings and one on articles and reports, and returned structured JSON, so their search results stayed out of the main session's context.\n\nThe site is a small static generator with a content check that blocks the build on invented fields, broken citations or bad dates, plus an `AGENTS.md` that Claude Code and Codex both follow.",

@@ -13,14 +13,14 @@
     "**The worry.** Teams can now get a model into production with far less hand-written code. A role defined as \"deploy and maintain ML models\" may be in less demand at other companies than it was.",
     "**The hypothesis.** Employers increasingly want people who can make agents write, review and fix code reliably and cheaply. That means writing the instructions agents follow, deciding what goes into their context, building evals that catch regressions, and wiring review and repair into CI. I treat this as something to test against evidence, not assume.",
     "**The method.** It's the method I give my mentees: collect real postings, list what keeps coming up, check the original wording, then build proof of each skill. The [market page](market.html) holds the postings, the [reading page](reading.html) holds the articles and reports, the [roadmap](roadmap.html) holds the plan and the [log](log.html) records what's done.",
-    "**First finding: only partly right.** In 23 postings, building agents (19) and evals (18) dominate, but only 4 explicitly ask for using coding agents in your own workflow. So the plan leads with agents and evals in real products, and treats agentic coding discipline as the way I ship them. Details on the [market page](market.html).",
+    "**First finding: only partly right.** In 52 postings, building agents (45) and evals (42) dominate, but only 10 explicitly ask for using coding agents in your own workflow, although that share is higher in the newest postings. So the plan leads with agents and evals in real products, and treats agentic coding discipline as the way I ship them. Details on the [market page](market.html).",
     "**The site is part of the project.** It's built and maintained with Claude Code and Codex under written guidelines and an automated content check. The [colophon](built.html) explains how."
   ],
   "aboutKo": [
     "**우려.** 이제 팀들은 직접 작성하는 코드를 훨씬 줄이고도 모델을 프로덕션에 올릴 수 있습니다. \"ML 모델 배포 및 유지보수\"로 정의된 역할은 다른 회사들에서 예전만큼 수요가 없을지도 모릅니다.",
     "**가설.** 고용주들은 에이전트가 코드를 안정적이고 저렴하게 작성하고, 리뷰하고, 수정하도록 만들 수 있는 사람을 점점 더 원합니다. 이는 에이전트가 따를 지침을 작성하고, 무엇을 컨텍스트에 넣을지 결정하고, 회귀를 잡아내는 평가를 구축하고, 리뷰와 수정을 CI에 연결하는 일을 뜻합니다. 저는 이것을 전제로 삼지 않고, 증거로 검증해야 할 가설로 다룹니다.",
     "**방법.** 제가 멘티들에게 알려 주는 방법 그대로입니다. 실제 채용 공고를 모으고, 반복해서 등장하는 요건을 정리하고, 원문 표현을 확인한 다음, 각 기술에 대한 증빙 결과물을 만듭니다. [시장 페이지](market.html)에는 채용 공고가, [읽을거리 페이지](reading.html)에는 아티클과 보고서가, [로드맵](roadmap.html)에는 계획이 있고, [로그](log.html)에는 완료한 일이 기록됩니다.",
-    "**첫 번째 발견: 부분적으로만 맞았습니다.** 채용 공고 23건에서는 에이전트 구축(19건)과 평가(18건)가 압도적이었지만, 자신의 업무 흐름에서 코딩 에이전트를 활용하는 능력을 명시적으로 요구한 공고는 4건뿐이었습니다. 그래서 이 계획은 실제 제품 속 에이전트와 평가를 앞세우고, 에이전틱 코딩 규율은 그것들을 만들어 내는 방식으로 다룹니다. 자세한 내용은 [시장 페이지](market.html)에 있습니다.",
+    "**첫 번째 발견: 절반만 맞았습니다.** 공고 52개에서 에이전트 구축(45개)과 평가(42개)가 압도적이었지만, 본인 업무에 코딩 에이전트를 쓰는 능력을 명시한 공고는 10개뿐이었습니다. 다만 최근 공고일수록 그 비율이 높아지고 있습니다. 그래서 계획은 실제 제품의 에이전트와 평가를 앞세우고, 에이전트를 다루는 코딩 역량은 결과물을 만드는 방식으로 보여 주는 쪽으로 잡았습니다. 자세한 내용은 [시장 조사 페이지](market.html)에 있습니다.",
     "**이 사이트도 프로젝트의 일부입니다.** 문서화된 지침과 자동 콘텐츠 검사 아래에서 Claude Code와 Codex로 만들고 관리합니다. 구체적인 방법은 [제작 노트](built.html)에서 설명합니다."
   ],
   "links": [

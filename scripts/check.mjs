@@ -1,7 +1,7 @@
 // Validates content/*.json before every build. This is the guardrail that lets
 // a coding agent edit content safely: if it invents a field, breaks a reference
 // or forgets a source URL, the build stops with a precise message.
-import { loadContent, STATUSES, SOURCE_CATEGORIES } from "./content.mjs";
+import { loadContent, STATUSES, SOURCE_CATEGORIES, TOPICS } from "./content.mjs";
 
 const errors = [];
 const fail = (where, msg) => errors.push(`${where}: ${msg}`);
@@ -32,7 +32,7 @@ try {
   console.error(`Could not read content: ${err.message}`);
   process.exit(1);
 }
-const { profile, market, reading, roadmap, log } = content;
+const { profile, market, reading, roadmap, log, community } = content;
 
 // profile.json
 need(profile, "profile", [
@@ -121,6 +121,29 @@ for (const [i, e] of entries.entries()) {
   if (i > 0 && e.date > entries[i - 1].date) fail(where, "entries must be newest first");
 }
 
+// community.json — public Threads posts, summarised in my own words.
+need(community, "community", [["updated", isDate, "a YYYY-MM-DD date"], ["intro", isText, "text"]]);
+const postIds = unique(community.posts ?? [], "id", "community.posts");
+for (const p of community.posts ?? []) {
+  const where = `community.posts[${p.id}]`;
+  need(p, where, [
+    ["author", (v) => typeof v === "string" && v.startsWith("@"), "a public @handle"],
+    ["url", (v) => isUrl(v) && /^https:\/\/(www\.)?threads\.(com|net)\//.test(v), "a threads.com or threads.net URL"],
+    ["summary", isText, "text"],
+  ]);
+  if (p.date !== null && !isDate(p.date)) fail(where, `"date" must be a date or null`);
+  if (!["ko", "en"].includes(p.lang)) fail(where, `lang must be "ko" or "en"`);
+  if (!(p.topic in TOPICS)) fail(where, `topic must be one of ${Object.keys(TOPICS).join(", ")}`);
+  if (!["page", "snippet"].includes(p.seenVia)) fail(where, `seenVia must be "page" or "snippet"`);
+}
+for (const [i, t] of (community.themes ?? []).entries()) {
+  need(t, `community.themes[${i}]`, [["theme", isText, "text"], ["summary", isText, "text"]]);
+  for (const id of t.postIds ?? []) if (!postIds.has(id)) fail(`community.themes[${i}]`, `cites unknown post "${id}"`);
+}
+for (const p of postings) {
+  if (p.source !== undefined && !isText(p.source)) fail(`market.postings (${p.company})`, `"source" must be text`);
+}
+
 // Bilingual: every translatable field needs a Korean sibling named <field>Ko.
 // Strings need a non-empty string; arrays need an array of the same length.
 function ko(obj, where, fields) {
@@ -154,10 +177,14 @@ ko(roadmap, "roadmap", ["intro"]);
 ko(log, "log", ["intro"]);
 entries.forEach((e, i) => ko(e, `log.entries[${i}]`, ["title", "body"]));
 (profile.links ?? []).forEach((l, i) => ko(l, `profile.links[${i}]`, ["label"]));
+ko(community, "community", ["intro", "caveats"]);
+(community.posts ?? []).forEach((p) => ko(p, `community.posts[${p.id}]`, ["summary", "tip"]));
+(community.themes ?? []).forEach((t, i) => ko(t, `community.themes[${i}]`, ["theme", "summary"]));
+ko(market, "market", ["linkedinNotes"]);
 entries.forEach((e, i) => (e.links ?? []).forEach((l, j) => ko(l, `log.entries[${i}].links[${j}]`, ["label"])));
 
 if (errors.length) {
   console.error(`Content check failed (${errors.length}):\n- ${errors.join("\n- ")}`);
   process.exit(1);
 }
-console.log(`Content OK: ${postings.length} postings, ${sources.length} sources, ${(roadmap.tasks ?? []).length} roadmap tasks, ${entries.length} log entries.`);
+console.log(`Content OK: ${postings.length} postings, ${sources.length} sources, ${(roadmap.tasks ?? []).length} roadmap tasks, ${entries.length} log entries, ${(community.posts ?? []).length} community posts.`);

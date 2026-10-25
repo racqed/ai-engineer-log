@@ -15,10 +15,18 @@ export function loadContent() {
     reading: read("reading.json"),
     roadmap: read("roadmap.json"),
     log: read("log.json"),
+    community: read("community.json"),
   };
 }
 
 export const STATUSES = ["todo", "doing", "done"];
+export const TOPICS = {
+  "agent-workflow": ["Using coding agents", "코딩 에이전트 활용"],
+  "token-cost": ["Tokens and cost", "토큰과 비용"],
+  "instructions-context": ["Instructions and context", "지침과 컨텍스트"],
+  "review-evals": ["Review, tests and evals", "리뷰·테스트·평가"],
+  career: ["AI engineering careers", "AI 엔지니어링 커리어"],
+};
 export const SOURCE_CATEGORIES = {
   market: ["Market and hiring data", "시장과 채용 데이터"],
   role: ["What an AI engineer is", "AI 엔지니어란 무엇인가"],

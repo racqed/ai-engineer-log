@@ -6,10 +6,10 @@
 // (enforced by check.mjs); interface text comes from the UI table below.
 import { mkdirSync, rmSync, writeFileSync, copyFileSync } from "node:fs";
 import { join } from "node:path";
-import { loadContent, root, SOURCE_CATEGORIES, STATUSES } from "./content.mjs";
+import { loadContent, root, SOURCE_CATEGORIES, STATUSES, TOPICS } from "./content.mjs";
 
 const out = join(root, "dist");
-const { profile, market, reading, roadmap, log } = loadContent();
+const { profile, market, reading, roadmap, log, community } = loadContent();
 
 // ---------- interface text ----------
 
@@ -21,6 +21,18 @@ const UI = {
   reading: ["Reading", "자료"],
   roadmap: ["Roadmap", "로드맵"],
   log: ["Log", "기록"],
+  community: ["Community", "커뮤니티"],
+  communityEyebrow: (n) => [`Community notes · ${n} Threads posts`, `커뮤니티 노트 · Threads 글 ${n}개`],
+  communityTitle: ["What practitioners are saying", "실무자들이 말하는 것"],
+  allTopics: ["All topics", "모든 주제"],
+  allLangs: ["Both languages", "두 언어 모두"],
+  koPosts: ["Korean posts", "한국어 글"],
+  enPosts: ["English posts", "영어 글"],
+  tip: ["Try this", "실천 팁"],
+  viaSnippet: ["Read from a search snippet", "검색 결과 요약으로 확인"],
+  posts: ["Posts", "글"],
+  viaLinkedIn: ["via LinkedIn", "LinkedIn 공고"],
+  linkedinNotes: ["What the LinkedIn postings add", "LinkedIn 공고에서 본 패턴"],
   built: ["How it's built", "제작 방식"],
   mentoringNav: ["Mentoring", "멘토링"],
   seeRoadmap: ["See the roadmap", "로드맵 보기"],
@@ -224,6 +236,7 @@ const NAV = [
   ["reading.html", UI.reading],
   ["roadmap.html", UI.roadmap],
   ["log.html", UI.log],
+  ["community.html", UI.community],
   ["built.html", UI.built],
 ];
 
@@ -357,6 +370,8 @@ ${(market.takeaways ?? []).length ? `<section class="panel takeaways">${heading(
   </section>
 </div>
 
+${(market.linkedinNotes ?? []).length ? `<section class="panel">${heading("h2", UI.linkedinNotes)}<ul class="dots">${listItems(market.linkedinNotes, market.linkedinNotesKo)}</ul></section>` : ""}
+
 <section id="postings">
   <div class="section-head">${heading("h2", UI.postings)}<p class="muted small" id="posting-count" aria-live="polite" data-en="${esc(UI.shown("{n}")[0])}" data-ko="${esc(UI.shown("{n}")[1])}">${esc(shown[0])} · ${esc(shown[1])}</p></div>
   <form class="filters" id="filters" role="search" onsubmit="return false">
@@ -386,6 +401,7 @@ ${(market.takeaways ?? []).length ? `<section class="panel takeaways">${heading(
         (p) => `<article class="posting" data-country="${esc(p.country)}" data-closed="${p.closed}" data-skills="${esc(p.skills.join("|"))}">
       <div class="posting-top">
         <span class="flag flag-${esc(p.country)}">${esc(p.country)}</span>
+        ${p.source ? `<span class="via">${esc(UI.viaLinkedIn[0])} · ${esc(UI.viaLinkedIn[1])}</span>` : ""}
         ${p.closed ? `<span class="closed">${esc(UI.closed[0])} · ${esc(UI.closed[1])}</span>` : ""}
         <span class="muted small">${esc(p.location)}${p.workMode ? ` · ${esc(p.workMode)}` : ""} · ${fmtDate(p.seenDate)}</span>
       </div>
@@ -493,6 +509,65 @@ ${pageHead(UI.logEyebrow((log.entries ?? []).length), UI.logTitle, log.intro, lo
 <div class="entries">${(log.entries ?? []).map(logEntry).join("")}</div>`,
   });
 
+pages["community.html"] = () => {
+  const posts = community.posts ?? [];
+  const postById = new Map(posts.map((p) => [p.id, p]));
+  const usedTopics = Object.entries(TOPICS).filter(([key]) => posts.some((p) => p.topic === key));
+  return layout({
+    file: "community.html",
+    title: UI.community,
+    description: ["What practitioners on Threads say about coding agents, tokens and AI engineering.", "Threads 실무자들이 말하는 코딩 에이전트, 토큰, AI 엔지니어링 이야기."],
+    body: `
+${pageHead(UI.communityEyebrow(posts.length), UI.communityTitle, community.intro, community.introKo)}
+
+${(community.themes ?? []).length ? `<section>
+  ${heading("h2", UI.themes)}
+  <div class="themes">${community.themes
+    .map(
+      (t, i) => `<article class="theme"><span class="theme-num">${String(i + 1).padStart(2, "0")}</span>${heading("h3", pairOf(t, "theme"))}${paras(t.summary, t.summaryKo)}<span class="cites">${(t.postIds ?? [])
+        .filter((id) => postById.has(id))
+        .map((id) => `<a href="#${esc(id)}" title="${esc(postById.get(id).author)}">${esc(id)}</a>`)
+        .join("")}</span></article>`
+    )
+    .join("")}</div>
+</section>` : ""}
+
+<section id="posts">
+  <div class="section-head">${heading("h2", UI.posts)}<p class="muted small" id="post-count" aria-live="polite" data-en="${esc(UI.shown("{n}")[0])}" data-ko="${esc(UI.shown("{n}")[1])}">${esc(UI.shown(posts.length)[0])} · ${esc(UI.shown(posts.length)[1])}</p></div>
+  <div class="filters" role="group" aria-label="Filter posts">
+    <div class="segmented wrap-seg" role="group" aria-label="Topic">
+      <button type="button" data-topic="all" aria-pressed="true">${inlineBoth(UI.allTopics)}</button>
+      ${usedTopics.map(([key, label]) => `<button type="button" data-topic="${key}" aria-pressed="false">${inlineBoth(label)}</button>`).join("")}
+    </div>
+    <div class="segmented" role="group" aria-label="Language">
+      <button type="button" data-lang="all" aria-pressed="true">${inlineBoth(UI.allLangs)}</button>
+      <button type="button" data-lang="ko" aria-pressed="false">${inlineBoth(UI.koPosts)}</button>
+      <button type="button" data-lang="en" aria-pressed="false">${inlineBoth(UI.enPosts)}</button>
+    </div>
+  </div>
+  <div class="community-posts">${posts
+    .map(
+      (p) => `<article class="cpost" id="${esc(p.id)}" data-topic="${esc(p.topic)}" data-lang="${esc(p.lang)}">
+      <div class="posting-top">
+        <span class="chip chip-topic">${both(TOPICS[p.topic])}</span>
+        <span class="flag flag-lang">${p.lang === "ko" ? "KO" : "EN"}</span>
+        <span class="muted small"><a href="${esc(p.url)}">${esc(p.author)} ↗</a>${p.date ? ` · ${fmtDate(p.date)}` : ""} · ${esc(p.id)}</span>
+      </div>
+      ${paras(p.summary, p.summaryKo)}
+      ${p.tip ? `<div class="tip"><span class="label">${both(UI.tip)}</span>${paras(p.tip, p.tipKo)}</div>` : ""}
+      ${p.quote ? `<blockquote lang="${esc(p.lang)}">${esc(p.quote)}</blockquote>` : ""}
+      ${p.seenVia === "snippet" ? `<p class="muted small">${inlineBoth(UI.viaSnippet)}</p>` : ""}
+    </article>`
+    )
+    .join("")}</div>
+  <p class="empty" id="empty" hidden>${both(UI.noMatch)}</p>
+</section>
+
+${caveatsSection(community)}`,
+    scripts: `<script src="community.js" defer></script>`,
+  });
+};
+
 pages["built.html"] = () =>
   layout({
     file: "built.html",
@@ -520,6 +595,6 @@ mkdirSync(out, { recursive: true });
 const cleanLinks = (html) =>
   html.replace(/href="index\.html/g, 'href="/').replace(/href="([a-z0-9-]+)\.html/g, 'href="/$1');
 for (const [file, render] of Object.entries(pages)) writeFileSync(join(out, file), cleanLinks(render()));
-for (const asset of ["styles.css", "market.js"]) copyFileSync(join(root, "src", asset), join(out, asset));
+for (const asset of ["styles.css", "market.js", "community.js"]) copyFileSync(join(root, "src", asset), join(out, asset));
 writeFileSync(join(out, "robots.txt"), "User-agent: *\nAllow: /\n");
 console.log(`Built ${Object.keys(pages).length} pages into dist/`);

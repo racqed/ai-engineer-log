@@ -1,18 +1,18 @@
 {
   "updated": "2026-10-25",
-  "intro": "23 real postings from 2026, 11 in the UK and 12 in the US, from AI labs, banks, fintechs, government, consultancies and product companies. Many have since closed. They're kept because they show what employers asked for, not as live openings. Skill counts are calculated from each posting's tags when the site is built.",
-  "introKo": "2026년 실제 채용 공고 23건(영국 11건, 미국 12건)을 AI 연구소, 은행, 핀테크, 정부, 컨설팅사, 제품 회사에서 모았습니다. 상당수는 이미 마감되었습니다. 지금 지원할 수 있는 공고라서가 아니라, 고용주가 무엇을 요구했는지 보여 주는 자료이기 때문에 남겨 두었습니다. 스킬별 집계는 사이트를 빌드할 때 각 공고의 태그를 기준으로 계산합니다.",
+  "intro": "52 real postings from 2026, 25 in the UK and 27 in the US: 23 gathered from careers pages and job boards, and 29 checked one by one on LinkedIn's public job pages in October 2026. They come from AI labs, banks, insurers, fintechs, healthcare, retail, government, consultancies and product companies. Some have since closed; they're kept because they show what employers asked for. Skill counts are calculated from each posting's tags when the site is built.",
+  "introKo": "2026년 실제 채용 공고 52개입니다(영국 25, 미국 27). 23개는 채용 페이지와 구인 게시판에서, 29개는 2026년 10월 LinkedIn 공개 공고 페이지에서 하나씩 확인해 모았습니다. AI 연구소, 은행, 보험사, 핀테크, 헬스케어, 리테일, 정부, 컨설팅, 제품 회사가 포함됩니다. 일부는 이미 마감됐지만 기업이 무엇을 요구했는지 보여 주므로 남겨 두었습니다. 스킬 수치는 사이트를 빌드할 때 각 공고의 태그로 계산됩니다.",
   "takeaways": [
-    "**Agents and evals are the common core.** 19 of 23 postings ask for building agents and 18 for evals. Evals is where data science transfers most directly: the UK government's i.AI advertises a 'Senior AI Evaluation Engineer (Data Scientist)'.",
-    "**Production experience still counts.** 9 postings want MLOps, LLMOps or observability (tracing, monitoring, drift). That's my existing experience, but Monzo's platform role warns it isn't for people focused purely on modelling, so I need to show engineering, not only models.",
-    "**My hypothesis is only partly supported.** Only 4 postings explicitly ask for using AI coding tools in your own workflow, and none mention AI code review. Most employers hire people to build agents into products. Making coding agents productive is a developer-productivity niche (Anthropic, Stripe, OpenAI Codex) and appears in some UK enablement roles. So I'll lead with agents and evals in real products, and use agentic coding discipline as the multiplier that shows in how I ship.",
-    "**UK pay has two tiers.** Government and corporate roles sit around £58k–£110k; AI labs and well-funded startups in London pay £225k+ base. Banks (JPMorgan, Lloyds, HSBC) and government are the steadiest UK buyers of agentic skills. Government roles favour UK-based candidates, subject to nationality and clearance rules."
+    "**Agents and evals are the common core.** 45 of 52 postings ask for building agents and 42 for evals. Evals is where data science transfers most directly: the UK government's i.AI advertises a 'Senior AI Evaluation Engineer (Data Scientist)', and Microsoft AI's health team has a role that is almost entirely evaluation.",
+    "**Production experience still counts, and RAG is everywhere in regulated domains.** 27 postings want MLOps, LLMOps or observability and 32 want RAG, mostly in finance, insurance, healthcare and legal work built on extraction and traceable outputs. That suits my experience, but Monzo's platform role warns it isn't for people focused purely on modelling, so I need to show engineering, not only models.",
+    "**My hypothesis is partly supported, and the signal is growing.** Using AI coding tools in your own work appears in 10 of 52 postings: 4 of the first 23, but 6 of the 29 fresher LinkedIn postings, mostly in the US (Crexi, Docusign, Plymouth Rock, Citi, Ro), with ieso the clearest UK example. Most employers still hire people to build agents into products. So I'll lead with agents and evals in real products, and use agentic coding discipline as the multiplier that shows in how I ship.",
+    "**UK pay has two tiers, and is often hidden.** Government and corporate roles sit around £58k–£110k; AI labs and well-funded startups in London pay £225k+ base. Only 3 of the 14 UK LinkedIn postings showed pay (£90k–£162k). Banks, regulators (the FCA) and government are steady UK buyers of agentic skills; government roles favour UK-based candidates, subject to nationality and clearance rules."
   ],
   "takeawaysKo": [
-    "**에이전트와 평가(evals)가 공통 핵심입니다.** 23건 중 19건이 에이전트 구축을, 18건이 evals를 요구합니다. 데이터 사이언스 경험이 가장 직접적으로 이어지는 분야가 바로 evals입니다. 영국 정부의 i.AI는 ‘Senior AI Evaluation Engineer (Data Scientist)’ 직무를 공고하고 있습니다.",
-    "**프로덕션 경험은 여전히 중요합니다.** 9건이 MLOps, LLMOps 또는 관측성(트레이싱, 모니터링, 드리프트)을 요구합니다. 제가 이미 가진 경험이지만, Monzo의 플랫폼 직무는 순수하게 모델링에만 집중하는 사람에게는 맞지 않는다고 못 박고 있습니다. 따라서 저는 모델만이 아니라 엔지니어링 역량을 보여 줘야 합니다.",
-    "**제 가설은 부분적으로만 뒷받침됩니다.** 자신의 작업 흐름에서 AI 코딩 도구를 활용하라고 명시한 공고는 4건뿐이고, AI 코드 리뷰를 언급한 공고는 하나도 없습니다. 대부분의 고용주는 제품에 에이전트를 구축할 사람을 채용합니다. 코딩 에이전트의 생산성을 끌어올리는 일은 개발자 생산성이라는 틈새 분야(Anthropic, Stripe, OpenAI Codex)이며, 영국의 일부 enablement 직무에서도 보입니다. 그래서 저는 실제 제품 속 에이전트와 evals를 전면에 내세우고, 에이전틱 코딩 역량은 제가 결과물을 내놓는 방식에서 드러나는 증폭 요인으로 삼겠습니다.",
-    "**영국의 보수는 두 계층으로 나뉩니다.** 정부와 일반 기업 직무는 £58k–£110k 수준이고, 런던의 AI 연구소와 자금력이 탄탄한 스타트업은 기본급 £225k+를 지급합니다. 은행(JPMorgan, Lloyds, HSBC)과 정부는 영국에서 에이전틱 역량을 가장 꾸준히 찾는 수요처입니다. 정부 직무는 국적 및 보안 인가 규정에 따라 영국 거주 지원자를 우대합니다."
+    "**에이전트와 평가가 공통 핵심입니다.** 공고 52개 중 45개가 에이전트 구축을, 42개가 평가(evals)를 요구합니다. 데이터 사이언스가 가장 직접적으로 이어지는 분야가 평가입니다. 영국 정부 i.AI는 'Senior AI Evaluation Engineer (Data Scientist)'를 채용하고, Microsoft AI 헬스 팀에는 업무 대부분이 평가인 직무가 있습니다.",
+    "**프로덕션 경험은 여전히 중요하고, 규제 산업에서는 RAG가 거의 필수입니다.** 27개 공고가 MLOps·LLMOps·관측성을, 32개가 RAG를 요구하며, 대부분 문서 추출과 추적 가능한 출력이 중요한 금융·보험·헬스케어·법률 분야입니다. 제 경험과 잘 맞지만, Monzo의 플랫폼 직무는 모델링에만 집중한 사람에게는 맞지 않는다고 밝히고 있어 모델뿐 아니라 엔지니어링 역량을 보여 줘야 합니다.",
+    "**제 가설은 일부만 맞지만, 신호는 커지고 있습니다.** 본인 업무에 AI 코딩 도구를 쓰는 능력을 요구한 공고는 52개 중 10개입니다. 처음 모은 23개 중에서는 4개였지만, 더 최근의 LinkedIn 공고 29개 중에서는 6개였고 대부분 미국(Crexi, Docusign, Plymouth Rock, Citi, Ro)이며, 영국에서는 ieso가 가장 뚜렷한 사례입니다. 여전히 대부분의 기업은 제품에 에이전트를 넣을 사람을 뽑습니다. 그래서 실제 제품의 에이전트와 평가를 앞세우고, 에이전트를 다루는 코딩 역량은 결과물을 만드는 방식으로 보여 주려 합니다.",
+    "**영국 급여는 두 층으로 나뉘고, 공개되지 않는 경우가 많습니다.** 정부·일반 기업 직무는 약 £58k–£110k, 런던의 AI 연구소와 투자를 많이 받은 스타트업은 기본급 £225k 이상입니다. 영국 LinkedIn 공고 14개 중 급여를 공개한 곳은 3개(£90k–£162k)뿐이었습니다. 은행, 규제기관(FCA), 정부가 에이전트 역량을 꾸준히 찾는 영국 수요처이며, 정부 직무는 국적·보안 인가 요건에 따라 영국 거주자에게 유리합니다."
   ],
   "skills": [
     {
@@ -728,6 +728,832 @@
       "agenticSignals": [
         "develops AI agents, agent systems, crafting reusable prompt and context engineering patterns, building MCP servers"
       ]
+    },
+    {
+      "title": "Senior AI Engineer - Legal AI",
+      "company": "9fin",
+      "location": "London, England, United Kingdom",
+      "country": "UK",
+      "workMode": "hybrid",
+      "salary": null,
+      "seenDate": "2026-10-18",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4424548500",
+      "summary": "Senior role at a debt-markets AI platform, using LLMs to turn bond documents and credit agreements into structured, validated data. It owns the model lifecycle from experimentation to monitored production pipelines and mentors the team.",
+      "summaryKo": "채권 시장용 AI 플랫폼 기업의 시니어 직무로, LLM을 활용해 채권 문서와 신용 계약서를 검증된 구조화 데이터로 변환합니다. 실험부터 모니터링되는 프로덕션 파이프라인까지 모델 라이프사이클 전체를 책임지며 팀원 멘토링도 맡습니다.",
+      "skills": [
+        "Evals",
+        "Python",
+        "RAG",
+        "Cloud",
+        "MLOps & observability",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "Experience applying LLMs to high-precision extraction tasks",
+        "schema-driven extraction, citation grounding, validation, and confidence scoring",
+        "Design and build generative AI applications tailored to complex financial and legal workflows"
+      ]
+    },
+    {
+      "title": "Senior AI Engineer",
+      "company": "NewDay",
+      "location": "London, England, United Kingdom",
+      "country": "UK",
+      "workMode": null,
+      "salary": null,
+      "seenDate": "2026-10-21",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4433333735",
+      "summary": "Consumer-credit fintech hiring a senior engineer to design and ship LLM-powered and agent-based systems end to end, with evaluation, monitoring and guardrails built in. The role sets engineering standards and mentors other AI engineers.",
+      "summaryKo": "소비자 신용 핀테크 기업이 LLM 기반 및 에이전트 기반 시스템을 처음부터 끝까지 설계하고 출시할 시니어 엔지니어를 채용합니다. 평가, 모니터링, 가드레일을 기본으로 갖춰야 하며, 엔지니어링 표준을 세우고 다른 AI 엔지니어를 멘토링합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "Guardrails & safety",
+        "MLOps & observability",
+        "Cloud",
+        "Context engineering",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "Build LLM-powered and agent-based solutions from concept through to production",
+        "Experience building agentic or multi-step AI systems",
+        "embedding AI directly into core business processes rather than building isolated prototypes"
+      ]
+    },
+    {
+      "title": "Senior AI Engineer - Generative AI & Search - Artificial Intelligence",
+      "company": "Bloomberg",
+      "location": "London, England, United Kingdom",
+      "country": "UK",
+      "workMode": null,
+      "salary": null,
+      "seenDate": "2026-10-18",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4476468548",
+      "summary": "Joins Bloomberg's AI Experiences team to build LLM-powered search and discovery for Terminal clients, including RAG systems, evaluation frameworks and tools that let search agents handle complex client queries. Strong NLP, information retrieval and software engineering fundamentals are expected.",
+      "summaryKo": "Bloomberg의 AI Experiences 팀에서 Terminal 고객을 위한 LLM 기반 검색·탐색 기능을 구축합니다. RAG 시스템, 평가 프레임워크, 그리고 검색 에이전트가 복잡한 고객 질의를 처리하도록 돕는 도구를 만드는 일이 포함됩니다. NLP, 정보 검색, 소프트웨어 엔지니어링 기본기가 탄탄해야 합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Tool use"
+      ],
+      "agenticSignals": [
+        "Designing and implementing tools that enable LLM-powered search agents to effectively handle complex client queries",
+        "Developing and deploying robust Retrieval-Augmented Generation (RAG) systems",
+        "building evaluation frameworks to enable rapid iteration and continuous improvement"
+      ]
+    },
+    {
+      "title": "Senior AI / LLM Engineer",
+      "company": "ASOS.com",
+      "location": "London, England, United Kingdom",
+      "country": "UK",
+      "workMode": null,
+      "salary": null,
+      "seenDate": "2026-10-22",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4480030937",
+      "summary": "Online fashion retailer seeking a senior engineer to build LLM systems on Azure (RAG, fine-tuning, tool use, multi-agent orchestration) plus reusable platform pieces for retrieval, prompt orchestration, evaluation and observability. Guardrails and token-aware cost optimisation are explicitly in scope.",
+      "summaryKo": "온라인 패션 리테일러가 Azure 기반 LLM 시스템(RAG, 파인튜닝, 도구 사용, 멀티 에이전트 오케스트레이션)과 검색·프롬프트 오케스트레이션·평가·관측성용 재사용 플랫폼 컴포넌트를 구축할 시니어 엔지니어를 찾습니다. 가드레일과 토큰 단위 비용 최적화도 명시적인 업무 범위입니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Guardrails & safety",
+        "Tool use",
+        "Fine-tuning",
+        "Cloud",
+        "Python",
+        "MLOps & observability",
+        "Cost & latency",
+        "Agent frameworks",
+        "Context engineering",
+        "CI/CD"
+      ],
+      "agenticSignals": [
+        "Design and build LLM-powered systems (RAG, fine-tuning, tool use, multi-agent orchestration)",
+        "Design and implement LLM evaluation frameworks (offline + online)",
+        "Implement AI safety guardrails (hallucination control, filtering, explainability)"
+      ]
+    },
+    {
+      "title": "Senior AI Engineer",
+      "company": "Barclays",
+      "location": "London, England, United Kingdom",
+      "country": "UK",
+      "workMode": "hybrid",
+      "salary": null,
+      "seenDate": "2026-10-22",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4478649423",
+      "summary": "Builds ML and agentic AI systems for financial crime and fraud detection, from scalable Python pipelines to monitored production code under bank governance standards. It asks for GenAI deployment with frameworks such as LangGraph or Strands SDK and LLM evaluation, including AI-as-a-judge.",
+      "summaryKo": "금융 범죄 및 사기 탐지를 위한 ML·에이전트 AI 시스템을 구축하며, 확장 가능한 Python 파이프라인부터 은행 거버넌스 기준을 충족하는 모니터링된 프로덕션 코드까지 담당합니다. LangGraph, Strands SDK 같은 프레임워크로 GenAI를 배포한 경험과 AI-as-a-judge를 포함한 LLM 평가 경험을 요구합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Fine-tuning",
+        "Cloud",
+        "Python",
+        "MLOps & observability",
+        "Agent frameworks",
+        "Context engineering",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "Experience deploying observable, well-tested, robust Generative AI applications at scale",
+        "Experience with evaluating LLM-based applications including AI-as-a-judge."
+      ]
+    },
+    {
+      "title": "AI Engineer (LLMs, Agents & Applied Data Science)",
+      "company": "Talan",
+      "location": "Birmingham, England, United Kingdom",
+      "country": "UK",
+      "workMode": null,
+      "salary": null,
+      "seenDate": "2026-10-18",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4480880938",
+      "summary": "Consultancy role mixing classical data science with GenAI delivery on client sites: RAG, simple agentic workflows, model evaluation and monitoring. It asks for 2–4 years in data science, ML or AI engineering, strong Python, and some mentoring of junior staff.",
+      "summaryKo": "고객사 현장에서 전통적인 데이터 사이언스와 GenAI 구축을 함께 수행하는 컨설팅 직무로, RAG, 간단한 에이전트 워크플로, 모델 평가와 모니터링을 다룹니다. 데이터 사이언스·ML·AI 엔지니어링 경력 2~4년, 뛰어난 Python 실력, 주니어 인력 멘토링 경험을 요구합니다.",
+      "skills": [
+        "Agents",
+        "RAG",
+        "Python",
+        "Cloud",
+        "MLOps & observability",
+        "Customer-facing",
+        "Context engineering",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "Develop GenAI and LLM-based features (prompting, retrieval-augmented generation, and simple agentic workflows)",
+        "Familiarity with how AI agents are built and orchestrated."
+      ]
+    },
+    {
+      "title": "AI Engineer",
+      "company": "Lendable",
+      "location": "London, England, United Kingdom",
+      "country": "UK",
+      "workMode": null,
+      "salary": null,
+      "seenDate": "2026-10-18",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4465789392",
+      "summary": "Consumer-lending fintech role improving a customer chatbot that completes account actions autonomously, extending document-extraction pipelines and designing LLM workflows for case management. Ownership runs from prototype through deployment, evaluation and monitoring.",
+      "summaryKo": "소비자 대출 핀테크 기업에서 계정 업무를 자율적으로 처리하는 고객 챗봇을 개선하고, 문서 추출 파이프라인을 확장하며, 케이스 관리용 LLM 워크플로를 설계합니다. 프로토타입부터 배포, 평가, 모니터링까지 전 과정을 책임집니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Python",
+        "Context engineering",
+        "MLOps & observability"
+      ],
+      "agenticSignals": [
+        "Design LLM-driven workflows that simplify case management.",
+        "Experience designing and improving prompts, retrieval pipelines, agent workflows and evaluations."
+      ]
+    },
+    {
+      "title": "Senior AI Engineer",
+      "company": "Kainos",
+      "location": "Birmingham, England, United Kingdom",
+      "country": "UK",
+      "workMode": null,
+      "salary": null,
+      "seenDate": "2026-10-11",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4449653796",
+      "summary": "Digital services consultancy delivering ML, generative and agentic AI solutions for customers on Azure and AWS, with production RAG, metric-driven evaluation and CI/CD-backed Python. The role works directly with customers and mentors junior developers.",
+      "summaryKo": "디지털 서비스 컨설팅 기업에서 Azure와 AWS 기반으로 고객사에 ML, 생성형 AI, 에이전트 AI 솔루션을 제공합니다. 프로덕션 RAG, 지표 기반 평가, CI/CD를 갖춘 Python 개발이 핵심이며, 고객과 직접 협업하고 주니어 개발자를 멘토링합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Fine-tuning",
+        "Cloud",
+        "CI/CD",
+        "Python",
+        "MLOps & observability",
+        "Customer-facing",
+        "Context engineering",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "deliver advanced AI solutions leveraging state-of-the-art machine learning, generative and agentic AI technologies",
+        "prompt engineering, retrieval-augmented generation (RAG), model evaluation, and monitoring using metrics"
+      ]
+    },
+    {
+      "title": "Member of Technical Staff - Applied AI Software Engineer, Health",
+      "company": "Microsoft AI",
+      "location": "London, England, United Kingdom",
+      "country": "UK",
+      "workMode": null,
+      "salary": "£93,500.00 - £161,800.00 per year (typical UK base pay range)",
+      "seenDate": "2026-10-18",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4460395270",
+      "summary": "Evaluation-focused role on Microsoft AI's health team: building eval pipelines, datasets and benchmarks for healthcare LLMs and agents, and regression tests for accuracy, safety and utility. Requires production LLM experience including prompt, context and harness engineering.",
+      "summaryKo": "Microsoft AI 헬스 팀의 평가 중심 직무로, 헬스케어 LLM과 에이전트를 위한 평가 파이프라인·데이터셋·벤치마크와 정확성·안전성·유용성 회귀 테스트를 구축합니다. 프롬프트·컨텍스트·하네스 엔지니어링을 포함한 프로덕션 LLM 경험이 필요합니다.",
+      "skills": [
+        "Evals",
+        "Agents",
+        "Python",
+        "Context engineering",
+        "Guardrails & safety"
+      ],
+      "agenticSignals": [
+        "Deep expertise in evaluating and understanding the performance of agents.",
+        "Experience building with and around LLMs including prompt / context and harness engineering."
+      ]
+    },
+    {
+      "title": "Senior AI Engineer - Remote",
+      "company": "ieso",
+      "location": "United Kingdom",
+      "country": "UK",
+      "workMode": "remote",
+      "salary": "£90,000.00/yr - £105,000.00/yr",
+      "seenDate": "2026-10-21",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4482059454",
+      "summary": "Digital mental-health company building agentic features for its AI therapy product, including LangGraph multi-agent orchestration, low-latency inference and production AI observability. It values enthusiasm for AI-assisted development and coding agents, and includes mentoring.",
+      "summaryKo": "디지털 정신건강 기업이 AI 심리치료 제품의 에이전트 기능을 구축하며, LangGraph 멀티 에이전트 오케스트레이션, 저지연 추론, 프로덕션 AI 관측성을 다룹니다. AI 보조 개발 도구와 코딩 에이전트에 대한 관심을 중시하며 멘토링 역할도 포함됩니다.",
+      "skills": [
+        "Agents",
+        "Agent frameworks",
+        "MLOps & observability",
+        "Cost & latency",
+        "AI coding tools",
+        "Context engineering",
+        "Cloud",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "Build the agentic AI systems at the heart of ieso’s digital therapy product",
+        "Shape how we monitor AI in production, building the telemetry and observability tooling that protects quality and reliability."
+      ]
+    },
+    {
+      "title": "Lead AI Engineer",
+      "company": "UK Regulators' Network (Financial Conduct Authority)",
+      "location": "Leeds, England, United Kingdom",
+      "country": "UK",
+      "workMode": null,
+      "salary": null,
+      "seenDate": "2026-10-20",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4478692645",
+      "summary": "Hands-on technical lead building the FCA's internal AI platform from scratch, covering retrieval, memory, agent orchestration, model access, evaluation, guardrails and observability. The role owns the codebase, sets engineering standards and works with regulatory business areas such as anti-money laundering.",
+      "summaryKo": "FCA의 내부 AI 플랫폼을 처음부터 구축하는 실무형 기술 리드로, 검색, 메모리, 에이전트 오케스트레이션, 모델 접근, 평가, 가드레일, 관측성을 모두 다룹니다. 코드베이스를 책임지고 엔지니어링 표준을 정하며, 자금세탁방지 등 규제 업무 부서와 협업합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Guardrails & safety",
+        "MLOps & observability",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "This is a hands-on technical lead role building the FCA’s AI Platform.",
+        "agent orchestration, model access, evaluation, guardrails and observability"
+      ]
+    },
+    {
+      "title": "AI Engineer",
+      "company": "The AA",
+      "location": "London, England, United Kingdom",
+      "country": "UK",
+      "workMode": "hybrid",
+      "salary": null,
+      "seenDate": "2026-10-22",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4480050021",
+      "summary": "Motoring-services company hiring an engineer to build and run Python AI/ML services across predictive analytics, generative AI and agent-based systems. It stresses production ownership, CI/CD, observability and trade-offs between performance, latency and cost.",
+      "summaryKo": "자동차 서비스 기업에서 예측 분석, 생성형 AI, 에이전트 기반 시스템 전반의 Python AI/ML 서비스를 구축하고 운영할 엔지니어를 채용합니다. 프로덕션 운영 책임, CI/CD, 관측성, 그리고 성능·지연 시간·비용 간 트레이드오프를 강조합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "Python",
+        "CI/CD",
+        "Cloud",
+        "MLOps & observability",
+        "Cost & latency"
+      ],
+      "agenticSignals": [
+        "work across predictive analytics, optimisation, automation, generative AI and agent-based systems",
+        "Experience building production AI applications and services, including generative AI or agent-based systems"
+      ]
+    },
+    {
+      "title": "AI Engineer, Retrieval & Agentic Systems",
+      "company": "Kharon",
+      "location": "London, England, United Kingdom",
+      "country": "UK",
+      "workMode": "hybrid",
+      "salary": "£90,000–£105,000/yr base plus discretionary annual bonus",
+      "seenDate": "2026-10-18",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4448041207",
+      "summary": "Risk-intelligence startup role owning a sanctions and financial-crime feed: redesigning hybrid semantic search with RAG and reranking, and improving the pipeline that turns graph data into written risk narratives. Asks for 3+ years in data science or AI engineering.",
+      "summaryKo": "리스크 인텔리전스 스타트업에서 제재·금융 범죄 정보 피드를 책임지는 직무로, RAG와 리랭킹을 활용한 하이브리드 시맨틱 검색을 재설계하고 그래프 데이터를 리스크 서술문으로 바꾸는 파이프라인을 개선합니다. 데이터 사이언스 또는 AI 엔지니어링 경력 3년 이상을 요구합니다.",
+      "skills": [
+        "Agents",
+        "RAG",
+        "Evals",
+        "Python"
+      ],
+      "agenticSignals": [
+        "Experience with RAG pipelines and working with agentic systems in production",
+        "Tweaking and optimizing the metrics that define search quality and narrative relevance"
+      ]
+    },
+    {
+      "title": "AI Engineer",
+      "company": "Medpace",
+      "location": "London, England, United Kingdom",
+      "country": "UK",
+      "workMode": "onsite",
+      "salary": null,
+      "seenDate": "2026-10-22",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4472334102",
+      "summary": "Clinical research organisation role spanning classical ML pipelines and LLM work, including curating data for and fine-tuning generative models. Asks for at least a year of post-graduate experience fine-tuning LLMs, plus Python with PyTorch or TensorFlow.",
+      "summaryKo": "임상시험수탁기관(CRO)에서 전통적인 ML 파이프라인과 LLM 업무를 함께 다루는 직무로, 생성형 모델용 데이터 큐레이션과 파인튜닝을 포함합니다. 졸업 후 1년 이상의 LLM 파인튜닝 경험과 PyTorch 또는 TensorFlow 기반 Python 실력을 요구합니다.",
+      "skills": [
+        "Fine-tuning",
+        "Python"
+      ],
+      "agenticSignals": [
+        "Proven experience implementing and fine-tuning Large Language Models",
+        "Collect, preprocess, and curate large datasets required for training generative models"
+      ]
+    },
+    {
+      "title": "Sr. Artificial Intelligence Engineer",
+      "company": "Plymouth Rock Assurance",
+      "location": "Greater Boston",
+      "country": "US",
+      "workMode": null,
+      "salary": "$135,000 to $200,000 annually",
+      "seenDate": "2026-10-18",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4479925336",
+      "summary": "Insurer hiring a senior engineer to build LLM applications, AI agents, MCP servers and RAG pipelines over proprietary data, with evaluation frameworks and compliance guardrails. Familiarity with AI coding tools such as Claude Code, Cursor or Copilot is a stated requirement.",
+      "summaryKo": "보험사가 자사 데이터를 기반으로 LLM 애플리케이션, AI 에이전트, MCP 서버, RAG 파이프라인을 구축하고 평가 프레임워크와 컴플라이언스 가드레일을 갖출 시니어 엔지니어를 채용합니다. Claude Code, Cursor, Copilot 같은 AI 코딩 도구 활용 능력이 필수 요건으로 명시되어 있습니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Guardrails & safety",
+        "MCP",
+        "Fine-tuning",
+        "Python",
+        "Cloud",
+        "MLOps & observability",
+        "Agent frameworks",
+        "Context engineering",
+        "AI coding tools"
+      ],
+      "agenticSignals": [
+        "Develop AI agents, Agentic Platforms, and Agentic AI systems",
+        "Build MCP servers, multi-connectivity enabled and multi-modal Agentic platforms",
+        "Design prompt strategies, evaluation frameworks, and guardrails to ensure accuracy, security, and regulatory compliance."
+      ]
+    },
+    {
+      "title": "Senior AI Engineer (Remote)",
+      "company": "The Home Depot",
+      "location": "Atlanta, GA",
+      "country": "US",
+      "workMode": "remote",
+      "salary": "$100,000–$250,000/yr",
+      "seenDate": "2026-10-18",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4478482347",
+      "summary": "Retailer seeking a senior engineer to build and run production multi-agent systems on Google Cloud tooling, from orchestration and tool integration to CI/CD, SLO monitoring and resiliency testing. Latency, cost and token optimisation are explicit requirements.",
+      "summaryKo": "대형 리테일러가 Google Cloud 도구 기반의 프로덕션 멀티 에이전트 시스템을 구축·운영할 시니어 엔지니어를 찾으며, 오케스트레이션과 도구 통합부터 CI/CD, SLO 모니터링, 복원력 테스트까지 담당합니다. 지연 시간, 비용, 토큰 최적화가 명시적인 요건입니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Guardrails & safety",
+        "Tool use",
+        "Cloud",
+        "CI/CD",
+        "Python",
+        "MLOps & observability",
+        "Cost & latency",
+        "Agent frameworks",
+        "Context engineering",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "build the core orchestration layers for multi-agent workflows, tool integration, and planning",
+        "Experience building automated CI/CD pipelines for AI/agentic systems"
+      ]
+    },
+    {
+      "title": "Principal AI Engineer – AI Acceleration & Enterprise Enablement",
+      "company": "U.S. Bank",
+      "location": "Charlotte, NC",
+      "country": "US",
+      "workMode": "hybrid",
+      "salary": "$149,515.00 - $175,900.00",
+      "seenDate": "2026-10-20",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4481510631",
+      "summary": "Senior individual-contributor role at a large bank building enterprise GenAI solutions such as document intelligence and workflow automation, plus reusable AI frameworks. Combines hands-on engineering with setting standards, mentoring and influencing senior stakeholders; Azure OpenAI experience preferred.",
+      "summaryKo": "대형 은행에서 문서 인텔리전스, 워크플로 자동화 같은 엔터프라이즈 GenAI 솔루션과 재사용 가능한 AI 프레임워크를 구축하는 시니어 개인 기여자 직무입니다. 실무 엔지니어링과 함께 표준 수립, 멘토링, 고위 이해관계자 설득을 병행하며 Azure OpenAI 경험을 우대합니다.",
+      "skills": [
+        "Agents",
+        "RAG",
+        "Python",
+        "Cloud",
+        "MLOps & observability",
+        "Context engineering",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "Apply LLMs, Agentic AI, RAG, and prompt engineering to appropriate business use cases.",
+        "Design, build, and deliver enterprise AI and Generative AI solutions from concept through production."
+      ]
+    },
+    {
+      "title": "Agentic AI/LLM Engineer, Coverage Intelligence",
+      "company": "Bold Penguin",
+      "location": "Dublin, OH",
+      "country": "US",
+      "workMode": "remote",
+      "salary": null,
+      "seenDate": "2026-10-20",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4481293345",
+      "summary": "Commercial-insurance platform role building agentic document-understanding systems that analyse policy coverage, with tool use, human review, source-grounded outputs and rigorous evaluation against expert labels. Model and provider choices must balance accuracy, cost and latency.",
+      "summaryKo": "상업 보험 플랫폼에서 보험 보장 범위를 분석하는 에이전트형 문서 이해 시스템을 구축하는 직무로, 도구 사용, 사람 검토, 출처 기반 출력, 전문가 라벨 대비 엄격한 평가를 다룹니다. 모델과 공급자 선택 시 정확도, 비용, 지연 시간의 균형을 맞춰야 합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Tool use",
+        "Python",
+        "Cost & latency",
+        "Agent frameworks",
+        "MLOps & observability"
+      ],
+      "agenticSignals": [
+        "Build agentic workflows that combine models, tools and human review",
+        "Drive accuracy through evaluation, experimentation and error analysis against expert-labeled data."
+      ]
+    },
+    {
+      "title": "Senior Software Engineer - AI",
+      "company": "Docusign",
+      "location": "San Francisco, CA",
+      "country": "US",
+      "workMode": "hybrid",
+      "salary": "$164,700 to $266,000 (California base)",
+      "seenDate": "2026-10-25",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4465111236",
+      "summary": "Hands-on role building multi-agent frameworks, RAG architectures, LLM evaluation pipelines and fine-tuned models (SFT, RLHF) on AWS. Prompt libraries are version-controlled and wired into CI/CD, and GitHub Copilot or Cursor experience is listed.",
+      "summaryKo": "AWS 기반으로 멀티 에이전트 프레임워크, RAG 아키텍처, LLM 평가 파이프라인, 파인튜닝 모델(SFT, RLHF)을 직접 구축하는 직무입니다. 프롬프트 라이브러리를 버전 관리하고 CI/CD에 연동하며, GitHub Copilot 또는 Cursor 사용 경험이 요건에 포함되어 있습니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Tool use",
+        "Fine-tuning",
+        "Cloud",
+        "CI/CD",
+        "Python",
+        "Cost & latency",
+        "Agent frameworks",
+        "Context engineering",
+        "AI coding tools"
+      ],
+      "agenticSignals": [
+        "Design and Build autonomous multi-agent frameworks",
+        "Develop algorithmic prompt-chaining logic and maintain a centralized, version-controlled prompt library",
+        "Architect and Develop end-to-end evaluation pipelines for LLMs/SLMs"
+      ]
+    },
+    {
+      "title": "Sr AI/ML Engineer",
+      "company": "Optum",
+      "location": "Eden Prairie, MN",
+      "country": "US",
+      "workMode": "remote",
+      "salary": "$120,100 to $214,500 annually",
+      "seenDate": "2026-10-24",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4483149719",
+      "summary": "Healthcare group role building production LLM agents that detect, triage and remediate platform incidents, using RAG over runbooks and logs, guardrails, human approval steps and MCP integrations. Requires several years of Python with agent frameworks and LLM evaluation workflows.",
+      "summaryKo": "헬스케어 그룹에서 플랫폼 장애를 탐지·분류·조치하는 프로덕션 LLM 에이전트를 구축하는 직무로, 런북과 로그를 대상으로 한 RAG, 가드레일, 사람 승인 단계, MCP 연동을 활용합니다. 에이전트 프레임워크를 사용한 수년간의 Python 경험과 LLM 평가 워크플로 경험이 필요합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Guardrails & safety",
+        "MCP",
+        "Tool use",
+        "Fine-tuning",
+        "Cloud",
+        "CI/CD",
+        "Python",
+        "Cost & latency",
+        "Agent frameworks",
+        "Context engineering"
+      ],
+      "agenticSignals": [
+        "Build and deploy production LLM agents that automate detection, triage, and remediation",
+        "Build evaluation pipelines and define quality metrics for agent and RAG behavior"
+      ]
+    },
+    {
+      "title": "Artificial Intelligence Engineer",
+      "company": "Booz Allen Hamilton",
+      "location": "San Antonio, TX",
+      "country": "US",
+      "workMode": null,
+      "salary": "$99,000.00 to $225,000.00 (projected, annualised)",
+      "seenDate": "2026-10-24",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4483140711",
+      "summary": "Government and defence consultancy role integrating models, agent orchestration and multi-agent architectures (RAG with knowledge graphs, fine-tuned small models) into secure distributed systems. Requires a TS/SCI clearance, MCP or LangGraph-style agent experience and evaluation frameworks.",
+      "summaryKo": "정부·국방 컨설팅 기업에서 모델, 에이전트 오케스트레이션, 멀티 에이전트 아키텍처(지식 그래프 기반 RAG, 파인튜닝된 소형 모델)를 보안이 강화된 분산 시스템에 통합하는 직무입니다. TS/SCI 보안 인가, MCP 또는 LangGraph 계열 에이전트 경험, 평가 프레임워크 경험이 필요합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Guardrails & safety",
+        "MCP",
+        "Fine-tuning",
+        "CI/CD",
+        "Python",
+        "Agent frameworks",
+        "MLOps & observability"
+      ],
+      "agenticSignals": [
+        "Experience designing and implementing AI agent architectures using LangChain, LangGraph, AutoGen, MCP, or A2A",
+        "Experience with advanced agentic patterns, including prompt caching, guardrails, agent memory"
+      ]
+    },
+    {
+      "title": "Senior Engineer, Applied AI",
+      "company": "Ro",
+      "location": "New York, NY",
+      "country": "US",
+      "workMode": null,
+      "salary": "$190,800 to $234,500 target base plus equity",
+      "seenDate": "2026-10-18",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4433439624",
+      "summary": "Telehealth company role shipping LLM features end to end: prompt orchestration, tool calling, RAG, agent workflows, LLM-as-judge evaluation and production monitoring of accuracy, latency, cost and hallucinations. Includes safety guardrails, mentorship and close work with clinical operators.",
+      "summaryKo": "원격의료 기업에서 LLM 기능을 처음부터 끝까지 출시하는 직무로, 프롬프트 오케스트레이션, 도구 호출, RAG, 에이전트 워크플로, LLM-as-judge 평가, 정확도·지연 시간·비용·환각률의 프로덕션 모니터링을 담당합니다. 안전 가드레일 구축, 멘토링, 임상 운영 인력과의 긴밀한 협업도 포함됩니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Guardrails & safety",
+        "Tool use",
+        "Python",
+        "MLOps & observability",
+        "Cost & latency",
+        "Agent frameworks",
+        "Context engineering",
+        "AI coding tools",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "prompt orchestration, tool calling, retrieval (RAG), embeddings, agent workflows",
+        "Develop evaluation infrastructure, including regression suites, LLM-as-a-judge evaluations"
+      ]
+    },
+    {
+      "title": "Senior AI Engineer",
+      "company": "Crexi",
+      "location": "Los Angeles, CA",
+      "country": "US",
+      "workMode": null,
+      "salary": "$179,000 to $241,000 base (Playa Vista, CA)",
+      "seenDate": "2026-10-18",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4450172858",
+      "summary": "Commercial real-estate marketplace role building multi-step agentic workflows with LangGraph on Anthropic models via AWS Bedrock, with retrieval, guardrails, evals and trace-level observability. Candidates must show they use agentic coding tools such as Claude Code or Codex and review their output.",
+      "summaryKo": "상업용 부동산 마켓플레이스에서 AWS Bedrock의 Anthropic 모델과 LangGraph로 다단계 에이전트 워크플로를 구축하며, 검색, 가드레일, 평가, 트레이스 단위 관측성을 다룹니다. Claude Code나 Codex 같은 에이전트형 코딩 도구를 활용하고 그 결과물을 검토한 경험을 입증해야 합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Guardrails & safety",
+        "Tool use",
+        "Cloud",
+        "CI/CD",
+        "Python",
+        "MLOps & observability",
+        "Cost & latency",
+        "Agent frameworks",
+        "Context engineering",
+        "AI coding tools"
+      ],
+      "agenticSignals": [
+        "multi-step agentic workflows that understand user intent, orchestrate the right capabilities, and complete real work",
+        "Ensure AI outputs are explainable, source-linked, and trustworthy enough to inform real business decisions."
+      ]
+    },
+    {
+      "title": "Software Engineer - AI – CoCounsel Forward Deployed Engineering",
+      "company": "Thomson Reuters",
+      "location": "New York, NY",
+      "country": "US",
+      "workMode": "hybrid",
+      "salary": "$109,000–$203,000 (NYC and other listed metro base range)",
+      "seenDate": "2026-10-24",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4402782572",
+      "summary": "Forward-deployed role building AI solutions for legal customers on CoCounsel, Westlaw and Practical Law, including RAG pipelines, agentic workflows and evaluation of outputs for accuracy and hallucination risk. Involves client discovery sessions and demos; asks for 2–4 years of experience.",
+      "summaryKo": "CoCounsel, Westlaw, Practical Law를 기반으로 법률 고객용 AI 솔루션을 구축하는 포워드 디플로이드 직무로, RAG 파이프라인, 에이전트 워크플로, 정확도와 환각 위험에 대한 출력 평가를 포함합니다. 고객 요구사항 발굴 세션과 데모를 수행하며 2~4년 경력을 요구합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Python",
+        "Cloud",
+        "Customer-facing",
+        "Context engineering"
+      ],
+      "agenticSignals": [
+        "Build and support retrieval-augmented generation (RAG) pipelines, agentic workflows",
+        "Help evaluate LLM outputs for legal accuracy, relevance, citation quality, consistency"
+      ]
+    },
+    {
+      "title": "Applied AI Engineer",
+      "company": "Fanatics",
+      "location": "New York, NY",
+      "country": "US",
+      "workMode": null,
+      "salary": "$150,000 - $200,000 USD base",
+      "seenDate": "2026-10-19",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4481203725",
+      "summary": "Internal 'tiger team' role that embeds in corporate functions to replace manual work with production agents built on frontier models and SDKs such as Claude Agent SDK, OpenAI Agents SDK or LangGraph. Covers evals, MCP, InfoSec coordination and measuring ROI.",
+      "summaryKo": "사내 '타이거 팀' 직무로, 여러 부서에 직접 들어가 Claude Agent SDK, OpenAI Agents SDK, LangGraph 같은 프론티어 모델·SDK 기반의 프로덕션 에이전트로 수작업을 대체합니다. 평가, MCP, 정보보안 부서와의 조율, ROI 측정까지 포함됩니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "MCP",
+        "Python",
+        "Agent frameworks",
+        "Context engineering"
+      ],
+      "agenticSignals": [
+        "replace slow, manual work with AI agents and workflows that actually run in production",
+        "Design, build, and deploy production-grade agents and agentic workflows using frontier models",
+        "you can tell the difference between a cool demo and a business outcome."
+      ]
+    },
+    {
+      "title": "Senior Al Engineer",
+      "company": "CVS Health",
+      "location": "Albany, NY",
+      "country": "US",
+      "workMode": null,
+      "salary": "$83,430.00 to $203,940.00 per year",
+      "seenDate": "2026-10-23",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4482434465",
+      "summary": "Healthcare role building cloud-native GenAI applications on AWS or GCP, including RAG systems, agentic workflows and APIs, with model evaluation, production monitoring and cost optimisation under HIPAA and Responsible AI standards.",
+      "summaryKo": "헬스케어 기업에서 AWS 또는 GCP 기반의 클라우드 네이티브 GenAI 애플리케이션을 구축하는 직무로, RAG 시스템, 에이전트 워크플로, API를 개발하고 HIPAA 및 Responsible AI 기준에 따라 모델 평가, 프로덕션 모니터링, 비용 최적화를 수행합니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Cloud",
+        "Python",
+        "MLOps & observability",
+        "Cost & latency",
+        "Agent frameworks",
+        "Context engineering"
+      ],
+      "agenticSignals": [
+        "Creates, tests, and optimizes prompts, workflows, and agentic AI solutions",
+        "Participates in model evaluation, deployment, monitoring, and optimization activities"
+      ]
+    },
+    {
+      "title": "Principal/Senior AI Engineer - Agent Factory",
+      "company": "Workday",
+      "location": "Pleasanton, CA",
+      "country": "US",
+      "workMode": "hybrid",
+      "salary": "$246,000–$370,000 USD base (primary location)",
+      "seenDate": "2026-10-21",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4478995451",
+      "summary": "Senior or principal role in Workday's Agent Factory, leading design and integration of production agents into its HR and finance platform, with orchestration, advanced RAG, automated evaluation and strict privacy guardrails. Latency, cost and context-window limits are core concerns, and mentoring is expected.",
+      "summaryKo": "Workday의 Agent Factory에서 HR·재무 플랫폼에 프로덕션 에이전트를 설계·통합하는 작업을 이끄는 시니어 또는 프린시플 직무로, 오케스트레이션, 고급 RAG, 자동 평가, 엄격한 개인정보 가드레일을 다룹니다. 지연 시간, 비용, 컨텍스트 윈도 제약이 핵심 과제이며 멘토링 역할도 기대됩니다.",
+      "skills": [
+        "Agents",
+        "Evals",
+        "RAG",
+        "Guardrails & safety",
+        "Cloud",
+        "Cost & latency",
+        "Context engineering",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "production-grade AI—deeply embedded into Workday’s platform—not research experiments or maintenance work.",
+        "implementing strict guardrails for data privacy, predictability, and explainability within your pod."
+      ]
+    },
+    {
+      "title": "AI Engineer - Data Science",
+      "company": "Applied Underwriters",
+      "location": "New York, NY",
+      "country": "US",
+      "workMode": null,
+      "salary": "$100,000.00/yr - $120,000.00/yr",
+      "seenDate": "2026-10-24",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4480689980",
+      "summary": "Early-career insurance role adapting and building AI tools for underwriters and turning submission, policy and loss data into usable insights. Hiring is portfolio-led, with example projects such as RAG document Q&A or an LLM output evaluation setup.",
+      "summaryKo": "보험 분야의 주니어 직무로, 언더라이터를 위한 AI 도구를 조정·구축하고 청약·보험증권·손해 데이터를 실무에 쓸 수 있는 인사이트로 바꿉니다. 포트폴리오 중심으로 채용하며, RAG 문서 Q&A나 LLM 출력 평가 환경 같은 프로젝트를 예시로 듭니다.",
+      "skills": [
+        "Evals",
+        "RAG",
+        "Python"
+      ],
+      "agenticSignals": [
+        "A RAG or document Q&A system",
+        "An evaluation or testing setup for model or LLM output"
+      ]
+    },
+    {
+      "title": "Senior Generative AI Engineer",
+      "company": "Citi",
+      "location": "New York, NY",
+      "country": "US",
+      "workMode": "hybrid",
+      "salary": "$142,320.00 - $213,480.00",
+      "seenDate": "2026-10-20",
+      "closed": false,
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/jobs/view/4480702006",
+      "summary": "Bank role building production LLM applications and agents that automate enterprise workflows, deployed in containers on OpenShift, with RAG data layers and guardrails. Asks for expert Python, LangChain, LangGraph or Google ADK, CI/CD, and experience with tools such as Devin and Copilot.",
+      "summaryKo": "은행에서 엔터프라이즈 워크플로를 자동화하는 프로덕션 LLM 애플리케이션과 에이전트를 구축해 OpenShift 컨테이너로 배포하며, RAG 데이터 계층과 가드레일을 갖춥니다. 전문가 수준의 Python, LangChain·LangGraph·Google ADK, CI/CD, 그리고 Devin, Copilot 같은 도구 사용 경험을 요구합니다.",
+      "skills": [
+        "Agents",
+        "RAG",
+        "Guardrails & safety",
+        "CI/CD",
+        "Python",
+        "Agent frameworks",
+        "AI coding tools",
+        "Leadership"
+      ],
+      "agenticSignals": [
+        "Design and implement intelligent agents capable of understanding, reasoning, and orchestrating complex workflows",
+        "Proficiency in frameworks such as LangChain, LangGraph, and Google ADK"
+      ]
     }
   ],
   "ukVsUs": [
@@ -748,6 +1574,22 @@
     "**근무 형태.** 대부분 하이브리드입니다(OpenAI 주 3일, Stripe 최소 50%). Monzo는 영국 내 원격 근무였습니다. Forward-deployed 직무는 출장 비중이 높습니다(25–50%).",
     "**지원 자격.** Anthropic 런던은 스폰서십을 제공하지만 보장하지는 않고, Monzo는 스폰서십을 제공하며, 영국 정부 직무는 SC 보안 인가와 거주 요건을 갖춰야 합니다. 미국 공고 중 스폰서십 제공을 명시한 곳은 없었습니다."
   ],
+  "linkedinNotes": [
+    "Agents are now the default, not a niche: 27 of 29 postings explicitly mention agentic or multi-agent work, including at a regulator (FCA), banks (Barclays, Citi, U.S. Bank), insurers and retailers (ASOS, The AA, Home Depot, Fanatics).",
+    "Evaluation is a core requirement rather than a nice-to-have: most postings ask for eval pipelines or frameworks, several name LLM-as-a-judge (Barclays, Ro), and Microsoft AI's health role is almost entirely about evals.",
+    "Using AI coding tools is starting to appear as a hiring requirement, mostly in the US (Plymouth Rock, Crexi, Docusign, Citi, Ro), with ieso the clearest UK example. MCP is still rare and appeared only in US postings (Plymouth Rock, Optum, Booz Allen, Fanatics).",
+    "Pay transparency differs sharply: every US posting showed a salary range (often very wide, e.g. $83k–$204k at CVS), while only 3 of 14 UK postings did (Microsoft AI, ieso, Kharon, all roughly £90k–£105k or higher).",
+    "Regulated, document-heavy domains dominate (finance, insurance, healthcare, legal). Typical work is extraction, grounding and traceable outputs, which suits an applied data scientist; Talan, Kharon and Applied Underwriters explicitly welcome data science backgrounds.",
+    "Competition is heavy: many of these postings showed 100–200+ applicants within a week, so being an early applicant matters."
+  ],
+  "linkedinNotesKo": [
+    "에이전트는 이제 틈새가 아니라 기본값입니다. 29개 공고 중 27개가 에이전트 또는 멀티 에이전트 업무를 명시하며, 규제기관(FCA), 은행(Barclays, Citi, U.S. Bank), 보험사, 리테일러(ASOS, The AA, Home Depot, Fanatics)도 예외가 아닙니다.",
+    "평가는 우대 사항이 아니라 핵심 요건입니다. 대부분의 공고가 평가 파이프라인이나 프레임워크를 요구하고, 여러 곳(Barclays, Ro)이 LLM-as-a-judge를 명시하며, Microsoft AI 헬스 직무는 업무 대부분이 평가입니다.",
+    "AI 코딩 도구 활용이 채용 요건으로 등장하기 시작했으며 주로 미국 공고(Plymouth Rock, Crexi, Docusign, Citi, Ro)에서 보이고, 영국에서는 ieso가 가장 뚜렷한 사례입니다. MCP는 아직 드물어 미국 공고(Plymouth Rock, Optum, Booz Allen, Fanatics)에서만 나타났습니다.",
+    "급여 공개 수준은 크게 다릅니다. 미국 공고는 모두 급여 범위를 제시했지만(CVS의 $83k–$204k처럼 폭이 매우 넓은 경우가 많음), 영국 공고는 14개 중 3개(Microsoft AI, ieso, Kharon, 모두 대략 £90k–£105k 이상)만 공개했습니다.",
+    "금융, 보험, 헬스케어, 법률처럼 규제가 강하고 문서가 많은 분야가 대부분입니다. 문서 추출, 근거 연결(grounding), 추적 가능한 출력이 전형적인 업무라 응용 데이터 사이언티스트에게 잘 맞으며, Talan, Kharon, Applied Underwriters는 데이터 사이언스 경력자를 명시적으로 환영합니다.",
+    "경쟁이 치열합니다. 상당수 공고가 일주일 안에 지원자 100~200명 이상을 기록해 일찍 지원하는 것이 중요합니다."
+  ],
   "caveats": [
     "Postings marked Closed had stopped accepting applications when checked on 25 October 2026. They're kept as verified descriptions of 2026 roles.",
     "Most links are job-board mirrors (General Catalyst, Thrive, Built In and others), because several official careers pages block automated access.",
@@ -755,7 +1597,11 @@
     "The 'from the posting' lines are mostly verbatim, but some are close paraphrases. Check the original before quoting.",
     "Counts cover only these 23 postings and only what each one explicitly says. Treat them as directional, not a market statistic.",
     "Several roles are well above a five-year profile (15+ or 8+ years, or management). They show what employers value, not direct targets.",
-    "Found but excluded for lack of a dated, fetchable description: Revolut, ClearBank, Lloyds, HSBC and another i.AI role."
+    "Found but excluded for lack of a dated, fetchable description: Revolut, ClearBank, Lloyds, HSBC and another i.AI role.",
+    "The 29 LinkedIn postings were found through LinkedIn's public guest job search (no login) and each was confirmed by opening its public job page on 25 October 2026.",
+    "LinkedIn dates are estimated from relative ages ('1 week ago' = 7 days before 25 October 2026), so they may be off by a few days.",
+    "LinkedIn salaries are as shown but often scoped to one location or band (e.g. Docusign = California, Workday = primary location, Microsoft AI = typical UK range); most UK LinkedIn postings showed no salary.",
+    "A few LinkedIn roles are junior (Lendable, Thomson Reuters, Applied Underwriters) or principal/lead level (Workday, U.S. Bank, FCA). Booz Allen requires a US TS/SCI clearance, and all US roles assume US work authorisation."
   ],
   "caveatsKo": [
     "마감(Closed)으로 표시된 공고는 2026년 10월 25일 확인 당시 지원 접수가 끝난 상태였습니다. 2026년 직무에 대한 검증된 설명으로서 남겨 두었습니다.",
@@ -764,6 +1610,10 @@
     "‘공고 원문(from the posting)’ 문구는 대부분 원문 그대로이지만, 일부는 원문에 가깝게 바꿔 쓴 것입니다. 인용하기 전에 원문을 확인하시기 바랍니다.",
     "집계는 이 23건의 공고만을, 그리고 각 공고가 명시적으로 밝힌 내용만을 대상으로 합니다. 시장 통계가 아니라 방향성을 보여 주는 자료로 봐 주십시오.",
     "몇몇 직무는 5년 차 프로필을 크게 웃돕니다(15년 이상 또는 8년 이상 경력, 또는 관리직). 직접적인 지원 대상이라기보다 고용주가 무엇을 중시하는지 보여 주는 사례입니다.",
-    "찾았지만 날짜가 있고 열람 가능한 직무 설명이 없어 제외한 공고: Revolut, ClearBank, Lloyds, HSBC, 그리고 i.AI의 다른 직무 하나."
+    "찾았지만 날짜가 있고 열람 가능한 직무 설명이 없어 제외한 공고: Revolut, ClearBank, Lloyds, HSBC, 그리고 i.AI의 다른 직무 하나.",
+    "LinkedIn 공고 29개는 로그인 없이 LinkedIn 공개 채용 검색으로 찾았으며, 2026년 10월 25일에 각 공고의 공개 페이지를 직접 열어 내용을 확인했습니다.",
+    "LinkedIn 공고 날짜는 상대 표기('1주 전' = 2026년 10월 25일로부터 7일 전)로 추정한 값이라 며칠 정도 차이가 날 수 있습니다.",
+    "LinkedIn 급여는 표시된 그대로이지만 특정 지역이나 등급 기준인 경우가 많습니다(예: Docusign은 캘리포니아, Workday는 주 근무지, Microsoft AI는 영국 일반 범위). 영국 LinkedIn 공고는 대부분 급여를 공개하지 않았습니다.",
+    "일부 LinkedIn 직무는 주니어(Lendable, Thomson Reuters, Applied Underwriters)이거나 프린시플·리드 수준(Workday, U.S. Bank, FCA)입니다. Booz Allen은 미국 TS/SCI 보안 인가가 필요하며, 미국 직무는 모두 미국 취업 자격을 전제로 합니다."
   ]
 }
