@@ -44,6 +44,7 @@ need(profile, "profile", [
 // The mentoring site is the main site; this log supports it with CTAs.
 need(profile.mentoring, "profile.mentoring", [
   ["url", isUrl, "an https URL"],
+  ["urlEn", isUrl, "an https URL (the mentoring site in English)"],
   ["sessionsUrl", isUrl, "an https URL"],
   ...["heading", "body", "cta", "site", "marketNote", "roadmapNote"].map((f) => [f, isText, "text"]),
 ]);

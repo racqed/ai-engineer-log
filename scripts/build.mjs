@@ -1,15 +1,18 @@
 // Renders content/*.json into static HTML in dist/. No framework: each page is
 // a function that returns a string, and layout() wraps it.
 //
-// The site is bilingual and always shows both languages: English first, Korean
-// directly underneath. Content text comes from <field> and <field>Ko pairs
-// (enforced by check.mjs); interface text comes from the UI table below.
+// The site is built twice, like the mentoring site: Korean at / and English at
+// /en/. Content text comes from <field> and <field>Ko pairs (enforced by
+// check.mjs); interface text comes from [english, korean] pairs in the UI table.
+// L picks the language for the pass being rendered.
 import { mkdirSync, rmSync, writeFileSync, copyFileSync } from "node:fs";
 import { join } from "node:path";
 import { loadContent, root, SOURCE_CATEGORIES, STATUSES, TOPICS } from "./content.mjs";
 
 const out = join(root, "dist");
 const { profile, market, reading, roadmap, log, community } = loadContent();
+const SITE = "https://ai-engineer-log.latteboo99.workers.dev";
+let L = 1; // 1 = Korean (/), 0 = English (/en/)
 
 // ---------- interface text ----------
 
@@ -25,7 +28,10 @@ const UI = {
   communityEyebrow: (n) => [`Community notes · ${n} Threads posts`, `커뮤니티 노트 · Threads 글 ${n}개`],
   communityTitle: ["What practitioners are saying", "실무자들이 말하는 것"],
   allTopics: ["All topics", "모든 주제"],
-  allLangs: ["Both languages", "두 언어 모두"],
+  allLangs: ["All languages", "모든 언어"],
+  switchTo: ["한국어", "EN"],
+  mainNav: ["Main", "주요 메뉴"],
+  atAGlance: ["At a glance", "한눈에 보기"],
   koPosts: ["Korean posts", "한국어 글"],
   enPosts: ["English posts", "영어 글"],
   tip: ["Try this", "실천 팁"],
@@ -50,9 +56,9 @@ const UI = {
   latestLog: ["Latest from the log", "최근 기록"],
   allEntries: ["All entries", "전체 기록"],
   proof: ["Proof of work", "증빙 결과물"],
-  doneOn: (d) => [`Done ${fmtDate(d)}`, `${fmtDateKo(d)} 완료`],
+  doneOn: (d) => [`Done ${fmtDateEn(d)}`, `${fmtDateKo(d)} 완료`],
   evidence: ["evidence", "증빙"],
-  marketEyebrow: (d) => [`Market research · updated ${fmtDate(d)}`, `시장 조사 · ${fmtDateKo(d)} 업데이트`],
+  marketEyebrow: (d) => [`Market research · updated ${fmtDateEn(d)}`, `시장 조사 · ${fmtDateKo(d)} 업데이트`],
   marketTitle: ["What employers actually ask for", "기업이 실제로 요구하는 것"],
   meaning: ["What this means for me", "나에게 주는 의미"],
   recurring: ["Recurring requirements", "반복해서 나오는 요구 사항"],
@@ -82,7 +88,7 @@ const UI = {
   notFound: ["That page isn't here", "페이지를 찾을 수 없습니다"],
   backHome: ["Back to the overview", "개요로 돌아가기"],
   keptBy: (d) => [
-    `Kept by ${profile.name} · ${profile.location} · Content updated ${fmtDate(d)}`,
+    `Kept by ${profile.name} · ${profile.location} · Content updated ${fmtDateEn(d)}`,
     `${profile.name} 운영 · 영국 에든버러 · ${fmtDateKo(d)} 업데이트`,
   ],
 };
@@ -113,18 +119,17 @@ const inline = (text) =>
     .replace(/`([^`]+)`/g, "<code>$1</code>")
     .replace(/\[([^\]]+)\]\((https:\/\/[^)\s]+|[a-z0-9-]+\.html(?:#[\w-]+)?)\)/g, '<a href="$2">$1</a>');
 
-// Bilingual building blocks. `pair` is [english, korean].
-const ko = (s) => `<span class="ko" lang="ko">${s}</span>`;
-const both = ([en, k]) => `${esc(en)}${ko(esc(k))}`; //            block-stacked short text
-const inlineBoth = ([en, k]) => `${esc(en)} <span class="ko-inline" lang="ko">${esc(k)}</span>`; // same line
-const heading = (tag, [en, k], attrs = "") => `<${tag}${attrs}>${esc(en)}<span class="ko-sub" lang="ko">${esc(k)}</span></${tag}>`;
-const paras = (en, k, cls = "") => `<p class="${cls}">${inline(en)}</p><p class="ko ${cls}" lang="ko">${inline(k)}</p>`;
-const prose = (en, k) => `<div class="prose"><div lang="en">${md(en)}</div><div class="ko-block" lang="ko">${md(k)}</div></div>`;
-const listItems = (en = [], k = []) => en.map((item, i) => `<li>${inline(item)}${ko(inline(k[i] ?? ""))}</li>`).join("");
+// Language-picking building blocks: a pair is [english, korean].
+const pick = (en, k) => (L ? k : en);
+const txt = (pair) => esc(pair[L]);
+const heading = (tag, pair, attrs = "") => `<${tag}${attrs}>${txt(pair)}</${tag}>`;
+const paras = (en, k, cls = "") => `<p${cls ? ` class="${cls}"` : ""}>${inline(pick(en, k))}</p>`;
+const prose = (en, k) => `<div class="prose">${md(pick(en, k))}</div>`;
+const listItems = (en = [], k = []) => pick(en, k).map((item) => `<li>${inline(item)}</li>`).join("");
 const pairOf = (obj, field) => [obj?.[field], obj?.[`${field}Ko`]];
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-function fmtDate(d) {
+function fmtDateEn(d) {
   const [y, m, day] = String(d).split("-");
   if (!m) return y;
   return day ? `${Number(day)} ${MONTHS[m - 1]} ${y}` : `${MONTHS[m - 1]} ${y}`;
@@ -133,6 +138,7 @@ function fmtDateKo(d) {
   const [y, m, day] = String(d).split("-");
   return [`${y}년`, m && `${Number(m)}월`, day && `${Number(day)}일`].filter(Boolean).join(" ");
 }
+const fmtDate = (d) => (L ? fmtDateKo(d) : fmtDateEn(d));
 
 const sourceById = new Map((reading.sources ?? []).map((s) => [s.id, s]));
 const cites = (ids = []) =>
@@ -144,7 +150,7 @@ const cites = (ids = []) =>
     : "";
 
 const linkList = (links = []) =>
-  links.map((l) => `<a href="${esc(l.url)}">${esc(l.label)}${l.labelKo ? ` <span class="ko-inline" lang="ko">${esc(l.labelKo)}</span>` : ""} ↗</a>`).join("");
+  links.map((l) => `<a href="${esc(l.url)}">${esc(L && l.labelKo ? l.labelKo : l.label)} ↗</a>`).join("");
 
 const tasks = roadmap.tasks ?? [];
 const countBy = (status) => tasks.filter((t) => t.status === status).length;
@@ -162,10 +168,10 @@ function skillBars(items, limit = items.length) {
   return `<ol class="bars">${rows
     .map(
       (s) => `<li>
-        <span class="bar-label">${inlineBoth([s.skill, s.skillKo === s.skill ? "" : s.skillKo])}</span>
+        <span class="bar-label">${esc(L && s.skillKo ? s.skillKo : s.skill)}</span>
         <span class="bar-track" aria-hidden="true"><span class="bar-fill" style="width:${((s.count / total) * 100).toFixed(1)}%"></span></span>
         <span class="bar-value">${s.count}<span class="muted">/${total}</span></span>
-        ${s.note ? `<span class="bar-note">${esc(s.note)}${ko(esc(s.noteKo))}</span>` : ""}
+        ${s.note ? `<span class="bar-note">${esc(pick(s.note, s.noteKo))}</span>` : ""}
       </li>`
     )
     .join("")}</ol>`;
@@ -175,7 +181,7 @@ const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(
 
 function logEntry(e) {
   return `<article class="entry" id="${esc(e.date)}-${esc(slug(e.title))}">
-    <time datetime="${esc(e.date)}">${fmtDate(e.date)}${ko(fmtDateKo(e.date))}</time>
+    <time datetime="${esc(e.date)}">${fmtDate(e.date)}</time>
     <div>
       ${heading("h3", pairOf(e, "title"))}
       ${prose(e.body, e.bodyKo)}
@@ -187,18 +193,18 @@ function logEntry(e) {
 
 function taskItem(t) {
   return `<li class="task status-${t.status}" id="${esc(t.id)}">
-    <span class="chip chip-${t.status}">${both(STATUS_LABEL[t.status])}</span>
+    <span class="chip chip-${t.status}">${txt(STATUS_LABEL[t.status])}</span>
     <div>
       ${heading("h3", pairOf(t, "title"))}
       ${t.why ? paras(t.why, t.whyKo, "muted") : ""}
-      <div class="deliverable"><span class="label">${both(UI.proof)}</span>${paras(t.deliverable, t.deliverableKo)}</div>
-      ${t.status === "done" ? `<p class="small">${inlineBoth(UI.doneOn(t.done))}${t.evidence ? ` · <a href="${esc(t.evidence)}">${inlineBoth(UI.evidence)} ↗</a>` : ""}</p>` : ""}
+      <div class="deliverable"><span class="label">${txt(UI.proof)}</span>${paras(t.deliverable, t.deliverableKo)}</div>
+      ${t.status === "done" ? `<p class="small">${txt(UI.doneOn(t.done))}${t.evidence ? ` · <a href="${esc(t.evidence)}">${txt(UI.evidence)} ↗</a>` : ""}</p>` : ""}
       ${cites(t.sourceIds)}
     </div>
   </li>`;
 }
 
-const more = (href, pair) => `<p class="more"><a href="${href}">${inlineBoth(pair)} →</a></p>`;
+const more = (href, pair) => `<p class="more"><a href="${href}">${txt(pair)} →</a></p>`;
 // The mentoring site is the main site; these blocks point readers back to it.
 const M = profile.mentoring;
 const mentoringBand = () => `<section class="mentoring-band">
@@ -207,13 +213,13 @@ const mentoringBand = () => `<section class="mentoring-band">
     ${paras(M.body, M.bodyKo)}
   </div>
   <div class="mentoring-actions">
-    <a class="button accent" href="${esc(M.sessionsUrl)}">${inlineBoth(pairOf(M, "cta"))} ↗</a>
-    <a class="button ghost" href="${esc(M.url)}">${inlineBoth(pairOf(M, "site"))} ↗</a>
+    <a class="button accent" href="${esc(M.sessionsUrl)}">${txt(pairOf(M, "cta"))} ↗</a>
+    <a class="button ghost" href="${esc(pick(M.urlEn, M.url))}">${txt(pairOf(M, "site"))} ↗</a>
   </div>
 </section>`;
 const mentoringNote = (field) => `<aside class="mentoring-note">
   <div>${paras(M[field], M[`${field}Ko`])}</div>
-  <a class="button accent" href="${esc(M.sessionsUrl)}">${inlineBoth(pairOf(M, "cta"))} ↗</a>
+  <a class="button accent" href="${esc(M.sessionsUrl)}">${txt(pairOf(M, "cta"))} ↗</a>
 </aside>`;
 
 const caveatsSection = (obj) =>
@@ -221,7 +227,7 @@ const caveatsSection = (obj) =>
 
 function pageHead(eyebrow, title, ledeEn, ledeKo, extra = "") {
   return `<section class="page-head">
-  <p class="eyebrow">${esc(eyebrow[0])} · <span lang="ko">${esc(eyebrow[1])}</span></p>
+  <p class="eyebrow">${txt(eyebrow)}</p>
   ${heading("h1", title)}
   ${paras(ledeEn, ledeKo, "lede")}
   ${extra}
@@ -240,35 +246,47 @@ const NAV = [
   ["built.html", UI.built],
 ];
 
+// Where a page lives in each language: Korean at /, English at /en/.
+const pagePath = (lang, file) =>
+  (lang ? "/" : "/en/") + (file === "index.html" || file === "404.html" ? "" : file.replace(/\.html$/, ""));
+const FONTS = [
+  "family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500",
+  "family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600",
+];
+
 function layout({ file, title, description, body, scripts = "" }) {
-  const fullTitle = file === "index.html" ? `${UI.siteTitle[0]} · ${UI.siteTitle[1]}` : `${title[0]} · ${title[1]} | ${UI.siteTitle[0]}`;
-  const desc = `${description[0]} ${description[1] ?? ""}`.trim();
+  const fullTitle = file === "index.html" ? txt(UI.siteTitle) : `${txt(title)} | ${txt(UI.siteTitle)}`;
+  const desc = esc(description[L]);
+  const alternates = file === "404.html" ? "" : `
+<link rel="alternate" hreflang="ko" href="${SITE}${pagePath(1, file)}">
+<link rel="alternate" hreflang="en" href="${SITE}${pagePath(0, file)}">
+<link rel="alternate" hreflang="x-default" href="${SITE}${pagePath(1, file)}">`;
   return `<!doctype html>
-<html lang="en">
+<html lang="${L ? "ko" : "en"}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(fullTitle)}</title>
-<meta name="description" content="${esc(desc)}">
-<meta property="og:title" content="${esc(fullTitle)}">
-<meta property="og:description" content="${esc(desc)}">
+<title>${fullTitle}</title>
+<meta name="description" content="${desc}">
+<meta property="og:title" content="${fullTitle}">
+<meta property="og:description" content="${desc}">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="en_GB">
-<meta property="og:locale:alternate" content="ko_KR">
+<meta property="og:locale" content="${L ? "ko_KR" : "en_GB"}">
+<meta property="og:locale:alternate" content="${L ? "en_GB" : "ko_KR"}">${alternates}
 <meta name="theme-color" content="#14322e">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314322e'/%3E%3Cpath d='M9 22l5-12 5 12M11 18h6M22 10v12' stroke='%23f2b33d' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?${(L ? FONTS : FONTS.slice(0, 1)).join("&")}&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<a class="skip" href="#main">${esc(UI.skip[0])} · <span lang="ko">${esc(UI.skip[1])}</span></a>
+<a class="skip" href="#main">${txt(UI.skip)}</a>
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">AE</span><span class="brand-text">${both(UI.siteTitle)}</span></a>
-    <nav aria-label="Main">
-      <ul>${NAV.map(([href, label]) => `<li><a href="${href}"${href === file ? ' aria-current="page"' : ""}>${both(label)}</a></li>`).join("")}<li><a class="nav-cta" href="${esc(M.url)}">${both([`${UI.mentoringNav[0]} ↗`, UI.mentoringNav[1]])}</a></li></ul>
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">AE</span><span class="brand-text">${txt(UI.siteTitle)}</span></a>
+    <nav aria-label="${txt(UI.mainNav)}">
+      <ul>${NAV.map(([href, label]) => `<li><a href="${href}"${href === file ? ' aria-current="page"' : ""}>${txt(label)}</a></li>`).join("")}<li><a class="lang-switch" href="${pagePath(1 - L, file)}" lang="${L ? "en" : "ko"}" hreflang="${L ? "en" : "ko"}">${UI.switchTo[L]}</a></li><li><a class="nav-cta" href="${esc(pick(M.urlEn, M.url))}">${txt(UI.mentoringNav)} ↗</a></li></ul>
     </nav>
   </div>
 </header>
@@ -277,7 +295,7 @@ ${body}
 </main>
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <p>${both(UI.keptBy(profile.updated))}</p>
+    <p>${txt(UI.keptBy(profile.updated))}</p>
     <p>${linkList(profile.links)}</p>
   </div>
 </footer>
@@ -301,20 +319,20 @@ pages["index.html"] = () => {
     description: pairOf(profile, "headline"),
     body: `
 <section class="hero">
-  <p class="eyebrow">${esc(profile.eyebrow)} · <span lang="ko">${esc(profile.eyebrowKo)}</span></p>
+  <p class="eyebrow">${esc(pick(profile.eyebrow, profile.eyebrowKo))}</p>
   ${heading("h1", pairOf(profile, "headline"))}
   ${paras(profile.thesis, profile.thesisKo, "lede")}
   <div class="hero-actions">
-    <a class="button" href="roadmap.html">${inlineBoth(UI.seeRoadmap)}</a>
-    <a class="button ghost" href="market.html">${inlineBoth(UI.whatEmployers)}</a>
+    <a class="button" href="roadmap.html">${txt(UI.seeRoadmap)}</a>
+    <a class="button ghost" href="market.html">${txt(UI.whatEmployers)}</a>
   </div>
 </section>
 
-<section class="stats" aria-label="At a glance">
-  <a class="stat" href="market.html"><strong>${n}</strong><span>${both(UI.statPostings)}</span></a>
-  <a class="stat" href="reading.html"><strong>${(reading.sources ?? []).length}</strong><span>${both(UI.statSources)}</span></a>
-  <a class="stat" href="roadmap.html"><strong>${progress}%</strong><span>${both(UI.statRoadmap)} (${countBy("done")}/${tasks.length})</span></a>
-  <a class="stat" href="log.html"><strong>${(log.entries ?? []).length}</strong><span>${both(UI.statLog)}</span></a>
+<section class="stats" aria-label="${txt(UI.atAGlance)}">
+  <a class="stat" href="market.html"><strong>${n}</strong><span>${txt(UI.statPostings)}</span></a>
+  <a class="stat" href="reading.html"><strong>${(reading.sources ?? []).length}</strong><span>${txt(UI.statSources)}</span></a>
+  <a class="stat" href="roadmap.html"><strong>${progress}%</strong><span>${txt(UI.statRoadmap)} (${countBy("done")}/${tasks.length})</span></a>
+  <a class="stat" href="log.html"><strong>${(log.entries ?? []).length}</strong><span>${txt(UI.statLog)}</span></a>
 </section>
 
 ${mentoringBand()}
@@ -339,7 +357,7 @@ ${mentoringBand()}
 </section>
 
 <section>
-  <div class="section-head">${heading("h2", UI.latestLog)}<a href="log.html">${inlineBoth(UI.allEntries)} →</a></div>
+  <div class="section-head">${heading("h2", UI.latestLog)}<a href="log.html">${txt(UI.allEntries)} →</a></div>
   <div class="entries">${(log.entries ?? []).slice(0, 3).map(logEntry).join("")}</div>
 </section>`,
   });
@@ -373,27 +391,27 @@ ${(market.takeaways ?? []).length ? `<section class="panel takeaways">${heading(
 ${(market.linkedinNotes ?? []).length ? `<section class="panel">${heading("h2", UI.linkedinNotes)}<ul class="dots">${listItems(market.linkedinNotes, market.linkedinNotesKo)}</ul></section>` : ""}
 
 <section id="postings">
-  <div class="section-head">${heading("h2", UI.postings)}<p class="muted small" id="posting-count" aria-live="polite" data-en="${esc(UI.shown("{n}")[0])}" data-ko="${esc(UI.shown("{n}")[1])}">${esc(shown[0])} · ${esc(shown[1])}</p></div>
+  <div class="section-head">${heading("h2", UI.postings)}<p class="muted small" id="posting-count" aria-live="polite" data-template="${esc(UI.shown("{n}")[L])}">${txt(shown)}</p></div>
   <form class="filters" id="filters" role="search" onsubmit="return false">
     <div class="segmented" role="group" aria-label="Country">
-      <button type="button" data-country="all" aria-pressed="true">${inlineBoth(UI.all)}</button>
-      <button type="button" data-country="UK" aria-pressed="false">${inlineBoth(UI.uk)}</button>
-      <button type="button" data-country="US" aria-pressed="false">${inlineBoth(UI.us)}</button>
+      <button type="button" data-country="all" aria-pressed="true">${txt(UI.all)}</button>
+      <button type="button" data-country="UK" aria-pressed="false">${txt(UI.uk)}</button>
+      <button type="button" data-country="US" aria-pressed="false">${txt(UI.us)}</button>
     </div>
     <label class="field"><span class="sr-only">Skill</span>
-      <select id="skill-filter"><option value="">${esc(UI.anySkill[0])} · ${esc(UI.anySkill[1])}</option>${usedSkills
+      <select id="skill-filter"><option value="">${txt(UI.anySkill)}</option>${usedSkills
         .map((s) => s.skill)
         .sort((a, b) => a.localeCompare(b))
         .map((s) => {
           const k = skillFrequency.find((x) => x.skill === s)?.skillKo;
-          return `<option value="${esc(s)}">${esc(s)}${k && k !== s ? ` · ${esc(k)}` : ""}</option>`;
+          return `<option value="${esc(s)}">${esc(L && k ? k : s)}</option>`;
         })
         .join("")}</select>
     </label>
     <label class="field grow"><span class="sr-only">Search postings</span>
-      <input id="search" type="search" placeholder="${esc(UI.search[0])} · ${esc(UI.search[1])}">
+      <input id="search" type="search" placeholder="${txt(UI.search)}">
     </label>
-    <label class="check"><input id="open-only" type="checkbox"> ${inlineBoth(UI.openOnly)}</label>
+    <label class="check"><input id="open-only" type="checkbox"> ${txt(UI.openOnly)}</label>
   </form>
   <div class="postings" id="postings">
     ${postings
@@ -401,26 +419,26 @@ ${(market.linkedinNotes ?? []).length ? `<section class="panel">${heading("h2", 
         (p) => `<article class="posting" data-country="${esc(p.country)}" data-closed="${p.closed}" data-skills="${esc(p.skills.join("|"))}">
       <div class="posting-top">
         <span class="flag flag-${esc(p.country)}">${esc(p.country)}</span>
-        ${p.source ? `<span class="via">${esc(UI.viaLinkedIn[0])} · ${esc(UI.viaLinkedIn[1])}</span>` : ""}
-        ${p.closed ? `<span class="closed">${esc(UI.closed[0])} · ${esc(UI.closed[1])}</span>` : ""}
+        ${p.source ? `<span class="via">${txt(UI.viaLinkedIn)}</span>` : ""}
+        ${p.closed ? `<span class="closed">${txt(UI.closed)}</span>` : ""}
         <span class="muted small">${esc(p.location)}${p.workMode ? ` · ${esc(p.workMode)}` : ""} · ${fmtDate(p.seenDate)}</span>
       </div>
       <h3><a href="${esc(p.url)}">${esc(p.title)}</a></h3>
       <p class="company">${esc(p.company)}${p.salary ? ` · <span class="salary">${esc(p.salary)}</span>` : ""}</p>
       ${paras(p.summary, p.summaryKo)}
-      ${(p.agenticSignals ?? []).length ? `<details><summary>${inlineBoth(UI.fromPosting)}</summary><ul>${p.agenticSignals.map((s) => `<li>${esc(s)}</li>`).join("")}</ul></details>` : ""}
+      ${(p.agenticSignals ?? []).length ? `<details><summary>${txt(UI.fromPosting)}</summary><ul>${p.agenticSignals.map((s) => `<li>${esc(s)}</li>`).join("")}</ul></details>` : ""}
       <p class="tags">${p.skills.map((s) => `<span class="tag">${esc(s)}</span>`).join("")}</p>
     </article>`
       )
       .join("")}
   </div>
-  <p class="empty" id="empty" hidden>${both(UI.noMatch)}</p>
+  <p class="empty" id="empty" hidden>${txt(UI.noMatch)}</p>
 </section>
 
 ${mentoringNote("marketNote")}
 
 ${caveatsSection(market)}`,
-    scripts: `<script src="market.js" defer></script>`,
+    scripts: `<script src="/market.js" defer></script>`,
   });
 };
 
@@ -480,14 +498,14 @@ ${pageHead(
   `<div class="progress" role="img" aria-label="${progress}% of roadmap tasks done">
     ${["done", "doing", "todo"].map((s) => `<span class="progress-${s}" style="flex:${countBy(s)}"></span>`).join("")}
   </div>
-  <p class="legend small">${STATUSES.map((s) => `<span><i class="dot dot-${s}"></i>${inlineBoth(STATUS_LABEL[s])} ${countBy(s)}</span>`).join("")}</p>`
+  <p class="legend small">${STATUSES.map((s) => `<span><i class="dot dot-${s}"></i>${txt(STATUS_LABEL[s])} ${countBy(s)}</span>`).join("")}</p>`
 )}
 
 ${(roadmap.phases ?? [])
   .map(
     (ph) => `<section class="phase">
   <div class="phase-head">
-    <p class="eyebrow">${esc(ph.window)} · <span lang="ko">${esc(ph.windowKo)}</span></p>
+    <p class="eyebrow">${esc(pick(ph.window, ph.windowKo))}</p>
     ${heading("h2", pairOf(ph, "title"))}
     ${ph.goal ? paras(ph.goal, ph.goalKo, "muted") : ""}
   </div>
@@ -533,38 +551,38 @@ ${(community.themes ?? []).length ? `<section>
 </section>` : ""}
 
 <section id="posts">
-  <div class="section-head">${heading("h2", UI.posts)}<p class="muted small" id="post-count" aria-live="polite" data-en="${esc(UI.shown("{n}")[0])}" data-ko="${esc(UI.shown("{n}")[1])}">${esc(UI.shown(posts.length)[0])} · ${esc(UI.shown(posts.length)[1])}</p></div>
+  <div class="section-head">${heading("h2", UI.posts)}<p class="muted small" id="post-count" aria-live="polite" data-template="${esc(UI.shown("{n}")[L])}">${txt(UI.shown(posts.length))}</p></div>
   <div class="filters" role="group" aria-label="Filter posts">
     <div class="segmented wrap-seg" role="group" aria-label="Topic">
-      <button type="button" data-topic="all" aria-pressed="true">${inlineBoth(UI.allTopics)}</button>
-      ${usedTopics.map(([key, label]) => `<button type="button" data-topic="${key}" aria-pressed="false">${inlineBoth(label)}</button>`).join("")}
+      <button type="button" data-topic="all" aria-pressed="true">${txt(UI.allTopics)}</button>
+      ${usedTopics.map(([key, label]) => `<button type="button" data-topic="${key}" aria-pressed="false">${txt(label)}</button>`).join("")}
     </div>
     <div class="segmented" role="group" aria-label="Language">
-      <button type="button" data-lang="all" aria-pressed="true">${inlineBoth(UI.allLangs)}</button>
-      <button type="button" data-lang="ko" aria-pressed="false">${inlineBoth(UI.koPosts)}</button>
-      <button type="button" data-lang="en" aria-pressed="false">${inlineBoth(UI.enPosts)}</button>
+      <button type="button" data-lang="all" aria-pressed="true">${txt(UI.allLangs)}</button>
+      <button type="button" data-lang="ko" aria-pressed="false">${txt(UI.koPosts)}</button>
+      <button type="button" data-lang="en" aria-pressed="false">${txt(UI.enPosts)}</button>
     </div>
   </div>
   <div class="community-posts">${posts
     .map(
       (p) => `<article class="cpost" id="${esc(p.id)}" data-topic="${esc(p.topic)}" data-lang="${esc(p.lang)}">
       <div class="posting-top">
-        <span class="chip chip-topic">${both(TOPICS[p.topic])}</span>
+        <span class="chip chip-topic">${txt(TOPICS[p.topic])}</span>
         <span class="flag flag-lang">${p.lang === "ko" ? "KO" : "EN"}</span>
         <span class="muted small"><a href="${esc(p.url)}">${esc(p.author)} ↗</a>${p.date ? ` · ${fmtDate(p.date)}` : ""} · ${esc(p.id)}</span>
       </div>
       ${paras(p.summary, p.summaryKo)}
-      ${p.tip ? `<div class="tip"><span class="label">${both(UI.tip)}</span>${paras(p.tip, p.tipKo)}</div>` : ""}
+      ${p.tip ? `<div class="tip"><span class="label">${txt(UI.tip)}</span>${paras(p.tip, p.tipKo)}</div>` : ""}
       ${p.quote ? `<blockquote lang="${esc(p.lang)}">${esc(p.quote)}</blockquote>` : ""}
-      ${p.seenVia === "snippet" ? `<p class="muted small">${inlineBoth(UI.viaSnippet)}</p>` : ""}
+      ${p.seenVia === "snippet" ? `<p class="muted small">${txt(UI.viaSnippet)}</p>` : ""}
     </article>`
     )
     .join("")}</div>
-  <p class="empty" id="empty" hidden>${both(UI.noMatch)}</p>
+  <p class="empty" id="empty" hidden>${txt(UI.noMatch)}</p>
 </section>
 
 ${caveatsSection(community)}`,
-    scripts: `<script src="community.js" defer></script>`,
+    scripts: `<script src="/community.js" defer></script>`,
   });
 };
 
@@ -583,18 +601,28 @@ pages["404.html"] = () =>
     file: "404.html",
     title: ["Not found", "찾을 수 없음"],
     description: ["Page not found.", "페이지를 찾을 수 없습니다."],
-    body: `<section class="page-head">${heading("h1", UI.notFound)}<p class="lede"><a href="index.html">${inlineBoth(UI.backHome)}</a></p></section>`,
+    body: `<section class="page-head">${heading("h1", UI.notFound)}<p class="lede"><a href="index.html">${txt(UI.backHome)}</a></p></section>`,
   });
 
 // ---------- write ----------
 
 rmSync(out, { recursive: true, force: true });
-mkdirSync(out, { recursive: true });
 // Cloudflare serves pages at clean URLs (/market) and 404s on /market.html, so
-// internal links are written as file names above and rewritten here.
-const cleanLinks = (html) =>
-  html.replace(/href="index\.html/g, 'href="/').replace(/href="([a-z0-9-]+)\.html/g, 'href="/$1');
-for (const [file, render] of Object.entries(pages)) writeFileSync(join(out, file), cleanLinks(render()));
+// internal links are written as file names above and rewritten here, with the
+// language prefix. On English pages, links to this site's own URLs (log
+// evidence, for example) go to the English version.
+for (const lang of [1, 0]) {
+  L = lang;
+  const dir = L ? out : join(out, "en");
+  const prefix = L ? "/" : "/en/";
+  mkdirSync(dir, { recursive: true });
+  const cleanLinks = (html) => {
+    html = html.replace(/href="index\.html/g, `href="${prefix}`).replace(/href="([a-z0-9-]+)\.html/g, `href="${prefix}$1`);
+    if (!L) html = html.replace(new RegExp(`(<a [^>]*href=")${SITE}(/(?!en/)[^"]*)?"`, "g"), (_, a, rest = "/") => `${a}${SITE}/en${rest}"`);
+    return html;
+  };
+  for (const [file, render] of Object.entries(pages)) writeFileSync(join(dir, file), cleanLinks(render()));
+}
 for (const asset of ["styles.css", "market.js", "community.js"]) copyFileSync(join(root, "src", asset), join(out, asset));
 writeFileSync(join(out, "robots.txt"), "User-agent: *\nAllow: /\n");
-console.log(`Built ${Object.keys(pages).length} pages into dist/`);
+console.log(`Built ${Object.keys(pages).length} pages in Korean (dist/) and English (dist/en/)`);

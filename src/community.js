@@ -15,7 +15,7 @@
       card.hidden = !ok;
       if (ok) shown++;
     }
-    count.textContent = `${count.dataset.en.replace("{n}", shown)} · ${count.dataset.ko.replace("{n}", shown)}`;
+    count.textContent = count.dataset.template.replace("{n}", shown);
     empty.hidden = shown > 0;
   }
 

@@ -4,6 +4,24 @@
   "entries": [
     {
       "date": "2026-10-25",
+      "title": "Separate Korean and English pages",
+      "titleKo": "한국어·영어 페이지 분리",
+      "body": "Showing both languages on one page made every page twice as long, so I split them the way my mentoring site does: Korean at `/` and English at `/en/`, with a language switch in the nav that keeps you on the same page. The content files didn't change; the build script renders each page twice from the same `<field>` and `<field>Ko` pairs, and the content check still fails if any Korean is missing.",
+      "bodyKo": "한 페이지에 두 언어를 함께 보여 주니 모든 페이지가 두 배로 길어져서, 제 멘토링 사이트처럼 나눴습니다. 한국어는 `/`, 영어는 `/en/`에 있고, 메뉴의 언어 버튼을 누르면 같은 페이지의 다른 언어 버전으로 이동합니다. 콘텐츠 파일은 그대로 두고 빌드 스크립트가 같은 `<field>`·`<field>Ko` 쌍으로 페이지를 두 번 렌더링하며, 한국어가 하나라도 빠지면 콘텐츠 검사가 여전히 실패합니다.",
+      "tags": [
+        "bilingual",
+        "build"
+      ],
+      "links": [
+        {
+          "label": "English version",
+          "labelKo": "영어 버전",
+          "url": "https://ai-engineer-log.latteboo99.workers.dev/en/"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
       "title": "Bilingual site, LinkedIn and Threads research, and a link to my mentoring",
       "titleKo": "두 언어 사이트, LinkedIn·Threads 조사, 멘토링 연결",
       "body": "Every page now shows English and Korean together, and the content check fails if any Korean is missing. Three translation sub-agents worked on separate files in parallel so they never conflicted.\n\nAdded 29 postings checked one by one on LinkedIn's public job pages (about 57 page views, no login, no bulk scraping) and a new community page summarising 35 public Threads posts on coding agents, tokens, instruction files, review and AI engineering careers.\n\nThe site now points readers to my mentoring sessions, which draw on this research.",

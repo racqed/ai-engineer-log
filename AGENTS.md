@@ -1,6 +1,6 @@
 # Agent guide
 
-A static site: `content/*.json` → `scripts/build.mjs` → `dist/`. No framework, no runtime dependencies. Node 22+.
+A static site: `content/*.json` → `scripts/build.mjs` → `dist/` (Korean) and `dist/en/` (English). No framework, no runtime dependencies. Node 22+.
 
 ## Open only the file you need
 
@@ -26,7 +26,7 @@ Don't read `dist/`, `node_modules/` or the whole repo to answer a content reques
 4. Bump `updated` (`profile.json` and/or `market.json`) when content changes materially.
 5. Write the English in plain British English. Short, factual entries; no hype or invented results.
 6. Text fields allow `**bold**`, `` `code` ``, `[label](https://...)`, `- ` lists, and blank lines between paragraphs. No HTML.
-7. **Always bilingual.** The site shows English and Korean together on every page. Every translatable field has a Korean sibling named `<field>Ko` placed right after it (`title` → `titleKo`, `body` → `bodyKo`; arrays get same-length arrays), and links carry `labelKo`. Write the Korean as natural 합니다체 in the first person, not a literal translation; keep numbers, names and technical terms (LLM, RAG, MCP, CI) identical. Job titles, source titles, skill tags and quoted posting text stay in English. Interface text lives in the `UI` table in `scripts/build.mjs` as `[english, korean]` pairs. `npm run check` fails on any missing Korean.
+7. **Always bilingual.** Every page is built twice, like the mentoring site: Korean at `/` and English at `/en/`, with a language switch in the nav. Every translatable field has a Korean sibling named `<field>Ko` placed right after it (`title` → `titleKo`, `body` → `bodyKo`; arrays get same-length arrays), and links carry `labelKo`. Write the Korean as natural 합니다체 in the first person, not a literal translation; keep numbers, names and technical terms (LLM, RAG, MCP, CI) identical. Job titles, source titles, skill tags and quoted posting text stay in English. Interface text lives in the `UI` table in `scripts/build.mjs` as `[english, korean]` pairs. `npm run check` fails on any missing Korean.
 8. Don't publish anything private: no real names other than "K.Wright", no employer-confidential detail, no links to private sites.
 
 ## Before you finish
